@@ -36,12 +36,14 @@ var {
     Text,
     View,
 } = React;
+var UserBadge = require('./UserBadge.js');
 
 var UserScreen = React.createClass({
     render: function() {
         return (
                 <ScrollView contentContainerStyle={styles.contentContainer}>
                   <View style={styles.mainSection}>
+                    <UserBadge user={this.props.user}/>
                     <View style={styles.rightPane}>
                       <Text style={styles.name}>{this.props.user.FirstName} {this.props.user.LastName}</Text>
                       <Text>{this.props.user.Email}</Text>
