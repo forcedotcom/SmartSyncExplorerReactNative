@@ -33,10 +33,26 @@ var {
     NavigatorIOS
 } = React;
 
+var smartstore = require('./react.force.smartstore.js');
+var smartsync = require('./react.force.smartsync.js');
 var SearchScreen = require('./SearchScreen.js');
 
-
 var App = React.createClass({
+    componentDidMount: function() {
+        smartstore.registerSoup(false,
+                                "users", 
+                                [ {path:"Id", type:"string"}, 
+                                  {path:"FirstName", type:"string"}, 
+                                  {path:"LastName", type:"string"}, 
+                                  {path:"__local__", type:"string"} ],
+                                function() {
+                                    var fieldlist = ["Id", "FirstName", "LastName", "Title", "CompanyName", "Email", "MobilePhone","City"];
+                                    var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM User WHERE CompanyName = 'salesforce.com' and Title like '%Engineer%' LIMIT 10000"};
+                                    smartsync.syncDown(false, target, "users", {mergeMode:smartsync.MERGE_MODE.OVERWRITE});
+                                });
+
+    },
+
     render: function() {
         return (
             <NavigatorIOS

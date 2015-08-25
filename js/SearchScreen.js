@@ -38,7 +38,7 @@ var {
 var SearchBar = require('./SearchBar.js');
 var UserScreen = require('./UserScreen.js');
 var UserCell = require('./UserCell.js');
-var forceClient = require('./react.force.net.js');
+var smartstore = require('./react.force.smartstore.js');
 var lastRequestSent = 0;
 var lastResponseReceived = 0;
 
@@ -103,37 +103,45 @@ var SearchScreen = React.createClass({
         var queryLast = queryParts.length == 2 ? queryParts[1] : query;
         var queryOp = queryParts.length == 2 ? "AND" : "OR";
 
-        var query = "SELECT Id, FirstName, LastName, Title, CompanyName, Email, MobilePhone, City"
-            + " FROM User "
-            + " WHERE FirstName LIKE '" + queryFirst + "%'"
-            + " " + queryOp + " LastName LIKE '" + queryLast + "%'"
-            + " LIMIT 25";
-
+        var querySpec = {queryType:"smart", 
+                         smartSql:"SELECT {users:_soup}"
+                         + " FROM {users}"
+                         + " WHERE {users:FirstName} like '" + queryFirst + "%'"
+                         + " " + queryOp + " {users:LastName} like '" + queryLast + "%'"
+                         + " ORDER BY {users:LastName} ",
+                         pageSize:25}
         var that = this;
 
         lastRequestSent++;
         var currentRequest = lastRequestSent;
 
-        forceClient.query(query,
-                          function(response) {
-                              console.log("Response for #" + currentRequest);
-                              if (currentRequest > lastResponseReceived) {
-                                  lastResponseReceived = currentRequest;
-                                  var users = response.records;
-                                  that.setState({
-                                      isLoading: false,
-                                      filter: query,
-                                      dataSource: that.state.dataSource.cloneWithRows(users),
-                                      queryNumber: currentRequest                                  
-                                  });
-                              }
-                              else {
-                                  console.log("IGNORING Response for #" + currentRequest);
-                              }
-                          },
-                          function(error) {
-                              console.log("Error->" + JSON.stringify(error));
-                          });
+        smartstore.runSmartQuery(false,
+                                 querySpec,
+                                 function(cursor) {
+                                     console.log("Response for #" + currentRequest);
+                                     if (currentRequest > lastResponseReceived) {
+                                         lastResponseReceived = currentRequest;
+                                         var users = [];
+                                         for (var i=0; i < cursor.currentPageOrderedEntries.length; i++) {
+                                             users.push(cursor.currentPageOrderedEntries[i][0]);
+                                         }
+                                         that.setState({
+                                             isLoading: false,
+                                             filter: query,
+                                             dataSource: that.state.dataSource.cloneWithRows(users),
+                                             queryNumber: currentRequest                                  
+                                         });
+                                     }
+                                     else {
+                                         console.log("IGNORING Response for #" + currentRequest);
+                                     }
+                                 },
+                                 function(error) {
+                                     console.log("Error->" + JSON.stringify(error));
+                                     that.setState({
+                                         isLoading: false
+                                     });
+                                 });
     }
 });
 
