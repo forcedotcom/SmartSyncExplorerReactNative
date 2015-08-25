@@ -57,6 +57,4 @@ var styles = StyleSheet.create({
     }
 });
 
-
-
 React.AppRegistry.registerComponent('SampleAppReact', () => App);
