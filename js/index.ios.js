@@ -42,8 +42,8 @@ var App = React.createClass({
         smartstore.registerSoup(false,
                                 "users", 
                                 [ {path:"Id", type:"string"}, 
-                                  {path:"FirstName", type:"string"}, 
-                                  {path:"LastName", type:"string"}, 
+                                  {path:"FirstName", type:"full_text"}, 
+                                  {path:"LastName", type:"full_text"}, 
                                   {path:"__local__", type:"string"} ],
                                 function() {
                                     var fieldlist = ["Id", "FirstName", "LastName", "Title", "CompanyName", "Email", "MobilePhone","City"];

@@ -102,46 +102,39 @@ var SearchScreen = React.createClass({
         var queryFirst = queryParts.length == 2 ? queryParts[0] : query;
         var queryLast = queryParts.length == 2 ? queryParts[1] : query;
         var queryOp = queryParts.length == 2 ? "AND" : "OR";
+        var match = "{users:FirstName}:" + queryFirst + "* " + queryOp + " {users:LastName}:" + queryLast + "*";
 
-        var querySpec = {queryType:"smart", 
-                         smartSql:"SELECT {users:_soup}"
-                         + " FROM {users}"
-                         + " WHERE {users:FirstName} like '" + queryFirst + "%'"
-                         + " " + queryOp + " {users:LastName} like '" + queryLast + "%'"
-                         + " ORDER BY {users:LastName} ",
-                         pageSize:25}
+        var querySpec = smartstore.buildMatchQuerySpec(null, match, "ascending", 25, "LastName");
         var that = this;
 
         lastRequestSent++;
         var currentRequest = lastRequestSent;
 
-        smartstore.runSmartQuery(false,
-                                 querySpec,
-                                 function(cursor) {
-                                     console.log("Response for #" + currentRequest);
-                                     if (currentRequest > lastResponseReceived) {
-                                         lastResponseReceived = currentRequest;
-                                         var users = [];
-                                         for (var i=0; i < cursor.currentPageOrderedEntries.length; i++) {
-                                             users.push(cursor.currentPageOrderedEntries[i][0]);
-                                         }
-                                         that.setState({
-                                             isLoading: false,
-                                             filter: query,
-                                             dataSource: that.state.dataSource.cloneWithRows(users),
-                                             queryNumber: currentRequest                                  
-                                         });
-                                     }
-                                     else {
-                                         console.log("IGNORING Response for #" + currentRequest);
-                                     }
-                                 },
-                                 function(error) {
-                                     console.log("Error->" + JSON.stringify(error));
+        smartstore.querySoup(false,
+                             "users",
+                             querySpec,
+                             function(cursor) {
+                                 console.log("Response for #" + currentRequest);
+                                 if (currentRequest > lastResponseReceived) {
+                                     lastResponseReceived = currentRequest;
+                                     var users = cursor.currentPageOrderedEntries;
                                      that.setState({
-                                         isLoading: false
+                                         isLoading: false,
+                                         filter: query,
+                                         dataSource: that.state.dataSource.cloneWithRows(users),
+                                         queryNumber: currentRequest                                  
                                      });
+                                 }
+                                 else {
+                                     console.log("IGNORING Response for #" + currentRequest);
+                                 }
+                             },
+                             function(error) {
+                                 console.log("Error->" + JSON.stringify(error));
+                                 that.setState({
+                                     isLoading: false
                                  });
+                             });
     }
 });
 
