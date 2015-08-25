@@ -39,6 +39,8 @@ var SearchBar = require('./SearchBar.js');
 var UserScreen = require('./UserScreen.js');
 var UserCell = require('./UserCell.js');
 var forceClient = require('./react.force.net.js');
+var lastRequestSent = 0;
+var lastResponseReceived = 0;
 
 var SearchScreen = React.createClass({
     getInitialState: function() {
@@ -108,15 +110,26 @@ var SearchScreen = React.createClass({
             + " LIMIT 25";
 
         var that = this;
+
+        lastRequestSent++;
+        var currentRequest = lastRequestSent;
+
         forceClient.query(query,
                           function(response) {
-                              var users = response.records;
-                              that.setState({
-                                  isLoading: false,
-                                  filter: query,
-                                  dataSource: that.state.dataSource.cloneWithRows(users),
-                                  queryNumber: that.state.queryNumber + 1                                  
-                              });
+                              console.log("Response for #" + currentRequest);
+                              if (currentRequest > lastResponseReceived) {
+                                  lastResponseReceived = currentRequest;
+                                  var users = response.records;
+                                  that.setState({
+                                      isLoading: false,
+                                      filter: query,
+                                      dataSource: that.state.dataSource.cloneWithRows(users),
+                                      queryNumber: currentRequest                                  
+                                  });
+                              }
+                              else {
+                                  console.log("IGNORING Response for #" + currentRequest);
+                              }
                           },
                           function(error) {
                               console.log("Error->" + JSON.stringify(error));
