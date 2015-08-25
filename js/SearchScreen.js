@@ -140,7 +140,7 @@ var SearchScreen = React.createClass({
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
+        backgroundColor: 'white',
     },
     separator: {
         height: 1,

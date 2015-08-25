@@ -37,7 +37,7 @@ var styles = StyleSheet.create({
         paddingLeft: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'green',
+        backgroundColor: 'white',
     },
     searchBarInput: {
         fontSize: 15,

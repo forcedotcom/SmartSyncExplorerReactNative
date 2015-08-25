@@ -63,7 +63,7 @@ var UserCell = React.createClass({
 var styles = StyleSheet.create({
     row: {
         alignItems: 'center',
-        backgroundColor: 'pink',
+        backgroundColor: 'white',
         flexDirection: 'row'
     },
     textContainer: {
