@@ -110,10 +110,13 @@ var App = React.createClass({
         return (
             <NavigatorIOS
                 style={styles.container}
+                barTintColor='red'
+                titleTextColor='white'
+                tintColor='white'
                 initialRoute={{
                     title: 'Contacts',
                     component: SearchScreen,
-                    rightButtonTitle: 'Sync',
+                    rightButtonIcon: require('image!sync'),
                     onRightButtonPress: () => that.syncUp(() => that.reSync())
                 }}
             />

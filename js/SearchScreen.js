@@ -80,7 +80,6 @@ var SearchScreen = React.createClass({
 
     selectContact: function(contact: Object) {
         this.props.navigator.push({
-            title: contact.FirstName.substring(0, 1) + " " + contact.LastName,
             component: ContactScreen,
             passProps: {contact},
         });

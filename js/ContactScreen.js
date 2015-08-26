@@ -41,38 +41,45 @@ var ContactBadge = require('./ContactBadge.js');
 var ContactScreen = React.createClass({
     render: function() {
         return (
-                <ScrollView contentContainerStyle={styles.contentContainer}>
-                  <View style={styles.mainSection}>
-                    <ContactBadge contact={this.props.contact}/>
-                    <View style={styles.rightPane}>
-                      <Text style={styles.name}>{this.props.contact.FirstName} {this.props.contact.LastName}</Text>
-                      <Text>{this.props.contact.Title} {this.props.contact.CompanyName}</Text>
-                      <Text>{this.props.contact.Email}</Text>
-                      <Text>{this.props.contact.MobilePhone}</Text>
-                      <Text>{this.props.contact.HomePhone}</Text>
-                    </View>
-                  </View>
+                <ScrollView>
+                  <Text style={styles.fieldName}>First name</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.FirstName}</Text>
+
+                  <Text style={styles.fieldName}>Last name</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.LastName}</Text>
+
+                  <Text style={styles.fieldName}>Title</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.Title}</Text>
+
+                  <Text style={styles.fieldName}>Mobile phone</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.MobilePhone}</Text>
+
+                  <Text style={styles.fieldName}>Email address</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.Email}</Text>
+
+                  <Text style={styles.fieldName}>Department</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.Department}</Text>
+
+                  <Text style={styles.fieldName}>Home phone</Text>
+                  <Text style={styles.fieldValue}>{this.props.contact.HomePhone}</Text>
                 </ScrollView>
                );
     },
 });
 
 var styles = StyleSheet.create({
-    contentContainer: {
-        padding: 10,
-    },
-    rightPane: {
-        justifyContent: 'space-between',
-        flex: 1,
-    },
-    name: {
+    fieldName: {
         flex: 1,
         fontSize: 16,
         fontWeight: 'bold',
+        backgroundColor: '#F0F0F0',
+        padding: 5
     },
-    mainSection: {
-        flexDirection: 'row',
-    }
+    fieldValue: {
+        flex: 1,
+        fontSize: 16,
+        padding: 5
+    },
 });
 
 module.exports = ContactScreen;
