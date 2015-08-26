@@ -36,30 +36,85 @@ var {
 var smartstore = require('./react.force.smartstore.js');
 var smartsync = require('./react.force.smartsync.js');
 var SearchScreen = require('./SearchScreen.js');
+var syncInFlight = false;
+var syncDownId;
 
 var App = React.createClass({
     componentDidMount: function() {
+        var that = this;
         smartstore.registerSoup(false,
-                                "users", 
+                                "contacts", 
                                 [ {path:"Id", type:"string"}, 
                                   {path:"FirstName", type:"full_text"}, 
                                   {path:"LastName", type:"full_text"}, 
                                   {path:"__local__", type:"string"} ],
                                 function() {
-                                    var fieldlist = ["Id", "FirstName", "LastName", "Title", "CompanyName", "Email", "MobilePhone","City"];
-                                    var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM User WHERE CompanyName = 'salesforce.com' and Title like '%Engineer%' LIMIT 10000"};
-                                    smartsync.syncDown(false, target, "users", {mergeMode:smartsync.MERGE_MODE.OVERWRITE});
+                                    that.syncDown((sync) => syncDownId=sync._soupEntryId);
                                 });
-
     },
 
+    syncDown: function(callback) {
+        if (syncInFlight) {
+            console.log("Not starting syncDown - sync already in fligtht");
+            return;
+        }
+        
+        console.log("Starting syncDown");
+        syncInFlight = true;
+        var fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
+        var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM Contact WHERE Title like '%Engineer%' LIMIT 10000"};
+        smartsync.syncDown(false,
+                           target,
+                           "contacts",
+                           {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
+                           function(sync) {syncInFlight = false; if (callback) callback(sync);},
+                           function(error) {syncInFlight = false;}
+                          );
+
+    },
+    
+    reSync: function(callback) {
+        if (syncInFlight) {
+            console.log("Not starting reSync - sync already in fligtht");
+            return;
+        }
+
+        console.log("Starting reSync");
+        syncInFlight = true;
+        smartsync.reSync(false,
+                         syncDownId,
+                         function(sync) {syncInFlight = false; if (callback) callback(sync);},
+                         function(error) {syncInFlight = false;}
+                        );
+    },
+
+    syncUp: function(callback) {
+        if (syncInFlight) {
+            console.log("Not starting syncUp - sync already in fligtht");
+            return;
+        }
+
+        console.log("Starting syncUp");
+        syncInFlight = true;
+        smartsync.syncUp(false,
+                         {},
+                         "contacts",
+                         {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
+                         function(sync) {syncInFlight = false; if (callback) callback(sync);},
+                         function(error) {syncInFlight = false;}
+                        );
+    },
+    
     render: function() {
+        var that = this;
         return (
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: 'Mobile SDK Sample App',
+                    title: 'Contacts',
                     component: SearchScreen,
+                    rightButtonTitle: 'Sync',
+                    onRightButtonPress: () => that.syncUp(() => that.reSync())
                 }}
             />
         );

@@ -59,11 +59,11 @@ var colors = [
 ];
 
 
-var UserBadge = React.createClass({
+var ContactBadge = React.createClass({
     render: function() {
         // Compute initials
-        var firstName = this.props.user.FirstName;
-        var lastName = this.props.user.LastName;
+        var firstName = this.props.contact.FirstName;
+        var lastName = this.props.contact.LastName;
         var initials = (firstName ? firstName.substring(0,1) : "") + (lastName ? lastName.substring(0,1) : "");
         // Compute color
         var code = 0;
@@ -98,4 +98,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = UserBadge;
+module.exports = ContactBadge;

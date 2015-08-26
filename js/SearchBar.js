@@ -17,7 +17,7 @@ var SearchBar = React.createClass({
                   <TextInput
                     autoCorrect={false}
                     onChange={this.props.onSearchChange}
-                    placeholder="Search a user..."
+                    placeholder="Search a contact..."
                     onFocus={this.props.onFocus}
                     style={styles.searchBarInput}
                   />

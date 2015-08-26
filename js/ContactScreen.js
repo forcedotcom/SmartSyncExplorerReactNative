@@ -36,20 +36,20 @@ var {
     Text,
     View,
 } = React;
-var UserBadge = require('./UserBadge.js');
+var ContactBadge = require('./ContactBadge.js');
 
-var UserScreen = React.createClass({
+var ContactScreen = React.createClass({
     render: function() {
         return (
                 <ScrollView contentContainerStyle={styles.contentContainer}>
                   <View style={styles.mainSection}>
-                    <UserBadge user={this.props.user}/>
+                    <ContactBadge contact={this.props.contact}/>
                     <View style={styles.rightPane}>
-                      <Text style={styles.name}>{this.props.user.FirstName} {this.props.user.LastName}</Text>
-                      <Text>{this.props.user.Email}</Text>
-                      <Text>{this.props.user.Title} {this.props.user.CompanyName}</Text>
-                      <Text>{this.props.user.MobilePhone}</Text>
-                      <Text>{this.props.user.City}</Text>
+                      <Text style={styles.name}>{this.props.contact.FirstName} {this.props.contact.LastName}</Text>
+                      <Text>{this.props.contact.Title} {this.props.contact.CompanyName}</Text>
+                      <Text>{this.props.contact.Email}</Text>
+                      <Text>{this.props.contact.MobilePhone}</Text>
+                      <Text>{this.props.contact.HomePhone}</Text>
                     </View>
                   </View>
                 </ScrollView>
@@ -75,4 +75,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = UserScreen;
+module.exports = ContactScreen;

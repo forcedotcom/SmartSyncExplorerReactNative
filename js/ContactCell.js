@@ -35,21 +35,21 @@ var {
     TouchableHighlight,
     View
 } = React;
-var UserBadge = require('./UserBadge.js');
+var ContactBadge = require('./ContactBadge.js');
 
-var UserCell = React.createClass({
+var ContactCell = React.createClass({
     render: function() {
         return (
                 <View>
                   <TouchableHighlight onPress={this.props.onSelect}>
                     <View style={styles.row}>
-                      <UserBadge user={this.props.user}/>
+                      <ContactBadge contact={this.props.contact}/>
                       <View style={styles.textContainer}>
                         <Text style={styles.name} numberOfLines={2}>
-                          {this.props.user.FirstName} {this.props.user.LastName}
+                          {this.props.contact.FirstName} {this.props.contact.LastName}
                         </Text>
                         <Text style={styles.title} numberOfLines={1}>
-                          {this.props.user.Title} {this.props.user.CompanyName}
+                          {this.props.contact.Title}
                         </Text>
                       </View>
                     </View>
@@ -87,4 +87,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = UserCell;
+module.exports = ContactCell;

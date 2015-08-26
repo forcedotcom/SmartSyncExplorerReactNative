@@ -36,8 +36,8 @@ var {
 } = React;
 
 var SearchBar = require('./SearchBar.js');
-var UserScreen = require('./UserScreen.js');
-var UserCell = require('./UserCell.js');
+var ContactScreen = require('./ContactScreen.js');
+var ContactCell = require('./ContactCell.js');
 var smartstore = require('./react.force.smartstore.js');
 var lastRequestSent = 0;
 var lastResponseReceived = 0;
@@ -71,28 +71,28 @@ var SearchScreen = React.createClass({
 
     renderRow: function(row: Object)  {
         return (
-                <UserCell
-                  onSelect={() => this.selectUser(row)}
-                  user={row}
+                <ContactCell
+                  onSelect={() => this.selectContact(row)}
+                  contact={row}
                 />
         );
     },
 
-    selectUser: function(user: Object) {
+    selectContact: function(contact: Object) {
         this.props.navigator.push({
-            title: user.FirstName.substring(0, 1) + " " + user.LastName,
-            component: UserScreen,
-            passProps: {user},
+            title: contact.FirstName.substring(0, 1) + " " + contact.LastName,
+            component: ContactScreen,
+            passProps: {contact},
         });
     },
 
     onSearchChange: function(event: Object) {
         var filter = event.nativeEvent.text.toLowerCase();
         clearTimeout(this.timeoutID);
-        this.timeoutID = setTimeout(() => this.searchUsers(filter), 10);
+        this.timeoutID = setTimeout(() => this.searchContacts(filter), 10);
     },
 
-    searchUsers: function(query: string) {
+    searchContacts: function(query: string) {
         this.setState({
             isLoading: true,
             filter: query
@@ -102,7 +102,7 @@ var SearchScreen = React.createClass({
         var queryFirst = queryParts.length == 2 ? queryParts[0] : query;
         var queryLast = queryParts.length == 2 ? queryParts[1] : query;
         var queryOp = queryParts.length == 2 ? "AND" : "OR";
-        var match = "{users:FirstName}:" + queryFirst + "* " + queryOp + " {users:LastName}:" + queryLast + "*";
+        var match = "{contacts:FirstName}:" + queryFirst + "* " + queryOp + " {contacts:LastName}:" + queryLast + "*";
 
         var querySpec = smartstore.buildMatchQuerySpec(null, match, "ascending", 25, "LastName");
         var that = this;
@@ -111,17 +111,17 @@ var SearchScreen = React.createClass({
         var currentRequest = lastRequestSent;
 
         smartstore.querySoup(false,
-                             "users",
+                             "contacts",
                              querySpec,
                              function(cursor) {
                                  console.log("Response for #" + currentRequest);
                                  if (currentRequest > lastResponseReceived) {
                                      lastResponseReceived = currentRequest;
-                                     var users = cursor.currentPageOrderedEntries;
+                                     var contacts = cursor.currentPageOrderedEntries;
                                      that.setState({
                                          isLoading: false,
                                          filter: query,
-                                         dataSource: that.state.dataSource.cloneWithRows(users),
+                                         dataSource: that.state.dataSource.cloneWithRows(contacts),
                                          queryNumber: currentRequest                                  
                                      });
                                  }
