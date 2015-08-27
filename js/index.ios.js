@@ -66,7 +66,7 @@ var App = React.createClass({
         smartsync.syncDown(false,
                            target,
                            "contacts",
-                           {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
+                           {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED},
                            function(sync) {syncInFlight = false; if (callback) callback(sync);},
                            function(error) {syncInFlight = false;}
                           );
@@ -99,7 +99,7 @@ var App = React.createClass({
         smartsync.syncUp(false,
                          {},
                          "contacts",
-                         {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
+                         {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED},
                          function(sync) {syncInFlight = false; if (callback) callback(sync);},
                          function(error) {syncInFlight = false;}
                         );
