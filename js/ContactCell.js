@@ -39,6 +39,18 @@ var ContactBadge = require('./ContactBadge.js');
 
 var ContactCell = React.createClass({
     render: function() {
+        var statusIcon;
+        if (this.props.contact.__local__) {
+            var iconSource;
+            if (this.props.contact.__locally_updated__) iconSource = require("image!local-update");
+            if (this.props.contact.__locally_created__) iconSource = require("image!local-add");
+            if (this.props.contact.__locally_deleted__) iconSource = require("image!local-delete");
+
+            if (iconSource) {
+                statusIcon = (<Image source={iconSource} />);
+            }
+        }
+
         return (
                 <View>
                   <TouchableHighlight onPress={this.props.onSelect}>
@@ -52,8 +64,9 @@ var ContactCell = React.createClass({
                           {this.props.contact.Title}
                         </Text>
                       </View>
+                      {statusIcon}
                     </View>
-                  </TouchableHighlight>
+                    </TouchableHighlight>
                   <View style={styles.cellBorder} />
                 </View>
                );
