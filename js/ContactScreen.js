@@ -28,13 +28,11 @@
 
 var React = require('react-native');
 var {
-    ExpandingText,
-    Image,
-    PixelRatio,
     ScrollView,
     StyleSheet,
     Text,
     View,
+    TouchableHighlight
 } = React;
 var ContactBadge = require('./ContactBadge.js');
 
@@ -62,9 +60,13 @@ var ContactScreen = React.createClass({
 
                   <Text style={styles.fieldName}>Home phone</Text>
                   <Text style={styles.fieldValue}>{this.props.contact.HomePhone}</Text>
+
+                <TouchableHighlight onPress={() => this.props.onDelete(this.props.contact)}>
+                    <Text style={styles.button}>Delete Contact</Text>
+                  </TouchableHighlight>
                 </ScrollView>
                );
-    },
+    }
 });
 
 var styles = StyleSheet.create({
@@ -80,6 +82,11 @@ var styles = StyleSheet.create({
         fontSize: 16,
         padding: 5
     },
+    button: {
+        fontSize: 16,
+        color: 'red',
+        padding: 5
+    }
 });
 
 module.exports = ContactScreen;
