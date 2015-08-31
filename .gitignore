@@ -5,3 +5,4 @@ artifacts
 *.xccheckout
 Pods
 Podfile.lock
+npm-debug.log

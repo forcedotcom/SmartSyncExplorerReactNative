@@ -82,8 +82,10 @@ var SearchScreen = React.createClass({
         this.props.navigator.push({
             component: ContactScreen,
             passProps: {contact:contact,
-                        onDelete:this.onDelete
+                        onDeleteContact:this.onDeleteContact,
                        },
+            rightButtonTitle: "Save",
+            onRightButtonPress: () => this.onSaveContact(contact)
         });
     },
 
@@ -93,12 +95,20 @@ var SearchScreen = React.createClass({
         this.timeoutID = setTimeout(() => this.searchContacts(filter), 10);
     },
 
-    onDelete: function(contact: Object) {
+    onSaveContact: function(contact: Object) {
+        contact.__locally_updated__ = contact.__local__ = true;
+        smartstore.upsertSoupEntries(false, "contacts", [contact],
+                                     () => {
+                                         this.props.navigator.pop();
+                                         // FIXME need to refresh list screen
+                                     });
+    },
+
+    onDeleteContact: function(contact: Object) {
         contact.__locally_deleted__ = contact.__local__ = true;
         smartstore.upsertSoupEntries(false, "contacts", [contact],
                                      () => {
                                          this.props.navigator.pop();
-
                                          // FIXME need to refresh list screen
                                      });
     },

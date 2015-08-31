@@ -30,38 +30,40 @@ var React = require('react-native');
 var {
     ScrollView,
     StyleSheet,
-    Text,
     View,
-    TouchableHighlight
+    TouchableHighlight,
+    Text
 } = React;
 var ContactBadge = require('./ContactBadge.js');
+var Field = require('./Field.js');
 
+// State: contact
+// Props: contact, onDelete
 var ContactScreen = React.createClass({
+    getInitialState: function() {
+        return {
+            contact: this.props.contact
+      };
+    },
+
+    onChange: function(fieldKey, fieldValue) {
+        var contact = this.state.contact;
+        contact[fieldKey] = fieldValue;
+        this.setState({contact: contact});
+    },
+
     render: function() {
         return (
                 <ScrollView>
-                  <Text style={styles.fieldName}>First name</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.FirstName}</Text>
+                  <Field fieldLabel="First name" fieldValue={this.props.contact.FirstName} onChange={(text) => this.onChange("FirstName", text)}/>
+                  <Field fieldLabel="Last name" fieldValue={this.props.contact.LastName} onChange={(text) => this.onChange("LastName", text)}/>
+                  <Field fieldLabel="Title" fieldValue={this.props.contact.Title} onChange={(text) => this.onChange("Title", text)}/>
+                  <Field fieldLabel="Mobile phone" fieldValue={this.props.contact.MobilePhone} onChange={(text) => this.onChange("MobilePhone", text)}/>
+                  <Field fieldLabel="Email address" fieldValue={this.props.contact.Email} onChange={(text) => this.onChange("Email", text)}/>
+                  <Field fieldLabel="Department" fieldValue={this.props.contact.Department} onChange={(text) => this.onChange("Department", text)}/>
+                  <Field fieldLabel="Home phone" fieldValue={this.props.contact.HomePhone} onChange={(text) => this.onChange("HomePhone", text)}/>
 
-                  <Text style={styles.fieldName}>Last name</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.LastName}</Text>
-
-                  <Text style={styles.fieldName}>Title</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.Title}</Text>
-
-                  <Text style={styles.fieldName}>Mobile phone</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.MobilePhone}</Text>
-
-                  <Text style={styles.fieldName}>Email address</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.Email}</Text>
-
-                  <Text style={styles.fieldName}>Department</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.Department}</Text>
-
-                  <Text style={styles.fieldName}>Home phone</Text>
-                  <Text style={styles.fieldValue}>{this.props.contact.HomePhone}</Text>
-
-                <TouchableHighlight onPress={() => this.props.onDelete(this.props.contact)}>
+                  <TouchableHighlight onPress={() => this.props.onDeleteContact(this.props.contact)}>
                     <Text style={styles.button}>Delete Contact</Text>
                   </TouchableHighlight>
                 </ScrollView>
@@ -70,18 +72,6 @@ var ContactScreen = React.createClass({
 });
 
 var styles = StyleSheet.create({
-    fieldName: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-        backgroundColor: '#F0F0F0',
-        padding: 5
-    },
-    fieldValue: {
-        flex: 1,
-        fontSize: 16,
-        padding: 5
-    },
     button: {
         fontSize: 16,
         color: 'red',
