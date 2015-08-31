@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '6.0'
 
-target 'SampleAppReact' do
+target 'SmartSyncExplorerReactNative' do
 
 pod 'React', '~> 0.9.0'
 pod 'React/ART', '~> 0.9.0'

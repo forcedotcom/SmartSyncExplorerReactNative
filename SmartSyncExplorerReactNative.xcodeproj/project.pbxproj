@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02E37E28E528DD90AFBC849F /* libPods-SampleAppReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E606AE0C7CABF6DAF27DF3CC /* libPods-SampleAppReact.a */; };
+		02E37E28E528DD90AFBC849F /* libPods-SmartSyncExplorerReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E606AE0C7CABF6DAF27DF3CC /* libPods-SmartSyncExplorerReactNative.a */; };
 		4F8D5EA31B6C0568005E64D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EA21B6C0568005E64D4 /* main.m */; };
 		4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EA51B6C0568005E64D4 /* AppDelegate.m */; };
 		4F8D5EAE1B6C0568005E64D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D5EAD1B6C0568005E64D4 /* Images.xcassets */; };
@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F8D5E9D1B6C0568005E64D4 /* SampleAppReact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleAppReact.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F8D5E9D1B6C0568005E64D4 /* SmartSyncExplorerReactNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartSyncExplorerReactNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8D5EA11B6C0568005E64D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F8D5EA21B6C0568005E64D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F8D5EA41B6C0568005E64D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -23,9 +23,9 @@
 		4F8D5EAD1B6C0568005E64D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4F8D5EC61B6C0F94005E64D4 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		4F8D5EC71B6C0F94005E64D4 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
-		641A79C6255C9F5C2DC614D8 /* Pods-SampleAppReact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleAppReact.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleAppReact/Pods-SampleAppReact.release.xcconfig"; sourceTree = "<group>"; };
-		90400F35EE8FD2C6D3B8B7E7 /* Pods-SampleAppReact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleAppReact.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleAppReact/Pods-SampleAppReact.debug.xcconfig"; sourceTree = "<group>"; };
-		E606AE0C7CABF6DAF27DF3CC /* libPods-SampleAppReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SampleAppReact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		641A79C6255C9F5C2DC614D8 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNative.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative.release.xcconfig"; sourceTree = "<group>"; };
+		90400F35EE8FD2C6D3B8B7E7 /* Pods-SmartSyncExplorerReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNative.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative.debug.xcconfig"; sourceTree = "<group>"; };
+		E606AE0C7CABF6DAF27DF3CC /* libPods-SmartSyncExplorerReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartSyncExplorerReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02E37E28E528DD90AFBC849F /* libPods-SampleAppReact.a in Frameworks */,
+				02E37E28E528DD90AFBC849F /* libPods-SmartSyncExplorerReactNative.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +43,7 @@
 		37B95F29A292887A2CC072C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E606AE0C7CABF6DAF27DF3CC /* libPods-SampleAppReact.a */,
+				E606AE0C7CABF6DAF27DF3CC /* libPods-SmartSyncExplorerReactNative.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -51,7 +51,7 @@
 		4F8D5E941B6C0568005E64D4 = {
 			isa = PBXGroup;
 			children = (
-				4F8D5E9F1B6C0568005E64D4 /* SampleAppReact */,
+				4F8D5E9F1B6C0568005E64D4 /* SmartSyncExplorerReactNative */,
 				4F8D5E9E1B6C0568005E64D4 /* Products */,
 				95FC818BCB0A26B1EC67A6D7 /* Pods */,
 				37B95F29A292887A2CC072C3 /* Frameworks */,
@@ -61,18 +61,18 @@
 		4F8D5E9E1B6C0568005E64D4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F8D5E9D1B6C0568005E64D4 /* SampleAppReact.app */,
+				4F8D5E9D1B6C0568005E64D4 /* SmartSyncExplorerReactNative.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4F8D5E9F1B6C0568005E64D4 /* SampleAppReact */ = {
+		4F8D5E9F1B6C0568005E64D4 /* SmartSyncExplorerReactNative */ = {
 			isa = PBXGroup;
 			children = (
 				4F8D5ECC1B6C1021005E64D4 /* Classes */,
 				4F8D5EA01B6C0568005E64D4 /* Supporting Files */,
 			);
-			path = SampleAppReact;
+			path = SmartSyncExplorerReactNative;
 			sourceTree = "<group>";
 		};
 		4F8D5EA01B6C0568005E64D4 /* Supporting Files */ = {
@@ -99,8 +99,8 @@
 		95FC818BCB0A26B1EC67A6D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				90400F35EE8FD2C6D3B8B7E7 /* Pods-SampleAppReact.debug.xcconfig */,
-				641A79C6255C9F5C2DC614D8 /* Pods-SampleAppReact.release.xcconfig */,
+				90400F35EE8FD2C6D3B8B7E7 /* Pods-SmartSyncExplorerReactNative.debug.xcconfig */,
+				641A79C6255C9F5C2DC614D8 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F8D5E9C1B6C0568005E64D4 /* SampleAppReact */ = {
+		4F8D5E9C1B6C0568005E64D4 /* SmartSyncExplorerReactNative */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "SampleAppReact" */;
+			buildConfigurationList = 4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNative" */;
 			buildPhases = (
 				39F115428CDB04A31C62D5B3 /* Check Pods Manifest.lock */,
 				4F8D5E991B6C0568005E64D4 /* Sources */,
@@ -122,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = SampleAppReact;
-			productName = SampleAppReact;
-			productReference = 4F8D5E9D1B6C0568005E64D4 /* SampleAppReact.app */;
+			name = SmartSyncExplorerReactNative;
+			productName = SmartSyncExplorerReactNative;
+			productReference = 4F8D5E9D1B6C0568005E64D4 /* SmartSyncExplorerReactNative.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -141,7 +141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4F8D5E981B6C0568005E64D4 /* Build configuration list for PBXProject "SampleAppReact" */;
+			buildConfigurationList = 4F8D5E981B6C0568005E64D4 /* Build configuration list for PBXProject "SmartSyncExplorerReactNative" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -154,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F8D5E9C1B6C0568005E64D4 /* SampleAppReact */,
+				4F8D5E9C1B6C0568005E64D4 /* SmartSyncExplorerReactNative */,
 			);
 		};
 /* End PBXProject section */
@@ -198,7 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleAppReact/Pods-SampleAppReact-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -301,11 +301,11 @@
 		};
 		4F8D5EC11B6C0568005E64D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90400F35EE8FD2C6D3B8B7E7 /* Pods-SampleAppReact.debug.xcconfig */;
+			baseConfigurationReference = 90400F35EE8FD2C6D3B8B7E7 /* Pods-SmartSyncExplorerReactNative.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = SampleAppReact/Info.plist;
+				INFOPLIST_FILE = SmartSyncExplorerReactNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -313,11 +313,11 @@
 		};
 		4F8D5EC21B6C0568005E64D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 641A79C6255C9F5C2DC614D8 /* Pods-SampleAppReact.release.xcconfig */;
+			baseConfigurationReference = 641A79C6255C9F5C2DC614D8 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = SampleAppReact/Info.plist;
+				INFOPLIST_FILE = SmartSyncExplorerReactNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -326,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F8D5E981B6C0568005E64D4 /* Build configuration list for PBXProject "SampleAppReact" */ = {
+		4F8D5E981B6C0568005E64D4 /* Build configuration list for PBXProject "SmartSyncExplorerReactNative" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F8D5EBE1B6C0568005E64D4 /* Debug */,
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "SampleAppReact" */ = {
+		4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNative" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F8D5EC11B6C0568005E64D4 /* Debug */,

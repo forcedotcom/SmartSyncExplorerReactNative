@@ -131,4 +131,4 @@ var styles = StyleSheet.create({
     }
 });
 
-React.AppRegistry.registerComponent('SampleAppReact', () => App);
+React.AppRegistry.registerComponent('SmartSyncExplorerReactNative', () => App);
