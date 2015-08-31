@@ -141,7 +141,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
     
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                        moduleName:@"SampleAppReact"
+                                                        moduleName:@"SmartSyncExplorerReactNative"
                                                      launchOptions:self.launchOptions];
     
 
