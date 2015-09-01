@@ -33,80 +33,92 @@ var {
     NavigatorIOS
 } = React;
 
+var EventEmitter = require('./events.js');
 var smartstore = require('./react.force.smartstore.js');
 var smartsync = require('./react.force.smartsync.js');
 var SearchScreen = require('./SearchScreen.js');
 var syncInFlight = false;
 var syncDownId;
+var eventEmitter = new EventEmitter();
+
+function emitSyncCompletedEvent() {
+    eventEmitter.emit("syncCompleted", {});
+}
+
+function syncDown(callback) {
+    if (syncInFlight) {
+        console.log("Not starting syncDown - sync already in fligtht");
+        return;
+    }
+    
+    console.log("Starting syncDown");
+    syncInFlight = true;
+    var fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
+    var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM Contact LIMIT 10000"};
+    smartsync.syncDown(false,
+                       target,
+                       "contacts",
+                       {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED},
+                       (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log("sync==>" + sync); emitSyncCompletedEvent(); if (callback) callback(sync);},
+                       (error) => {syncInFlight = false;}
+                      );
+
+}
+
+function reSync(callback) {
+    if (syncInFlight) {
+        console.log("Not starting reSync - sync already in fligtht");
+        return;
+    }
+
+    console.log("Starting reSync");
+    syncInFlight = true;
+    smartsync.reSync(false,
+                     syncDownId,
+                     (sync) => {syncInFlight = false; emitSyncCompletedEvent(); if (callback) callback(sync);},
+                     (error) => {syncInFlight = false;}
+                    );
+}
+ 
+function syncUp(callback) {
+    if (syncInFlight) {
+        console.log("Not starting syncUp - sync already in fligtht");
+        return;
+    }
+
+    console.log("Starting syncUp");
+    syncInFlight = true;
+    var fieldlist = ["FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone"];
+    smartsync.syncUp(false,
+                     {},
+                     "contacts",
+                     {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED, fieldlist: fieldlist},
+                     (sync) => {syncInFlight = false; if (callback) callback(sync);},
+                     (error) => {syncInFlight = false;}
+                    );
+}
+
+function syncData() {
+    smartstore.registerSoup(false,
+                            "contacts", 
+                            [ {path:"Id", type:"string"}, 
+                              {path:"FirstName", type:"full_text"}, 
+                              {path:"LastName", type:"full_text"}, 
+                              {path:"__local__", type:"string"} ],
+                            () => syncDown()
+                           );
+}
+
+function reSyncData() {
+    syncUp(() => reSync());
+}
 
 var App = React.createClass({
     componentDidMount: function() {
-        var that = this;
-        smartstore.registerSoup(false,
-                                "contacts", 
-                                [ {path:"Id", type:"string"}, 
-                                  {path:"FirstName", type:"full_text"}, 
-                                  {path:"LastName", type:"full_text"}, 
-                                  {path:"__local__", type:"string"} ],
-                                function() {
-                                    that.syncDown((sync) => syncDownId=sync._soupEntryId);
-                                });
+        syncData();
     },
 
-    syncDown: function(callback) {
-        if (syncInFlight) {
-            console.log("Not starting syncDown - sync already in fligtht");
-            return;
-        }
-        
-        console.log("Starting syncDown");
-        syncInFlight = true;
-        var fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
-        var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM Contact WHERE Title like '%Engineer%' LIMIT 10000"};
-        smartsync.syncDown(false,
-                           target,
-                           "contacts",
-                           {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED},
-                           function(sync) {syncInFlight = false; if (callback) callback(sync);},
-                           function(error) {syncInFlight = false;}
-                          );
-
-    },
-    
-    reSync: function(callback) {
-        if (syncInFlight) {
-            console.log("Not starting reSync - sync already in fligtht");
-            return;
-        }
-
-        console.log("Starting reSync");
-        syncInFlight = true;
-        smartsync.reSync(false,
-                         syncDownId,
-                         function(sync) {syncInFlight = false; if (callback) callback(sync);},
-                         function(error) {syncInFlight = false;}
-                        );
-    },
-
-    syncUp: function(callback) {
-        if (syncInFlight) {
-            console.log("Not starting syncUp - sync already in fligtht");
-            return;
-        }
-
-        console.log("Starting syncUp");
-        syncInFlight = true;
-        smartsync.syncUp(false,
-                         {},
-                         "contacts",
-                         {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED},
-                         function(sync) {syncInFlight = false; if (callback) callback(sync);},
-                         function(error) {syncInFlight = false;}
-                        );
-    },
-    
     render: function() {
-        var that = this;
         return (
             <NavigatorIOS
                 style={styles.container}
@@ -117,7 +129,8 @@ var App = React.createClass({
                     title: 'Contacts',
                     component: SearchScreen,
                     rightButtonIcon: require('image!sync'),
-                    onRightButtonPress: () => that.syncUp(() => that.reSync())
+                    onRightButtonPress: reSyncData,
+                    passProps: {events: eventEmitter}
                 }}
             />
         );

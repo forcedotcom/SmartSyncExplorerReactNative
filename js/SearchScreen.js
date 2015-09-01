@@ -34,6 +34,7 @@ var {
     ListView,
     PixelRatio,
 } = React;
+var Subscribable = require('Subscribable');
 
 var SearchBar = require('./SearchBar.js');
 var ContactScreen = require('./ContactScreen.js');
@@ -43,6 +44,8 @@ var lastRequestSent = 0;
 var lastResponseReceived = 0;
 
 var SearchScreen = React.createClass({
+    mixins: [Subscribable.Mixin],
+    
     getInitialState: function() {
       var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         return {
@@ -52,7 +55,16 @@ var SearchScreen = React.createClass({
             queryNumber: 0
       };
     },
+
+    componentDidMount: function() {
+        var that = this;
+        this.props.events.addListener('syncCompleted', () => that.refresh() );
+    },
     
+    refresh: function() {
+        this.searchContacts(this.state.filter);
+    },
+
     render: function() {
         return (
                 <View style={styles.container}>
@@ -100,7 +112,7 @@ var SearchScreen = React.createClass({
         smartstore.upsertSoupEntries(false, "contacts", [contact],
                                      () => {
                                          this.props.navigator.pop();
-                                         // FIXME need to refresh list screen
+                                         this.refresh();
                                      });
     },
 
@@ -109,7 +121,7 @@ var SearchScreen = React.createClass({
         smartstore.upsertSoupEntries(false, "contacts", [contact],
                                      () => {
                                          this.props.navigator.pop();
-                                         // FIXME need to refresh list screen
+                                         this.refresh();
                                      });
     },
 
@@ -134,7 +146,7 @@ var SearchScreen = React.createClass({
         smartstore.querySoup(false,
                              "contacts",
                              querySpec,
-                             function(cursor) {
+                             (cursor) => {
                                  console.log("Response for #" + currentRequest);
                                  if (currentRequest > lastResponseReceived) {
                                      lastResponseReceived = currentRequest;
@@ -150,7 +162,7 @@ var SearchScreen = React.createClass({
                                      console.log("IGNORING Response for #" + currentRequest);
                                  }
                              },
-                             function(error) {
+                             (error) => {
                                  console.log("Error->" + JSON.stringify(error));
                                  that.setState({
                                      isLoading: false
