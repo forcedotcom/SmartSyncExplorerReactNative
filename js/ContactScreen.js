@@ -53,6 +53,7 @@ var ContactScreen = React.createClass({
     },
 
     render: function() {
+        var deleteUndeleteButtonLabel = (this.state.contact.__locally_deleted__ ? "Undelete Contact" : "Delete Contact");
         return (
                 <ScrollView>
                   <Field fieldLabel="First name" fieldValue={this.props.contact.FirstName} onChange={(text) => this.onChange("FirstName", text)}/>
@@ -63,8 +64,8 @@ var ContactScreen = React.createClass({
                   <Field fieldLabel="Department" fieldValue={this.props.contact.Department} onChange={(text) => this.onChange("Department", text)}/>
                   <Field fieldLabel="Home phone" fieldValue={this.props.contact.HomePhone} onChange={(text) => this.onChange("HomePhone", text)}/>
 
-                  <TouchableHighlight onPress={() => this.props.onDeleteContact(this.props.contact)}>
-                    <Text style={styles.button}>Delete Contact</Text>
+                  <TouchableHighlight onPress={() => this.props.onDeleteUndeleteContact(this.props.contact)}>
+                    <Text style={styles.button}>{deleteUndeleteButtonLabel}</Text>
                   </TouchableHighlight>
                 </ScrollView>
                );

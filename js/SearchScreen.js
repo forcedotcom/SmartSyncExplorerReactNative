@@ -94,7 +94,7 @@ var SearchScreen = React.createClass({
         this.props.navigator.push({
             component: ContactScreen,
             passProps: {contact:contact,
-                        onDeleteContact:this.onDeleteContact,
+                        onDeleteUndeleteContact:this.onDeleteUndeleteContact,
                        },
             rightButtonTitle: "Save",
             onRightButtonPress: () => this.onSaveContact(contact)
@@ -116,8 +116,9 @@ var SearchScreen = React.createClass({
                                      });
     },
 
-    onDeleteContact: function(contact: Object) {
-        contact.__locally_deleted__ = contact.__local__ = true;
+    onDeleteUndeleteContact: function(contact: Object) {
+        contact.__locally_deleted__ = !contact.__locally_deleted__;
+        contact.__local__ = contact.__locally_deleted__ || contact.__locally_updated__ || contact.__locally_created__;
         smartstore.upsertSoupEntries(false, "contacts", [contact],
                                      () => {
                                          this.props.navigator.pop();

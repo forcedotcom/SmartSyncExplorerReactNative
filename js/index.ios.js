@@ -58,7 +58,7 @@ function syncDown(callback) {
     smartsync.syncDown(false,
                        target,
                        "contacts",
-                       {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED},
+                       {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
                        (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log("sync==>" + sync); emitSyncCompletedEvent(); if (callback) callback(sync);},
                        (error) => {syncInFlight = false;}
                       );
@@ -92,7 +92,7 @@ function syncUp(callback) {
     smartsync.syncUp(false,
                      {},
                      "contacts",
-                     {mergeMode:smartsync.MERGE_MODE.LEAVE_IF_CHANGED, fieldlist: fieldlist},
+                     {mergeMode:smartsync.MERGE_MODE.OVERWRITE, fieldlist: fieldlist},
                      (sync) => {syncInFlight = false; if (callback) callback(sync);},
                      (error) => {syncInFlight = false;}
                     );
