@@ -30,76 +30,109 @@ var React = require('react-native');
 var {
     AppRegistry,
     StyleSheet,
-    Text,
-    View,
-    ListView,
-    PixelRatio,
     NavigatorIOS
 } = React;
-var forceClient = require('./react.force.net.js');
+
+var EventEmitter = require('./events.js');
+var smartstore = require('./react.force.smartstore.js');
+var smartsync = require('./react.force.smartsync.js');
+var SearchScreen = require('./SearchScreen.js');
+var syncInFlight = false;
+var syncDownId;
+var eventEmitter = new EventEmitter();
+
+function emitSyncCompletedEvent() {
+    eventEmitter.emit("syncCompleted", {});
+}
+
+function syncDown(callback) {
+    if (syncInFlight) {
+        console.log("Not starting syncDown - sync already in fligtht");
+        return;
+    }
+    
+    console.log("Starting syncDown");
+    syncInFlight = true;
+    var fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
+    var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM Contact LIMIT 10000"};
+    smartsync.syncDown(false,
+                       target,
+                       "contacts",
+                       {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
+                       (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log("sync==>" + sync); emitSyncCompletedEvent(); if (callback) callback(sync);},
+                       (error) => {syncInFlight = false;}
+                      );
+
+}
+
+function reSync(callback) {
+    if (syncInFlight) {
+        console.log("Not starting reSync - sync already in fligtht");
+        return;
+    }
+
+    console.log("Starting reSync");
+    syncInFlight = true;
+    smartsync.reSync(false,
+                     syncDownId,
+                     (sync) => {syncInFlight = false; emitSyncCompletedEvent(); if (callback) callback(sync);},
+                     (error) => {syncInFlight = false;}
+                    );
+}
+ 
+function syncUp(callback) {
+    if (syncInFlight) {
+        console.log("Not starting syncUp - sync already in fligtht");
+        return;
+    }
+
+    console.log("Starting syncUp");
+    syncInFlight = true;
+    var fieldlist = ["FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone"];
+    smartsync.syncUp(false,
+                     {},
+                     "contacts",
+                     {mergeMode:smartsync.MERGE_MODE.OVERWRITE, fieldlist: fieldlist},
+                     (sync) => {syncInFlight = false; if (callback) callback(sync);},
+                     (error) => {syncInFlight = false;}
+                    );
+}
+
+function syncData() {
+    smartstore.registerSoup(false,
+                            "contacts", 
+                            [ {path:"Id", type:"string"}, 
+                              {path:"FirstName", type:"full_text"}, 
+                              {path:"LastName", type:"full_text"}, 
+                              {path:"__local__", type:"string"} ],
+                            () => syncDown()
+                           );
+}
+
+function reSyncData() {
+    syncUp(() => reSync());
+}
 
 var App = React.createClass({
+    componentDidMount: function() {
+        syncData();
+    },
+
     render: function() {
         return (
             <NavigatorIOS
                 style={styles.container}
+                barTintColor='red'
+                titleTextColor='white'
+                tintColor='white'
                 initialRoute={{
-                    title: 'Mobile SDK Sample App',
-                    component: UserList,
+                    title: 'Contacts',
+                    component: SearchScreen,
+                    rightButtonIcon: require('image!sync'),
+                    onRightButtonPress: reSyncData,
+                    passProps: {events: eventEmitter}
                 }}
             />
-        );
-    }
-});
-
-var UserList = React.createClass({
-    getInitialState: function() {
-      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      return {
-          dataSource: ds.cloneWithRows([]),
-      };
-    },
-    
-    componentDidMount: function() {
-        var that = this;
-        var soql = 'SELECT Id, Name FROM User LIMIT 10';
-        forceClient.query(soql,
-                          function(response) {
-                              var users = response.records;
-                              var data = [];
-                              for (var i in users) {
-                                  data.push(users[i]["Name"]);
-                              }
-
-                              that.setState({
-                                  dataSource: that.getDataSource(data),
-                              });
-
-                          });
-    },
-
-    getDataSource: function(users: Array<any>): ListViewDataSource {
-        return this.state.dataSource.cloneWithRows(users);
-    },
-
-    render: function() {
-        return (
-            <ListView
-              dataSource={this.state.dataSource}
-              renderRow={this.renderRow} />
-      );
-    },
-
-    renderRow: function(rowData: Object) {
-        return (
-                <View>
-                    <View style={styles.row}>
-                      <Text numberOfLines={1}>
-                       {rowData}
-                      </Text>
-                    </View>
-                    <View style={styles.cellBorder} />
-                </View>
         );
     }
 });
@@ -108,25 +141,7 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-    },
-    header: {
-        height: 50,
-        alignItems:'center'
-    },
-    row: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        padding: 12,
-    },
-    cellBorder: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        // Trick to get the thinest line the device can display
-        height: 1 / PixelRatio.get(),
-        marginLeft: 4,
-    },
+    }
 });
-
 
 React.AppRegistry.registerComponent('SmartSyncExplorerReactNative', () => App);
