@@ -87,10 +87,12 @@ var styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 2,
+        fontFamily: 'Helvetica Neue'
     },
     title: {
         color: '#999999',
         fontSize: 12,
+        fontFamily: 'Helvetica Neue'
     },
     cellBorder: {
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
