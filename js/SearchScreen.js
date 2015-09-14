@@ -132,13 +132,18 @@ var SearchScreen = React.createClass({
             filter: query
         });
 
-        var queryParts = query.split(/ /);
-        var queryFirst = queryParts.length == 2 ? queryParts[0] : query;
-        var queryLast = queryParts.length == 2 ? queryParts[1] : query;
-        var queryOp = queryParts.length == 2 ? "AND" : "OR";
-        var match = "{contacts:FirstName}:" + queryFirst + "* " + queryOp + " {contacts:LastName}:" + queryLast + "*";
-
-        var querySpec = smartstore.buildMatchQuerySpec(null, match, "ascending", 25, "LastName");
+        var querySpec;
+        if (query === "") {
+            querySpec = smartstore.buildAllQuerySpec("LastName", "ascending", 100);
+        }
+        else {
+            var queryParts = query.split(/ /);
+            var queryFirst = queryParts.length == 2 ? queryParts[0] : query;
+            var queryLast = queryParts.length == 2 ? queryParts[1] : query;
+            var queryOp = queryParts.length == 2 ? "AND" : "OR";
+            var match = "{contacts:FirstName}:" + queryFirst + "* " + queryOp + " {contacts:LastName}:" + queryLast + "*";
+            querySpec = smartstore.buildMatchQuerySpec(null, match, "ascending", 100, "LastName");
+        }
         var that = this;
 
         lastRequestSent++;
