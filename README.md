@@ -1,6 +1,9 @@
 # SmartSyncExplorerReactNative
 SmartSyncExplorer application written using React Native
 
+## Install software required for react native
+See https://facebook.github.io/react-native/docs/getting-started.html
+
 ## To create workspace do
 ``` shell
 pod install
