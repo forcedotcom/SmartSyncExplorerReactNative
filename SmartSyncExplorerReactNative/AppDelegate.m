@@ -30,6 +30,8 @@
 #import <SalesforceSDKCore/SalesforceSDKManager.h>
 #import <SalesforceSDKCore/SFUserAccountManager.h>
 #import <SalesforceCommonUtils/SFLogger.h>
+#import <SalesforceRestAPI/SFRestAPI+Blocks.h>
+
 
 // Fill these in when creating a new Connected Application on Force.com
 static NSString * const RemoteAccessConsumerKey = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
@@ -118,28 +120,28 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      * OPTION 1
      * Load from development server. Start the server from the repository root:
      *
-     * $ npm start
+     * $ ./rundevserver.sh
      *
      * To run on device, change `localhost` to the IP address of your computer
      * (you can get this by typing `ifconfig` into the terminal and selecting the
      * `inet` value under `en0:`) and make sure your computer and iOS device are
      * on the same Wi-Fi network.
      */
-    
     jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
     
     /**
      * OPTION 2
-     * Load from pre-bundled file on disk. To re-generate the static bundle
-     * from the root of your project directory, run
+     * Load from pre-bundled file on disk. To re-generate the static bundle,
+     * start the server from the repository root:
      *
-     * $ react-native bundle --minify
+     * $ ./rundevserver.sh
      *
-     * see http://facebook.github.io/react-native/docs/runningondevice.html
+     * Run the curl command and add the output to your main Xcode build target:
+     *
+     * $ curl http://localhost:8081/index.ios.bundle -o main.jsbundle
      */
-    
     //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-    
+
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                         moduleName:@"SmartSyncExplorerReactNative"
                                                      launchOptions:self.launchOptions];
