@@ -112,8 +112,6 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (void)setupRootViewController
 {
-    NSURL *jsCodeLocation;
-    
     /**
      * Loading JavaScript code - uncomment the one you want.
      *
@@ -127,7 +125,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      * `inet` value under `en0:`) and make sure your computer and iOS device are
      * on the same Wi-Fi network.
      */
-    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
+    [self setupReactRootView:[NSURL URLWithString:@"http://localhost:8081/js/index.ios.bundle"]];
     
     /**
      * OPTION 2
@@ -140,13 +138,16 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      *
      * $ curl http://localhost:8081/index.ios.bundle -o main.jsbundle
      */
-    //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+    // [self setupReactRootView:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
+}
 
+- (void)setupReactRootView:(NSURL*)jsCodeLocation
+{
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                         moduleName:@"SmartSyncExplorerReactNative"
+                                                 initialProperties:nil
                                                      launchOptions:self.launchOptions];
     
-
     UIViewController *rootViewController = [[UIViewController alloc] init];
     rootViewController.view = rootView;
     self.window.rootViewController = rootViewController;
