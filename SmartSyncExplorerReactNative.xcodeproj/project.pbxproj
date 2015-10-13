@@ -117,6 +117,7 @@
 				4F8D5E9A1B6C0568005E64D4 /* Frameworks */,
 				4F8D5E9B1B6C0568005E64D4 /* Resources */,
 				E57672B616CE5ACD1EACF7C8 /* Copy Pods Resources */,
+				0FD62CD2E302CE2CD1A312FB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -171,6 +172,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0FD62CD2E302CE2CD1A312FB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		39F115428CDB04A31C62D5B3 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
