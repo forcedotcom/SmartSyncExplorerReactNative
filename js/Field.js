@@ -39,7 +39,7 @@ var Field = React.createClass({
     render: function() {
         var that = this;
 
-        return (<View style="styles.container">
+        return (<View style={styles.container}>
                   <Text style={styles.fieldName}>
                     {this.props.fieldLabel}
                   </Text>

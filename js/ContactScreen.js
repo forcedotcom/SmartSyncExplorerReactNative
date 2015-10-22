@@ -32,18 +32,20 @@ var {
     StyleSheet,
     View,
     TouchableHighlight,
-    Text
+    Text,
 } = React;
-var ContactBadge = require('./ContactBadge.js');
-var Field = require('./Field.js');
+var Field = require('./Field');
+var storeMgr = require('./StoreMgr');
+var navigator;
 
 // State: contact
-// Props: contact, onDelete
+// Props: contact
 var ContactScreen = React.createClass({
     getInitialState: function() {
+        navigator = this.props.navigator;
         return {
             contact: this.props.contact
-      };
+        };
     },
 
     onChange: function(fieldKey, fieldValue) {
@@ -52,20 +54,37 @@ var ContactScreen = React.createClass({
         this.setState({contact: contact});
     },
 
+    onSaveContact: function() {
+        var contact = this.state.contact;
+        contact.__locally_updated__ = contact.__local__ = true;
+        storeMgr.saveContact(contact, () => {navigator.pop();});
+    },
+    
+    onDeleteUndeleteContact: function() {
+        var contact = this.state.contact;
+        contact.__locally_deleted__ = !contact.__locally_deleted__;
+        contact.__local__ = contact.__locally_deleted__ || contact.__locally_updated__ || contact.__locally_created__;
+        storeMgr.saveContact(contact, () => {navigator.pop();});
+    },
+
     render: function() {
         var deleteUndeleteButtonLabel = (this.state.contact.__locally_deleted__ ? "Undelete Contact" : "Delete Contact");
         return (
                 <ScrollView>
-                  <Field fieldLabel="First name" fieldValue={this.props.contact.FirstName} onChange={(text) => this.onChange("FirstName", text)}/>
-                  <Field fieldLabel="Last name" fieldValue={this.props.contact.LastName} onChange={(text) => this.onChange("LastName", text)}/>
-                  <Field fieldLabel="Title" fieldValue={this.props.contact.Title} onChange={(text) => this.onChange("Title", text)}/>
-                  <Field fieldLabel="Mobile phone" fieldValue={this.props.contact.MobilePhone} onChange={(text) => this.onChange("MobilePhone", text)}/>
-                  <Field fieldLabel="Email address" fieldValue={this.props.contact.Email} onChange={(text) => this.onChange("Email", text)}/>
-                  <Field fieldLabel="Department" fieldValue={this.props.contact.Department} onChange={(text) => this.onChange("Department", text)}/>
-                  <Field fieldLabel="Home phone" fieldValue={this.props.contact.HomePhone} onChange={(text) => this.onChange("HomePhone", text)}/>
+                  <Field fieldLabel="First name" fieldValue={this.state.contact.FirstName} onChange={(text) => this.onChange("FirstName", text)}/>
+                  <Field fieldLabel="Last name" fieldValue={this.state.contact.LastName} onChange={(text) => this.onChange("LastName", text)}/>
+                  <Field fieldLabel="Title" fieldValue={this.state.contact.Title} onChange={(text) => this.onChange("Title", text)}/>
+                  <Field fieldLabel="Mobile phone" fieldValue={this.state.contact.MobilePhone} onChange={(text) => this.onChange("MobilePhone", text)}/>
+                  <Field fieldLabel="Email address" fieldValue={this.state.contact.Email} onChange={(text) => this.onChange("Email", text)}/>
+                  <Field fieldLabel="Department" fieldValue={this.state.contact.Department} onChange={(text) => this.onChange("Department", text)}/>
+                  <Field fieldLabel="Home phone" fieldValue={this.state.contact.HomePhone} onChange={(text) => this.onChange("HomePhone", text)}/>
 
-                  <TouchableHighlight onPress={() => this.props.onDeleteUndeleteContact(this.props.contact)}>
+                  <TouchableHighlight onPress={() => this.onDeleteUndeleteContact()}>
                     <Text style={styles.button}>{deleteUndeleteButtonLabel}</Text>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight onPress={() => this.onSaveContact()}>
+                    <Text style={styles.button}>Save</Text>
                   </TouchableHighlight>
                 </ScrollView>
                );

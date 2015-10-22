@@ -1,0 +1,9 @@
+[submodule "external/SalesforceMobileSDK-iOS"]
+	path = external/SalesforceMobileSDK-iOS
+	url = https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+[submodule "external/SalesforceMobileSDK-Android"]
+	path = external/SalesforceMobileSDK-Android
+	url = https://github.com/forcedotcom/SalesforceMobileSDK-Android
+[submodule "external/SalesforceMobileSDK-Shared"]
+	path = external/SalesforceMobileSDK-Shared
+	url = https://github.com/forcedotcom/SalesforceMobileSDK-Shared

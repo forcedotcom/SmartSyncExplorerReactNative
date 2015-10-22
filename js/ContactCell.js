@@ -35,7 +35,7 @@ var {
     TouchableHighlight,
     View
 } = React;
-var ContactBadge = require('./ContactBadge.js');
+var ContactBadge = require('./ContactBadge');
 
 var ContactCell = React.createClass({
     render: function() {

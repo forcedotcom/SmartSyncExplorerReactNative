@@ -1,8 +1,12 @@
-.DS_Store
-xcuserdata
-*.xcworkspace
-artifacts
+*.aar
 *.xccheckout
-Pods
+*.xcworkspace
+.DS_Store
 Podfile.lock
+Pods
+artifacts
+node_modules
 npm-debug.log
+project.xcworkspace
+xcuserdata
+js/

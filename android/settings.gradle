@@ -1,0 +1,16 @@
+rootProject.name = 'SmartSyncExplorerReactNative'
+
+def libsRootDir = new File( settingsDir, '../external/SalesforceMobileSDK-Android/libs' )
+include ':app'
+
+include ':libs:SalesforceSDK'
+project( ':libs:SalesforceSDK' ).projectDir = new File( libsRootDir, 'SalesforceSDK' )
+
+include ':libs:SmartStore'
+project( ':libs:SmartStore' ).projectDir = new File( libsRootDir, 'SmartStore' )
+
+include ':libs:SmartSync'
+project( ':libs:SmartSync' ).projectDir = new File( libsRootDir, 'SmartSync' )
+
+include ':libs:SalesforceReact'
+project( ':libs:SalesforceReact' ).projectDir = new File( libsRootDir, 'SalesforceReact' )

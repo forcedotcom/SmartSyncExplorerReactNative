@@ -28,6 +28,7 @@
 
 var React = require('react-native');
 var {
+    Platform,
     StyleSheet,
     Text,
     View,
@@ -35,13 +36,12 @@ var {
     PixelRatio,
 } = React;
 var Subscribable = require('Subscribable');
+var dismissKeyboard = require('dismissKeyboard');
 
-var SearchBar = require('./SearchBar.js');
-var ContactScreen = require('./ContactScreen.js');
-var ContactCell = require('./ContactCell.js');
-var smartstore = require('./react.force.smartstore.js');
-var lastRequestSent = 0;
-var lastResponseReceived = 0;
+var SearchBar = require('./SearchBar');
+var ContactScreen = require('./ContactScreen');
+var ContactCell = require('./ContactCell');
+var storeMgr = require('./StoreMgr');
 
 var SearchScreen = React.createClass({
     mixins: [Subscribable.Mixin],
@@ -57,8 +57,7 @@ var SearchScreen = React.createClass({
     },
 
     componentDidMount: function() {
-        var that = this;
-        this.props.events.addListener('syncCompleted', () => that.refresh() );
+        storeMgr.addStoreChangeListener(() => { this.refresh(); });
     },
     
     refresh: function() {
@@ -91,14 +90,19 @@ var SearchScreen = React.createClass({
     },
 
     selectContact: function(contact: Object) {
-        this.props.navigator.push({
-            component: ContactScreen,
-            passProps: {contact:contact,
-                        onDeleteUndeleteContact:this.onDeleteUndeleteContact,
-                       },
-            rightButtonTitle: "Save",
-            onRightButtonPress: () => this.onSaveContact(contact)
-        });
+        if (Platform.OS === 'ios') {
+            this.props.navigator.push({
+                title: 'Contact',
+                component: ContactScreen,
+                passProps: {contact},
+            });
+        } else {
+            dismissKeyboard();
+            this.props.navigator.push({
+                name: 'Contact',
+                contact: contact,
+            });
+        }
     },
 
     onSearchChange: function(event: Object) {
@@ -107,73 +111,28 @@ var SearchScreen = React.createClass({
         this.timeoutID = setTimeout(() => this.searchContacts(filter), 10);
     },
 
-    onSaveContact: function(contact: Object) {
-        contact.__locally_updated__ = contact.__local__ = true;
-        smartstore.upsertSoupEntries(false, "contacts", [contact],
-                                     () => {
-                                         this.props.navigator.pop();
-                                         this.refresh();
-                                     });
-    },
-
-    onDeleteUndeleteContact: function(contact: Object) {
-        contact.__locally_deleted__ = !contact.__locally_deleted__;
-        contact.__local__ = contact.__locally_deleted__ || contact.__locally_updated__ || contact.__locally_created__;
-        smartstore.upsertSoupEntries(false, "contacts", [contact],
-                                     () => {
-                                         this.props.navigator.pop();
-                                         this.refresh();
-                                     });
-    },
-
     searchContacts: function(query: string) {
         this.setState({
             isLoading: true,
             filter: query
         });
 
-        var querySpec;
-        if (query === "") {
-            querySpec = smartstore.buildAllQuerySpec("LastName", "ascending", 100);
-        }
-        else {
-            var queryParts = query.split(/ /);
-            var queryFirst = queryParts.length == 2 ? queryParts[0] : query;
-            var queryLast = queryParts.length == 2 ? queryParts[1] : query;
-            var queryOp = queryParts.length == 2 ? "AND" : "OR";
-            var match = "{contacts:FirstName}:" + queryFirst + "* " + queryOp + " {contacts:LastName}:" + queryLast + "*";
-            querySpec = smartstore.buildMatchQuerySpec(null, match, "ascending", 100, "LastName");
-        }
         var that = this;
-
-        lastRequestSent++;
-        var currentRequest = lastRequestSent;
-
-        smartstore.querySoup(false,
-                             "contacts",
-                             querySpec,
-                             (cursor) => {
-                                 console.log("Response for #" + currentRequest);
-                                 if (currentRequest > lastResponseReceived) {
-                                     lastResponseReceived = currentRequest;
-                                     var contacts = cursor.currentPageOrderedEntries;
-                                     that.setState({
-                                         isLoading: false,
-                                         filter: query,
-                                         dataSource: that.state.dataSource.cloneWithRows(contacts),
-                                         queryNumber: currentRequest                                  
-                                     });
-                                 }
-                                 else {
-                                     console.log("IGNORING Response for #" + currentRequest);
-                                 }
-                             },
-                             (error) => {
-                                 console.log("Error->" + JSON.stringify(error));
-                                 that.setState({
-                                     isLoading: false
-                                 });
-                             });
+        storeMgr.searchContacts(
+            query,
+            (contacts, currentStoreQuery) => {
+                that.setState({
+                    isLoading: false,
+                    filter: query,
+                    dataSource: that.state.dataSource.cloneWithRows(contacts),
+                    queryNumber: currentStoreQuery
+                });
+            },
+            (error) => {
+                that.setState({
+                    isLoading: false
+                });
+            });
     }
 });
 
