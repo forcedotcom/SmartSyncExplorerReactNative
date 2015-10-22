@@ -14,4 +14,4 @@ pod update
 cd ..
 
 echo "Getting js files"
-cp external/SalesforceMobileSDK-Shared/libs/react.* js/
+cp external/shared/libs/react.* js/
