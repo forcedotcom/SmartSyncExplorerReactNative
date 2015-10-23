@@ -33,89 +33,12 @@ var {
     NavigatorIOS
 } = React;
 
-var EventEmitter = require('./events.js');
-var smartstore = require('./react.force.smartstore.js');
-var smartsync = require('./react.force.smartsync.js');
-var SearchScreen = require('./SearchScreen.js');
-var syncInFlight = false;
-var syncDownId;
-var eventEmitter = new EventEmitter();
-
-function emitSyncCompletedEvent() {
-    eventEmitter.emit("syncCompleted", {});
-}
-
-function syncDown(callback) {
-    if (syncInFlight) {
-        console.log("Not starting syncDown - sync already in fligtht");
-        return;
-    }
-    
-    console.log("Starting syncDown");
-    syncInFlight = true;
-    var fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
-    var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM Contact LIMIT 10000"};
-    smartsync.syncDown(false,
-                       target,
-                       "contacts",
-                       {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
-                       (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log("sync==>" + sync); emitSyncCompletedEvent(); if (callback) callback(sync);},
-                       (error) => {syncInFlight = false;}
-                      );
-
-}
-
-function reSync(callback) {
-    if (syncInFlight) {
-        console.log("Not starting reSync - sync already in fligtht");
-        return;
-    }
-
-    console.log("Starting reSync");
-    syncInFlight = true;
-    smartsync.reSync(false,
-                     syncDownId,
-                     (sync) => {syncInFlight = false; emitSyncCompletedEvent(); if (callback) callback(sync);},
-                     (error) => {syncInFlight = false;}
-                    );
-}
- 
-function syncUp(callback) {
-    if (syncInFlight) {
-        console.log("Not starting syncUp - sync already in fligtht");
-        return;
-    }
-
-    console.log("Starting syncUp");
-    syncInFlight = true;
-    var fieldlist = ["FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone"];
-    smartsync.syncUp(false,
-                     {},
-                     "contacts",
-                     {mergeMode:smartsync.MERGE_MODE.OVERWRITE, fieldlist: fieldlist},
-                     (sync) => {syncInFlight = false; if (callback) callback(sync);},
-                     (error) => {syncInFlight = false;}
-                    );
-}
-
-function syncData() {
-    smartstore.registerSoup(false,
-                            "contacts", 
-                            [ {path:"Id", type:"string"}, 
-                              {path:"FirstName", type:"full_text"}, 
-                              {path:"LastName", type:"full_text"}, 
-                              {path:"__local__", type:"string"} ],
-                            () => syncDown()
-                           );
-}
-
-function reSyncData() {
-    syncUp(() => reSync());
-}
+var storeMgr = require('./StoreMgr');
+var SearchScreen = require('./SearchScreen');
 
 var App = React.createClass({
     componentDidMount: function() {
-        syncData();
+        storeMgr.syncData();
     },
 
     render: function() {
@@ -129,8 +52,7 @@ var App = React.createClass({
                     title: 'Contacts',
                     component: SearchScreen,
                     rightButtonIcon: require('image!sync'),
-                    onRightButtonPress: reSyncData,
-                    passProps: {events: eventEmitter}
+                    onRightButtonPress: () => { storeMgr.reSyncData(); },
                 }}
             />
         );
