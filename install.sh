@@ -6,7 +6,9 @@ git submodule sync
 git submodule update --init --recursive
 
 echo "Installing npm dependencies"
+cd js/
 npm install
+cd ..
 
 echo "Installing ios pods"
 cd ios
