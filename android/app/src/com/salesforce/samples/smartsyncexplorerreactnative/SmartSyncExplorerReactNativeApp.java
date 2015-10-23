@@ -29,8 +29,8 @@ package com.salesforce.samples.smartsyncexplorerreactnative;
 import android.app.Application;
 
 import com.salesforce.androidsdk.app.SalesforceSDKManager;
+import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
 import com.salesforce.androidsdk.security.Encryptor;
-import com.salesforce.androidsdk.salesforcereact.app.SalesforceReactSDKManager;
 
 /**
  * Application class for our application.

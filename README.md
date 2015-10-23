@@ -8,8 +8,8 @@ npm start
 ```
 
 ## To run the application on iOS
-* Start XCode and open ios/SmartSyncExplorerReactNative.xcworkspace 
+* Start Xcode, open ios/
 
 ## To run the application on Android
-* Start Android Studio and import from android
+* Start Android Studio, open android/
 

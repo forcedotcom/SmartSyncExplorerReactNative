@@ -28,11 +28,10 @@
 
 var React = require('react-native');
 var {
+    ActivityIndicatorIOS,
     StyleSheet,
-    Text,
     TextInput,
     View,
-    ActivityIndicatorIOS
 } = React;
 
 
@@ -72,7 +71,7 @@ var styles = StyleSheet.create({
     },
     spinner: {
         width: 30,
-    }
+    },
 });
 
 module.exports = SearchBar;
