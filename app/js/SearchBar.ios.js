@@ -59,7 +59,6 @@ var SearchBar = React.createClass({
 
 var styles = StyleSheet.create({
     searchBar: {
-        marginTop: 64,
         padding: 3,
         paddingLeft: 8,
         flexDirection: 'row',

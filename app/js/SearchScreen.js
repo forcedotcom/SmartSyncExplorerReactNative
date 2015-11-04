@@ -90,19 +90,11 @@ var SearchScreen = React.createClass({
     },
 
     selectContact: function(contact: Object) {
-        if (Platform.OS === 'ios') {
-            this.props.navigator.push({
-                title: 'Contact',
-                component: ContactScreen,
-                passProps: {contact},
-            });
-        } else {
-            dismissKeyboard();
-            this.props.navigator.push({
-                name: 'Contact',
-                contact: contact,
-            });
-        }
+        dismissKeyboard();
+        this.props.navigator.push({
+            name: 'Contact',
+            contact: contact,
+        });
     },
 
     onSearchChange: function(event: Object) {

@@ -29,41 +29,9 @@
 var React = require('react-native');
 var {
     AppRegistry,
-    StyleSheet,
-    NavigatorIOS
 } = React;
 
-var storeMgr = require('./StoreMgr');
-var SearchScreen = require('./SearchScreen');
+var App = require('./App');
 
-var App = React.createClass({
-    componentDidMount: function() {
-        storeMgr.syncData();
-    },
+AppRegistry.registerComponent('SmartSyncExplorerReactNative', () => App);
 
-    render: function() {
-        return (
-            <NavigatorIOS
-                style={styles.container}
-                barTintColor='red'
-                titleTextColor='white'
-                tintColor='white'
-                initialRoute={{
-                    title: 'Contacts',
-                    component: SearchScreen,
-                    rightButtonIcon: require('image!sync'),
-                    onRightButtonPress: () => { storeMgr.reSyncData(); },
-                }}
-            />
-        );
-    }
-});
-
-var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    }
-});
-
-React.AppRegistry.registerComponent('SmartSyncExplorerReactNative', () => App);
