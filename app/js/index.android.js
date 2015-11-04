@@ -43,19 +43,18 @@ var ContactScreen = require('./ContactScreen');
 var NavigationBarRouteMapper = {
     LeftButton: function(route, navigator, index, navState) {
         if (route.name === "Contact") {
-            return (<TouchableNativeFeedback onPress={() => navigator.pop()} >
-                      <View>
+            return (<TouchableNativeFeedback onPress={() => navigator.pop()}>
+                      <View style={styles.navBarElt}>
                         <Image source={require('image!android_back_white')} style={styles.icon}/>
-                        <Text style={styles.navBarText}>Contacts</Text>
                       </View>
                     </TouchableNativeFeedback>);
-        };
+        }
     },
 
     RightButton: function(route, navigator, index, navState) {
         if (route.name === "Contacts") {
             return (<TouchableNativeFeedback onPress={() => storeMgr.reSyncData()}>
-                      <View>
+                      <View style={styles.navBarElt}>
                         <Image source={require('image!sync')} style={styles.icon}/>
                       </View>
                     </TouchableNativeFeedback>);
@@ -63,7 +62,7 @@ var NavigationBarRouteMapper = {
     },
 
     Title: function(route, navigator, index, navState) {
-        return ( <Text style={styles.navBarText}> {route.name} </Text>);
+        return ( <View style={styles.navBarElt}><Text style={styles.navBarText}> {route.name} </Text></View>);
   },
 
 };
@@ -100,21 +99,21 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   navBar: {
-    flex:1,
-//    flexDirection: 'row',
-//    alignItems: 'center',
     backgroundColor: 'red',
     height: 56,
+  },
+  navBarElt: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems:'center',
   },
   navBarText: {
     fontSize: 20,
     color: 'white',
-    padding: 0,
   },
   icon: {
     width: 24,
     height: 24,
-    marginHorizontal: 8,
   },
   scene: {
     flex: 1,

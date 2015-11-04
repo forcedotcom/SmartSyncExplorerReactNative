@@ -73,7 +73,7 @@ var SearchBar = React.createClass({
           autoCorrect={false}
           autoFocus={true}
           onChange={this.props.onSearchChange}
-          placeholder="Search a movie..."
+          placeholder="Search a contact..."
           placeholderTextColor="rgba(255, 255, 255, 0.5)"
           onFocus={this.props.onFocus}
           style={styles.searchBarInput}
@@ -85,30 +85,31 @@ var SearchBar = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#a9a9a9',
-    height: 56,
-  },
-  searchBarInput: {
-    flex: 1,
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
-    height: 50,
-    padding: 0,
-    backgroundColor: 'transparent'
-  },
-  spinner: {
-    width: 30,
-    height: 30,
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    marginHorizontal: 8,
-  },
+    searchBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#a9a9a9',
+        height: 56,
+    },
+    searchBarInput: {
+        flex: 1,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+        height: 50,
+        padding: 0,
+        backgroundColor: 'transparent'
+    },
+    spinner: {
+        width: 30,
+        height: 30,
+        margin: 8,
+    },
+    icon: {
+        width: 24,
+        height: 24,
+        marginHorizontal: 8,
+    },
 });
 
 module.exports = SearchBar;

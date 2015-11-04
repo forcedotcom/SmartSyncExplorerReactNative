@@ -38,18 +38,20 @@ var {
 var SearchBar = React.createClass({
     render: function() {
         return (
-                <View style={styles.searchBar}>
-                  <TextInput
-                    autoCorrect={false}
-                    onChange={this.props.onSearchChange}
-                    placeholder="Search a contact..."
-                    onFocus={this.props.onFocus}
-                    style={styles.searchBarInput}
-                  />
-                  <ActivityIndicatorIOS
-                    animating={this.props.isLoading}
-                    style={styles.spinner}
-                  />
+                <View style={this.props.style}>
+                  <View style={styles.searchBar}>
+                    <TextInput
+                      autoCorrect={false}
+                      onChange={this.props.onSearchChange}
+                      placeholder="Search a contact..."
+                      onFocus={this.props.onFocus}
+                      style={styles.searchBarInput}
+                    />
+                    <ActivityIndicatorIOS
+                      animating={this.props.isLoading}
+                      style={styles.spinner}
+                    />
+                  </View>
                 </View>
         );
     }
@@ -65,8 +67,8 @@ var styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     searchBarInput: {
-        fontSize: 15,
         flex: 1,
+        fontSize: 15,
         height: 30,
     },
     spinner: {
