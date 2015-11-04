@@ -66,7 +66,7 @@ var SearchScreen = React.createClass({
 
     render: function() {
         return (
-                <View style={styles.container}>
+                <View style={this.props.style}>
                   <SearchBar
                     onSearchChange={this.onSearchChange}
                     isLoading={this.state.isLoading}
@@ -137,10 +137,6 @@ var SearchScreen = React.createClass({
 });
 
 var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
     separator: {
         height: 1,
         backgroundColor: '#eeeeee',

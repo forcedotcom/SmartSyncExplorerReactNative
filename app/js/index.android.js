@@ -41,7 +41,6 @@ var SearchScreen = require('./SearchScreen');
 var ContactScreen = require('./ContactScreen');
 
 var NavigationBarRouteMapper = {
-
     LeftButton: function(route, navigator, index, navState) {
         if (route.name === "Contact") {
             return (<TouchableNativeFeedback onPress={() => navigator.pop()} >
@@ -55,7 +54,7 @@ var NavigationBarRouteMapper = {
 
     RightButton: function(route, navigator, index, navState) {
         if (route.name === "Contacts") {
-            return (<TouchableNativeFeedback onPress={() => storeMgr.reSyncData() }>
+            return (<TouchableNativeFeedback onPress={() => storeMgr.reSyncData()}>
                       <View>
                         <Image source={require('image!sync')} style={styles.icon}/>
                       </View>
@@ -81,7 +80,7 @@ var App = React.createClass({
                 <Navigator
                   style={styles.container}
                   initialRoute={initialRoute}
-                  configureScene={() => Navigator.SceneConfigs.FadeAndroid}
+                  configureScene={() => Navigator.SceneConfigs.PushFromRight}
                   renderScene={(route, navigator) => {
                       if (route.name === 'Contacts') {
                           return (<SearchScreen style={styles.scene} navigator={navigator} />);
@@ -101,19 +100,16 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   navBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flex:1,
+//    flexDirection: 'row',
+//    alignItems: 'center',
     backgroundColor: 'red',
-    height: 26,
+    height: 56,
   },
   navBarText: {
-//    flex: 1,
     fontSize: 20,
-    fontWeight: 'bold',
     color: 'white',
-//    height: 50,
     padding: 0,
-//    backgroundColor: 'transparent'
   },
   icon: {
     width: 24,
