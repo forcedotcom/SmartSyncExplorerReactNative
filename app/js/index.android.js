@@ -29,13 +29,10 @@ var React = require('react-native');
 var {
     AppRegistry,
     Image,
-    BackAndroid,
     Navigator,
-    Platform,
     StyleSheet,
-    TouchableNativeFeedback,
     Text,
-    ToolbarAndroid,
+    TouchableNativeFeedback,
     View,
 } = React;
 
@@ -43,50 +40,33 @@ var storeMgr = require('./StoreMgr');
 var SearchScreen = require('./SearchScreen');
 var ContactScreen = require('./ContactScreen');
 
-var _navigator;
-BackAndroid.addEventListener('hardwareBackPress', () => {
-  if (_navigator && _navigator.getCurrentRoutes().length > 1) {
-    _navigator.pop();
-    return true;
-  }
-  return false;
-});
+var NavigationBarRouteMapper = {
 
-var IS_RIPPLE_EFFECT_SUPPORTED = Platform.Version >= 21;
-
-var background = IS_RIPPLE_EFFECT_SUPPORTED ?
-    TouchableNativeFeedback.SelectableBackgroundBorderless() :
-    TouchableNativeFeedback.SelectableBackground();
-
-var RouteMapper = function(route, navigationOperations, onComponentRef) {
-    _navigator = navigationOperations;
-    var component, actions, actionHandler;
-    if (route.name === 'Contacts') {
-        return (<SearchScreen navigator={navigationOperations} />);
-    }
-    else if (route.name === 'Contact') {
-        return (
-                <View style={styles.container}>
-                  <View style={styles.toolbar}>
-                    <TouchableNativeFeedback
-                        background={background}
-                        onPress={() => navigationOperations.pop()}>
+    LeftButton: function(route, navigator, index, navState) {
+        if (route.name === "Contact") {
+            return (<TouchableNativeFeedback onPress={() => navigator.pop()} >
                       <View>
-                        <Image
-                          source={require('image!android_back_white')}
-                          style={styles.icon}
-                        />
+                        <Image source={require('image!android_back_white')} style={styles.icon}/>
+                        <Text style={styles.navBarText}>Contacts</Text>
                       </View>
-                    </TouchableNativeFeedback>
-                    <Text style={styles.toolbarText}>Contact</Text>
-                  </View>
-                  <ContactScreen style={{flex: 1}} navigator={navigationOperations} contact={route.contact} />
-                </View>
-        );
-    }
-};
+                    </TouchableNativeFeedback>);
+        };
+    },
 
-var onActionSelected = function() {
+    RightButton: function(route, navigator, index, navState) {
+        if (route.name === "Contacts") {
+            return (<TouchableNativeFeedback onPress={() => storeMgr.reSyncData() }>
+                      <View>
+                        <Image source={require('image!sync')} style={styles.icon}/>
+                      </View>
+                    </TouchableNativeFeedback>);
+        }
+    },
+
+    Title: function(route, navigator, index, navState) {
+        return ( <Text style={styles.navBarText}> {route.name} </Text>);
+  },
+
 };
 
 var App = React.createClass({
@@ -102,8 +82,15 @@ var App = React.createClass({
                   style={styles.container}
                   initialRoute={initialRoute}
                   configureScene={() => Navigator.SceneConfigs.FadeAndroid}
-                  renderScene={RouteMapper}
-                />
+                  renderScene={(route, navigator) => {
+                      if (route.name === 'Contacts') {
+                          return (<SearchScreen style={styles.scene} navigator={navigator} />);
+                      }
+                      else if (route.name === 'Contact') {
+                          return (<ContactScreen style={styles.scene} navigator={navigator} contact={route.contact} />);
+                      }
+                  }}
+                  navigationBar={<Navigator.NavigationBar routeMapper={NavigationBarRouteMapper} style={styles.navBar} />} />
         );
     }
 });
@@ -113,25 +100,30 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  toolbar: {
+  navBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#a9a9a9',
-    height: 56,
+    backgroundColor: 'red',
+    height: 26,
   },
-  toolbarText: {
-    flex: 1,
+  navBarText: {
+//    flex: 1,
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
-    height: 50,
+//    height: 50,
     padding: 0,
-    backgroundColor: 'transparent'
+//    backgroundColor: 'transparent'
   },
   icon: {
     width: 24,
     height: 24,
     marginHorizontal: 8,
+  },
+  scene: {
+    flex: 1,
+    paddingTop: 56,
+    backgroundColor: '#EAEAEA',
   },
 });
 
