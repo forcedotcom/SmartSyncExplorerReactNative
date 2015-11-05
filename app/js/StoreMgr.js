@@ -121,6 +121,23 @@ function saveContact(contact, callback) {
                                  });
 }
 
+function addContact(successCallback, errorCallback) {
+    var contact = {Id: "local_" + (new Date()).getTime(),
+                   FirstName: null, LastName: null, Title: null, Email: null, MobilePhone: null, HomePhone: null, Department: null, attributes: {type: "Contact"},
+                   __locally_created__: true,
+                   __local__: true
+                  };
+    smartstore.upsertSoupEntries(false, "contacts", [ contact ],
+                                 (contacts) => successCallback(contacts[0]),
+                                 errorCallback);
+}
+
+function deleteContact(contact, successCallback, errorCallback) {
+    smartstore.removeFromSoup(false, "contacts", [ contact._soupEntryId ],
+                              successCallback,
+                              errorCallback);
+}
+
 function searchContacts(query, successCallback, errorCallback) {
     var querySpec;
     
@@ -167,4 +184,6 @@ module.exports = {
     addStoreChangeListener: addStoreChangeListener,
     saveContact: saveContact,
     searchContacts: searchContacts,
+    addContact: addContact,
+    deleteContact: deleteContact,
 }

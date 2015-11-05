@@ -37,11 +37,13 @@ var {
     View,
 } = React;
 
+var oauth = require('./react.force.oauth');
 var storeMgr = require('./StoreMgr');
 var SearchScreen = require('./SearchScreen');
 var ContactScreen = require('./ContactScreen');
-var activeScreen;
+var contactScreenInstance;
 
+// Nav bar components
 var NavButton = React.createClass({
     render: function() {
         return (<View style={styles.navBarElt}>
@@ -62,22 +64,27 @@ var NavImgButton = React.createClass({
     }
 });
 
+// Router
 var NavigationBarRouteMapper = {
     LeftButton: function(route, navigator, index, navState) {
         if (route.name === "Contact") {
-            return (<NavImgButton imgSrc={require('image!back')} onPress={() => navigator.pop()}/>);
+            return (<NavImgButton imgSrc={require('image!back')} onPress={() => onBack()}/>);
         }
     },
 
     RightButton: function(route, navigator, index, navState) {
         if (route.name === "Contacts") {
-            return (<NavImgButton imgSrc={require('image!sync')} onPress={() => storeMgr.reSyncData()}/>);
+            return (<View style={styles.navButtonsGroup}>
+                      <NavImgButton imgSrc={require('image!add')} onPress={() => onAdd(navigator)} />
+                      <NavImgButton imgSrc={require('image!sync')} onPress={() => onSync()}/>
+                      <NavButton title="Logout" onPress={() => onLogout()} />
+                    </View>);
         }
         else if (route.name === "Contact") {
             var deleteUndeleteButtonLabel = (route.contact.__locally_deleted__ ? "Undelete" : "Delete");
             return (<View style={styles.navButtonsGroup}>
-                      <NavButton title={deleteUndeleteButtonLabel} onPress={() => activeScreen.onDeleteUndeleteContact()}/>
-                      <NavButton title="Save" onPress={() => activeScreen.onSaveContact()}/>
+                      <NavButton title={deleteUndeleteButtonLabel} onPress={() => onDeleteUndelete()}/>
+                      <NavButton title="Save" onPress={() => onSave()} />
                     </View>);
         }
     },
@@ -88,6 +95,49 @@ var NavigationBarRouteMapper = {
 
 };
 
+// Actions handlers
+var onAdd = function(navigator) {
+    storeMgr.addContact(
+        (contact) => navigator.push({name: 'Contact', contact: contact})
+    );
+}
+
+var onSync = function() {
+    storeMgr.reSyncData();
+}
+
+var onSave = function() {
+    var contact = contactScreenInstance.state.contact;
+    var navigator = contactScreenInstance.props.navigator;
+    contact.__locally_updated__ = contact.__local__ = true;
+    storeMgr.saveContact(contact, () => navigator.pop());
+}
+
+var onDeleteUndelete = function() {
+    var contact = contactScreenInstance.state.contact;
+    var navigator = contactScreenInstance.props.navigator;
+    contact.__locally_deleted__ = !contact.__locally_deleted__;
+    contact.__local__ = contact.__locally_deleted__ || contact.__locally_updated__ || contact.__locally_created__;
+    storeMgr.saveContact(contact, () => navigator.pop());
+}
+
+var onBack = function() {
+    var contact = contactScreenInstance.state.contact;
+    var navigator = contactScreenInstance.props.navigator;
+    if (contact.__locally_created__ && !contact.__locally_modified__) {
+        // Nothing typed in - delete
+        storeMgr.deleteContact(contact, () => navigator.pop());
+    }
+    else {
+        navigator.pop()
+    }
+}
+
+var onLogout = function() {
+    oauth.logout();
+}
+
+// App component
 var App = React.createClass({
     componentDidMount: function() {
         storeMgr.syncData();
@@ -98,7 +148,8 @@ var App = React.createClass({
             return (<SearchScreen style={styles.scene} navigator={navigator} />);
         }
         else if (route.name === 'Contact') {
-            return (<ContactScreen style={styles.scene} navigator={navigator} contact={route.contact} ref={(screen) => activeScreen = screen}/>);
+            return (<ContactScreen style={styles.scene} navigator={navigator} contact={route.contact} ref={(screen) => contactScreenInstance = screen}
+                    />);
         }
     },
 
@@ -133,7 +184,7 @@ var styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems:'center',
-        marginRight: 4,
+        margin: 2,
     },
     navBarTitleText: {
         fontSize: 20,
