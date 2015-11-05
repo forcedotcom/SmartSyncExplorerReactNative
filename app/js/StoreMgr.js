@@ -125,6 +125,8 @@ function addContact(successCallback, errorCallback) {
     var contact = {Id: "local_" + (new Date()).getTime(),
                    FirstName: null, LastName: null, Title: null, Email: null, MobilePhone: null, HomePhone: null, Department: null, attributes: {type: "Contact"},
                    __locally_created__: true,
+                   __locally_updated__: false,
+                   __locally_delete__: false,
                    __local__: true
                   };
     smartstore.upsertSoupEntries(false, "contacts", [ contact ],
