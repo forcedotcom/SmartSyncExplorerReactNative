@@ -30,10 +30,10 @@ var {
     AppRegistry,
     Image,
     Navigator,
+    Platform,
     StyleSheet,
     Text,
     TouchableOpacity,
-    TouchableHighlight,
     View,
 } = React;
 
@@ -47,9 +47,9 @@ var contactScreenInstance;
 var NavButton = React.createClass({
     render: function() {
         return (<View style={styles.navBarElt}>
-                  <TouchableHighlight onPress={() => this.props.onPress()}>
+                  <TouchableOpacity onPress={() => this.props.onPress()}>
                     <Text style={styles.navBarText}>{this.props.title}</Text>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
                 </View>);
     }
 });
