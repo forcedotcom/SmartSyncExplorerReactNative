@@ -20,7 +20,6 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
 ]
   
 
-pod 'SalesforceMobileSDK-iOS', :path => '../../external/ios'
-
-end
-
+pod 'SalesforceMobileSDK-iOS', :path => '../../external/ios', :subspecs => [
+    'SalesforceReact'
+]
