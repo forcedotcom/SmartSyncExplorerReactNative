@@ -24,13 +24,12 @@
 
 #import "AppDelegate.h"
 #import "InitialViewController.h"
-#import <React/Base/RCTRootView.h>
+#import <React/RCTRootView.h>
 #import <SalesforceSDKCore/SFPushNotificationManager.h>
 #import <SalesforceSDKCore/SFDefaultUserManagementViewController.h>
 #import <SalesforceSDKCore/SalesforceSDKManager.h>
 #import <SalesforceSDKCore/SFUserAccountManager.h>
-#import <SalesforceCommonUtils/SFLogger.h>
-#import <SalesforceRestAPI/SFRestAPI+Blocks.h>
+#import <SalesforceSDKCore/SFLogger.h>
 
 
 // Fill these in when creating a new Connected Application on Force.com

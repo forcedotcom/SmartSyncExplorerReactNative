@@ -2,7 +2,6 @@
 # platform :ios, '8.0'
 
 target 'SmartSyncExplorerReactNative' do
-
   
 pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'ART',
@@ -20,7 +19,8 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
 ]
   
 
-pod 'SalesforceMobileSDK-iOS', :path => '../../external/ios'
+pod 'SalesforceMobileSDK-iOS', :path => '../../external/ios', :subspecs => [
+    'SalesforceReact'
+]
 
 end
-
