@@ -10,3 +10,4 @@ app/ios/Podfile.lock
 app/ios/Pods/
 app/node_modules/
 xcuserdata
+.idea/
