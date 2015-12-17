@@ -1,16 +1,18 @@
 # SmartSyncExplorerReactNative
 SmartSyncExplorer application written using React Native
 
-## To create workspace do
-``` shell
-pod install
-```
-It will use SalesforceMobileSDK-iOS version 4.0
+## Install software required by react-native
+Follow the steps here: https://facebook.github.io/react-native/docs/getting-started.html#content
 
-## To run the application
-* Open SmartSyncExplorerReactNative.xcworkspace in XCode
-* Launch the application
-* From a terminal, go to the top directory of the clone of the repo and run: 
+## To get started do the following from the root directory
 ``` shell
-./rundevserver.sh
+./install.sh
+cd app
+npm start
 ```
+
+## To run the application on iOS
+* Start Xcode, open ios/
+
+## To run the application on Android
+* Start Android Studio, open android/
