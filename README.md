@@ -1,9 +1,6 @@
 # SmartSyncExplorerReactNative
 SmartSyncExplorer application written using React Native
 
-## Install software required by react-native
-Follow the steps here: https://facebook.github.io/react-native/docs/getting-started.html#content
-
 ## To get started do the following from the root directory
 ``` shell
 ./install.sh
