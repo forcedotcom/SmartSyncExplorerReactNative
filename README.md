@@ -16,4 +16,3 @@ npm start
 
 ## To run the application on Android
 * Start Android Studio, open android/
-
