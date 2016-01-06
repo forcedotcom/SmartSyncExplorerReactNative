@@ -4,9 +4,6 @@ echo "Getting git submodules"
 git submodule init
 git submodule sync
 git submodule update --init --recursive
-cd external/ios
-git submodule update --init external/ios-specs
-cd ../..
 
 echo "Installing npm dependencies"
 cd app
