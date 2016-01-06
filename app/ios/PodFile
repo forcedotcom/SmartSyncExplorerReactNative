@@ -4,7 +4,6 @@
 target 'SmartSyncExplorerReactNative' do
   
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Specs.git'
 
 pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'ART',
@@ -21,11 +20,11 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'RCTLinkingIOS'
 ]
 
-pod 'SalesforceSDKCore'
-pod 'SalesforceNetwork'
-pod 'SalesforceRestAPI'
-pod 'SmartStore'
-pod 'SmartSync'
-pod 'SalesforceReact'
+pod 'SalesforceSDKCore', :path => '../../external/ios'
+pod 'SalesforceNetwork', :path => '../../external/ios'
+pod 'SalesforceRestAPI', :path => '../../external/ios'
+pod 'SmartStore', :path => '../../external/ios'
+pod 'SmartSync', :path => '../../external/ios'
+pod 'SalesforceReact', :path => '../../external/ios'
 
 end
