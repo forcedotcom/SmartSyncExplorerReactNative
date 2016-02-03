@@ -3,7 +3,7 @@ SmartSyncExplorer application written using React Native
 
 ## To get started do the following from the root directory
 ``` shell
-./install.sh
+./install.sh (Windows users, please use "cscript install.vbs" instead of ./install.sh)
 cd app
 npm start
 ```
