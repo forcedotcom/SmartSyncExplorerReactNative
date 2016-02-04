@@ -53,6 +53,16 @@ If intReturnVal <> 0 Then
     WScript.Echo "Error in copying js files!"
     WScript.Quit 3
 End If
+
+'Run install.vbs on the SalesforceMobileSDK-Android clone
+objShell.CurrentDirectory = strWorkingDirectory & "\external\android"
+WScript.Echo vbCrLf & "Running install script for SalesforceMobileSDK-Android clone"
+intReturnVal = objShell.run("cscript install.vbs", 1, True)
+If intReturnVal <> 0 Then
+    WScript.Echo "Error in running install.vbs for SalesforceMobileSDK-Android clone!"
+    WScript.Quit 6
+End If
+
 WScript.Quit 0
 
 
