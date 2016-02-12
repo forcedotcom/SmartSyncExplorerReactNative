@@ -23,7 +23,6 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
 pod 'SalesforceSDKCore', :path => '../../external/ios'
 pod 'SalesforceNetwork', :path => '../../external/ios'
 pod 'SalesforceRestAPI', :path => '../../external/ios'
-pod 'FMDB', :path => '../../external/ios'
 pod 'SmartStore', :path => '../../external/ios'
 pod 'SmartSync', :path => '../../external/ios'
 pod 'SalesforceReact', :path => '../../external/ios'
