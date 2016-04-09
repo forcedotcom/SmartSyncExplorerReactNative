@@ -13,3 +13,6 @@ app/node_modules/
 app/npm-debug.log
 xcuserdata
 .idea/
+.DS_Store
+*.jsbundle
+npm-debug.log

@@ -21,6 +21,7 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "TargetConditionals.h"
 
 #import "AppDelegate.h"
 #import "InitialViewController.h"
@@ -118,6 +119,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (void)setupRootViewController
 {
+#if (TARGET_IPHONE_SIMULATOR)
     /**
      * Loading JavaScript code - uncomment the one you want.
      *
@@ -132,7 +134,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      * on the same Wi-Fi network.
      */
     [self setupReactRootView:[NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"]];
-    
+#else
     /**
      * OPTION 2
      * Load from pre-bundled file on disk. To re-generate the static bundle,
@@ -144,7 +146,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      *
      * $ curl http://localhost:8081/index.ios.bundle -o main.jsbundle
      */
-    // [self setupReactRootView:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
+     [self setupReactRootView:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
+#endif
 }
 
 - (void)setupReactRootView:(NSURL*)jsCodeLocation
