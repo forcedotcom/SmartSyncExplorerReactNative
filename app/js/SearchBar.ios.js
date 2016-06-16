@@ -26,13 +26,13 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
     ActivityIndicatorIOS,
     StyleSheet,
     TextInput,
-    View,
-} = React;
+    View
+} from 'react-native';
 
 
 var SearchBar = React.createClass({

@@ -25,17 +25,15 @@
  */
 'use strict';
 
-var React = require('react-native');
-var {
-    AppRegistry,
+import React from 'react';
+import {
     Image,
     Navigator,
-    Platform,
     StyleSheet,
     Text,
     TouchableOpacity,
-    View,
-} = React;
+    View
+} from 'react-native';
 
 var oauth = require('./react.force.oauth');
 var storeMgr = require('./StoreMgr');

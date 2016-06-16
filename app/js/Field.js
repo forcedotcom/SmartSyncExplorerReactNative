@@ -26,13 +26,13 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
     Text,
     TextInput,
     StyleSheet,
     View
-} = React;
+} from 'react-native';
 
 // Props: fieldLabel, fieldValue
 var Field = React.createClass({

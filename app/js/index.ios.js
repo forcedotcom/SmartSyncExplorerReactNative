@@ -26,10 +26,8 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
-    AppRegistry,
-} = React;
+import React from 'react';
+import { AppRegistry } from 'react-native';
 
 var App = require('./App');
 

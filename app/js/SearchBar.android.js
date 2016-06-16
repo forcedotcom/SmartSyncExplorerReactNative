@@ -26,16 +26,16 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
-  Image,
-  Platform,
-  ProgressBarAndroid,
-  TextInput,
-  StyleSheet,
-  TouchableNativeFeedback,
-  View,
-} = React;
+import React from 'react';
+import {
+    Image,
+    Platform,
+    ProgressBarAndroid,
+    TextInput,
+    StyleSheet,
+    TouchableNativeFeedback,
+    View,
+} from 'react-native';
 
 var IS_RIPPLE_EFFECT_SUPPORTED = Platform.Version >= 21;
 

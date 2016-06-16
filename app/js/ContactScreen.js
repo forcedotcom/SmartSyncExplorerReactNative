@@ -26,14 +26,15 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
     ScrollView,
     StyleSheet,
     View,
     TouchableHighlight,
-    Text,
-} = React;
+    Text
+} from 'react-native';
+
 var Field = require('./Field');
 var storeMgr = require('./StoreMgr');
 var navigator;
