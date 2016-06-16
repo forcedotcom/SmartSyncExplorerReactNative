@@ -26,15 +26,16 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
     Image,
     PixelRatio,
     StyleSheet,
     Text,
     TouchableHighlight,
     View
-} = React;
+} from 'react-native';
+
 var ContactBadge = require('./ContactBadge');
 
 var ContactCell = React.createClass({

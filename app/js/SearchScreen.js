@@ -26,15 +26,16 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
     Platform,
     StyleSheet,
     Text,
     View,
     ListView,
     PixelRatio,
-} = React;
+} from 'react-native';
+
 var Subscribable = require('Subscribable');
 var dismissKeyboard = require('dismissKeyboard');
 
