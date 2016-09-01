@@ -48,7 +48,7 @@ End If
 'The following line is the equivalent of "cd .."
 objShell.CurrentDirectory = strWorkingDirectory
 WScript.Echo vbCrLf & "Getting js files"
-intReturnVal = objShell.Run("copy external\shared\libs\react.* app\js\", 1, True)
+intReturnVal = objShell.Run("xcopy external\shared\libs\react.* app\js\", 1, True)
 If intReturnVal <> 0 Then
     WScript.Echo "Error in copying js files!"
     WScript.Quit 3
