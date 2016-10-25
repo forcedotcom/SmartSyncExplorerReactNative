@@ -3,6 +3,9 @@ rootProject.name = 'SmartSyncExplorerReactNative'
 def libsRootDir = new File( settingsDir, '../../external/android/libs' )
 include ':app'
 
+include ':libs:SalesforceAnalytics'
+project( ':libs:SalesforceAnalytics' ).projectDir = new File( libsRootDir, 'SalesforceAnalytics' )
+
 include ':libs:SalesforceSDK'
 project( ':libs:SalesforceSDK' ).projectDir = new File( libsRootDir, 'SalesforceSDK' )
 
