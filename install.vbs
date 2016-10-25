@@ -44,16 +44,6 @@ If intReturnVal <> 0 Then
     WScript.Quit 6
 End If
 
-'Copy js files to app/js folder'
-'The following line is the equivalent of "cd .."
-objShell.CurrentDirectory = strWorkingDirectory
-WScript.Echo vbCrLf & "Getting js files"
-intReturnVal = objShell.Run("xcopy external\shared\libs\react.* app\js\", 1, True)
-If intReturnVal <> 0 Then
-    WScript.Echo "Error in copying js files!"
-    WScript.Quit 3
-End If
-
 'Run install.vbs on the SalesforceMobileSDK-Android clone
 objShell.CurrentDirectory = strWorkingDirectory & "\external\android"
 WScript.Echo vbCrLf & "Running install script for SalesforceMobileSDK-Android clone"

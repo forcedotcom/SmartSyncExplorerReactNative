@@ -14,6 +14,3 @@ echo "Installing ios pods"
 cd app/ios
 pod update
 cd ../..
-
-echo "Getting js files"
-cp external/shared/libs/react.* app/js/
