@@ -76,6 +76,7 @@ var SearchScreen = React.createClass({
                   <ListView
                     automaticallyAdjustContentInsets={false}
                     dataSource={this.state.dataSource}
+                    enableEmptySections={true}
                     renderRow={this.renderRow} />
                 </View>
       );
