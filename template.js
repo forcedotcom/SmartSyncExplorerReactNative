@@ -37,7 +37,7 @@ module.exports.prepare = function(config, replaceInFiles, moveFile, removeFile) 
         // Values in template
         var templateAppName = 'SmartSyncExplorerReactNative'
         var templatePackageName = 'com.salesforce.samples.smartsyncexplorerreactnative';
-        var templateOrganization = 'Salesforce';
+        var templateOrganization = 'SalesforceSamples';
 
         // Key files
         var templatePackageJsonFile = 'package.json';

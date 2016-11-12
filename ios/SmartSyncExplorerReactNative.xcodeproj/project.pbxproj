@@ -145,7 +145,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = SalesforceSamples;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						SystemCapabilities = {
