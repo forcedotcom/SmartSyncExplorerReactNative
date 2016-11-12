@@ -35,8 +35,8 @@ module.exports.prepare = function(config, replaceInFiles, moveFile, removeFile) 
         var path = require('path');
 
         // Values in template
-        var templateAppName = 'SmartSyncReactNativeExplorer';
-        var templatePackageName = 'com.salesforce.samples.smartsyncreactnativeexplorer';
+        var templateAppName = 'SmartSyncExplorerReactNative'
+        var templatePackageName = 'com.salesforce.samples.smartsyncexplorerreactnative';
         var templateOrganization = 'Salesforce';
 
         // Key files
