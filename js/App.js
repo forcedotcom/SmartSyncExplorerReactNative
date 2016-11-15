@@ -66,15 +66,15 @@ var NavImgButton = React.createClass({
 var NavigationBarRouteMapper = {
     LeftButton: function(route, navigator, index, navState) {
         if (route.name === "Contact") {
-            return (<NavImgButton imgSrc={require('image!back')} onPress={() => onBack()}/>);
+            return (<NavImgButton imgSrc={require('./images/back.png')} onPress={() => onBack()}/>);
         }
     },
 
     RightButton: function(route, navigator, index, navState) {
         if (route.name === "Contacts") {
             return (<View style={styles.navButtonsGroup}>
-                      <NavImgButton imgSrc={require('image!add')} onPress={() => onAdd(navigator)} />
-                      <NavImgButton imgSrc={require('image!sync')} onPress={() => onSync()}/>
+                      <NavImgButton imgSrc={require('./images/add.png')} onPress={() => onAdd(navigator)} />
+                      <NavImgButton imgSrc={require('./images/sync.png')} onPress={() => onSync()}/>
                       <NavButton title="Logout" onPress={() => onLogout()} />
                     </View>);
         }

@@ -62,13 +62,14 @@ var styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         backgroundColor: '#F0F0F0',
-        padding: 5
+        padding: 5,
+        height: 28
     },
     fieldValue: {
         flex: 1,
         fontSize: 16,
         padding: 5,
-        height: 28
+        height: 36
     }
 });
 

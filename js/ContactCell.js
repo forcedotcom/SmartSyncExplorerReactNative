@@ -43,9 +43,9 @@ var ContactCell = React.createClass({
         var statusIcon;
         if (this.props.contact.__local__) {
             var iconSource;
-            if (this.props.contact.__locally_updated__) iconSource = require("image!localupdate");
-            if (this.props.contact.__locally_created__) iconSource = require("image!localadd");
-            if (this.props.contact.__locally_deleted__) iconSource = require("image!localdelete");
+            if (this.props.contact.__locally_updated__) iconSource = require("./images/localupdate.png");
+            if (this.props.contact.__locally_created__) iconSource = require("./images/localadd.png");
+            if (this.props.contact.__locally_deleted__) iconSource = require("./images/localdelete.png");
 
             if (iconSource) {
                 statusIcon = (<Image source={iconSource} />);

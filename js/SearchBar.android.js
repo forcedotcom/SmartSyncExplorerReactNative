@@ -51,7 +51,7 @@ var SearchBar = React.createClass({
             onPress={() => this.refs.input && this.refs.input.focus()}>
           <View>
             <Image
-              source={require('image!android_search_white')}
+              source={require('./images/android_search_white.png')}
               style={styles.icon}
             />
           </View>
@@ -62,7 +62,7 @@ var SearchBar = React.createClass({
           autoCorrect={false}
           autoFocus={true}
           onChange={this.props.onSearchChange}
-          placeholder="Search a movie..."
+          placeholder="Search a contact..."
           placeholderTextColor="rgba(255, 255, 255, 0.5)"
           onFocus={this.props.onFocus}
           style={styles.searchBarInput}
