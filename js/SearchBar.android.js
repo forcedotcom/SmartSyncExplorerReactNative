@@ -63,7 +63,6 @@ var SearchBar = React.createClass({
           autoFocus={true}
           onChange={this.props.onSearchChange}
           placeholder="Search a contact..."
-          placeholderTextColor="rgba(255, 255, 255, 0.5)"
           onFocus={this.props.onFocus}
           style={styles.searchBarInput}
         />
@@ -89,9 +88,8 @@ var styles = StyleSheet.create({
         flex: 1,
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'white',
         height: 50,
-        padding: 0,
+        margin: 2,
         backgroundColor: 'transparent'
     },
     spinner: {

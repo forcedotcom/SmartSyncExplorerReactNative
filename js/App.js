@@ -175,13 +175,13 @@ var styles = StyleSheet.create({
     },
     navButtonsGroup: {
         flex: 1,
-        alignItems:'center',
         flexDirection: 'row',
+        width: 180,
     },
     navBarElt: {
         flex: 1,
         justifyContent: 'center',
-        alignItems:'center',
+        alignItems: 'center',
         margin: 2,
     },
     navBarTitleText: {
