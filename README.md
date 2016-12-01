@@ -1,3 +1,5 @@
+![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/latest/buildstatus.svg)
+
 # SmartSyncExplorerReactNative
 SmartSyncExplorer application written using React Native 
 
