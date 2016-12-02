@@ -11,7 +11,7 @@ node ./installdroid.js (for Android)
 
 ## Make sure to run the react-native packager
 ```shell
-npm start (Windows users please use "npm run-script start-windows" instead of npm run-script start)
+npm start (Windows users please use "npm run-script start-windows" instead of npm start)
 ```
 
 ## To run the application on iOS
