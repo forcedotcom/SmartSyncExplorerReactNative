@@ -6,7 +6,7 @@ SmartSyncExplorer application written using React Native
 ## To get started do the following from the root directory
 ``` shell
 node ./installios.js (for iOS)
-node ./installdroid.js (for Android)
+node ./installandroid.js (for Android)
 ```
 
 ## Make sure to run the react-native packager
