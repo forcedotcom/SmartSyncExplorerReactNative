@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		056F89E81E037D9E00BF569B /* libRCTTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 056789421E037CE600B07F33 /* libRCTTest.a */; };
 		05B9FB1E1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9FB1D1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m */; };
 		05B9FB261E0377EA00712BD5 /* FirstTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9FB251E0377EA00712BD5 /* FirstTest.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -18,20 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		056789411E037CE600B07F33 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0567893D1E037CE600B07F33 /* RCTTest.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 580C376F1AB104AF0015E709;
-			remoteInfo = RCTTest;
-		};
-		056F89E91E037DAE00BF569B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0567893D1E037CE600B07F33 /* RCTTest.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 580C376E1AB104AF0015E709;
-			remoteInfo = RCTTest;
-		};
 		05B9FB201E03778D00712BD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -43,7 +28,6 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		0567893D1E037CE600B07F33 /* RCTTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTTest.xcodeproj; path = "../node_modules/react-native/Libraries/RCTTest/RCTTest.xcodeproj"; sourceTree = "<group>"; };
 		05B9FB1B1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartSyncExplorerReactNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B9FB1D1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartSyncExplorerReactNativeTests.m; sourceTree = "<group>"; };
 		05B9FB1F1E03778D00712BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				056F89E81E037D9E00BF569B /* libRCTTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,14 +65,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0567893E1E037CE600B07F33 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				056789421E037CE600B07F33 /* libRCTTest.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		05B9FB1C1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,7 +141,6 @@
 		C73512AABD4BDBC0734E686B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0567893D1E037CE600B07F33 /* RCTTest.xcodeproj */,
 				78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */,
 			);
 			name = Frameworks;
@@ -186,7 +160,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				056F89EA1E037DAE00BF569B /* PBXTargetDependency */,
 				05B9FB211E03778D00712BD5 /* PBXTargetDependency */,
 			);
 			name = SmartSyncExplorerReactNativeTests;
@@ -251,12 +224,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 0567893E1E037CE600B07F33 /* Products */;
-					ProjectRef = 0567893D1E037CE600B07F33 /* RCTTest.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* SmartSyncExplorerReactNative */,
@@ -264,16 +231,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		056789421E037CE600B07F33 /* libRCTTest.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTTest.a;
-			remoteRef = 056789411E037CE600B07F33 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		05B9FB191E03778D00712BD5 /* Resources */ = {
@@ -391,11 +348,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		056F89EA1E037DAE00BF569B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RCTTest;
-			targetProxy = 056F89E91E037DAE00BF569B /* PBXContainerItemProxy */;
-		};
 		05B9FB211E03778D00712BD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* SmartSyncExplorerReactNative */;

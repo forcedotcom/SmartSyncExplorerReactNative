@@ -25,6 +25,7 @@
 #import "AppDelegate.h"
 #import "InitialViewController.h"
 #import <React/RCTRootView.h>
+#import <React/RCTBundleURLProvider.h>
 #import <SalesforceSDKCore/SFPushNotificationManager.h>
 #import <SalesforceSDKCore/SFDefaultUserManagementViewController.h>
 #import <SalesforceSDKCore/SalesforceSDKManager.h>
@@ -138,6 +139,17 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     [self.window makeKeyAndVisible];
 }
 
+- (NSURL *)sourceURL
+{
+  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"Examples/UIExplorer/js/UIExplorerApp.ios" fallbackResource:nil];
+  
+  if (!getenv("CI_USE_PACKAGER")) {
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  }
+  
+  return jsCodeLocation;
+}
+
 - (void)setupRootViewController
 {
     /**
@@ -153,7 +165,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      * `inet` value under `en0:`) and make sure your computer and iOS device are
      * on the same Wi-Fi network.
      */
-    [self setupReactRootView:[NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"]];
+    [self setupReactRootView:[self sourceURL]];
     
     /**
      * OPTION 2
