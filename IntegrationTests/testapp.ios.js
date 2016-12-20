@@ -41,7 +41,7 @@ class IntegrationTestsApp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>AA</Text>
+        <Text>Start you development server</Text>
       </View>
     );
   }
@@ -65,4 +65,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('IntegrationTestsApp', () => IntegrationTestsApp);
+AppRegistry.registerComponent('SmartSyncExplorerReactNative', () => IntegrationTestsApp);

@@ -141,11 +141,21 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (NSURL *)sourceURL
 {
-  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"Examples/UIExplorer/js/UIExplorerApp.ios" fallbackResource:nil];
+  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   
-  if (!getenv("CI_USE_PACKAGER")) {
+  if (getenv("INTEGRATION_TEST")){
     jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   }
+  else if (!getenv("CI_USE_PACKAGER")) {
+#ifdef DEBUG
+    [self log:SFLogLevelDebug msg:@"Is debug mode."];
+#else
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
+
+  }
+
+  
   
   return jsCodeLocation;
 }

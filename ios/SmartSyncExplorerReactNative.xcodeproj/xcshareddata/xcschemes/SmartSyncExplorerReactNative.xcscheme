@@ -64,7 +64,7 @@
       </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "CI_USE_PACKAGER"
+            key = "INTEGRATION_TEST"
             value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>
