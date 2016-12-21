@@ -21,8 +21,6 @@
         "babel-preset-react-native": "1.9.0",
         "jest": "16.0.2",
         "jest-react-native": "16.0.0",
-        "react-test-renderer": "15.3.2",
-        "fbjs": "^0.8.6",
-        "fbjs-scripts": "^0.7.1"
+        "react-test-renderer": "15.3.2"
     }
 }
