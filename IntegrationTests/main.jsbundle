@@ -2108,12 +2108,18 @@ __d(18 /* fbjs/lib/invariant.js */, function(global, require, module, exports) {
 
 
 
-function invariant(condition,format,a,b,c,d,e,f){
+var validateFormat=function validateFormat(format){};
+
 if(process.env.NODE_ENV!=='production'){
+validateFormat=function validateFormat(format){
 if(format===undefined){
 throw new Error('invariant requires an error message argument');
 }
+};
 }
+
+function invariant(condition,format,a,b,c,d,e,f){
+validateFormat(format);
 
 if(!condition){
 var error;
@@ -63673,12 +63679,12 @@ var warningInfo=_warningMap.get(warning);
 if(warningInfo){
 warningInfo.count+=1;
 }else{
-var _error=new Error();
-_error.framesToPop=2;
+var error=new Error();
+error.framesToPop=2;
 
 _warningMap.set(warning,{
 count:1,
-stacktrace:parseErrorStack(_error),
+stacktrace:parseErrorStack(error),
 symbolicated:false});
 
 }
@@ -82091,8 +82097,6 @@ IntegrationTestHarnessTest=function(_React$Component){babelHelpers.inherits(Inte
 
 
 
-
-
 state={
 done:false},_this.
 
@@ -82101,35 +82105,31 @@ done:false},_this.
 
 
 
+markDone=function(){
+_this.setState({done:true},function(){
+TestModule.markTestCompleted();
+});
+},_this.
 
-
-
-
-runTest=function(){
-if(_this.props.waitOneFrame){
+testRegisterGlobalSoup=function(){
 _reactNativeForce.smartstore.registerSoup(true,
 "contacts",
 [{path:"Id",type:"string"},
 {path:"FirstName",type:"full_text"},
 {path:"LastName",type:"full_text"},
 {path:"__local__",type:"string"}],
-function(){return TestModule.markTestCompleted();});
+function(){return _this.markDone();});
 
+},_this.
+
+runTest=function(){
+if(_this.props.registerGlobalSoup){
+_this.testRegisterGlobalSoup();
 }else
 {
-if(_this.props.shouldThrow){
-throw new Error('Throwing error because shouldThrow');
+_this.markDone();
 }
-if(!TestModule){
-throw new Error('RCTTestModule is not registered.');
-}else if(!TestModule.markTestCompleted){
-throw new Error('RCTTestModule.markTestCompleted not defined.');
-}
-_this.setState({done:true},function(){
-TestModule.markTestCompleted();
-});
-}
-},_temp),babelHelpers.possibleConstructorReturn(_this,_ret);}babelHelpers.createClass(IntegrationTestHarnessTest,[{key:'componentDidMount',value:function componentDidMount(){if(this.props.waitOneFrame){requestAnimationFrame(this.runTest);}else{this.runTest();}}},{key:'render',value:function render()
+},_temp),babelHelpers.possibleConstructorReturn(_this,_ret);}babelHelpers.createClass(IntegrationTestHarnessTest,[{key:'componentDidMount',value:function componentDidMount(){this.runTest();}},{key:'render',value:function render()
 
 {
 return(
@@ -82140,7 +82140,7 @@ this.state.done?'Done':'Testing...')));
 
 
 
-}}]);return IntegrationTestHarnessTest;}(React.Component);IntegrationTestHarnessTest.propTypes={shouldThrow:React.PropTypes.bool,waitOneFrame:React.PropTypes.bool};
+}}]);return IntegrationTestHarnessTest;}(React.Component);IntegrationTestHarnessTest.propTypes={registerGlobalSoup:React.PropTypes.bool};
 
 
 IntegrationTestHarnessTest.displayName='IntegrationTestHarnessTest';
@@ -82922,6 +82922,7 @@ var removeFromSoup=function removeFromSoup(storeConfig,soupName,entryIdsOrQueryS
 var storeConfig=checkFirstArg(storeConfig);
 var execArgs={"soupName":soupName,"isGlobalStore":storeConfig.isGlobalStore,"storeName":storeConfig.storeName};
 execArgs[entryIdsOrQuerySpec instanceof Array?"entryIds":"querySpec"]=entryIdsOrQuerySpec;
+execArgs[entryIdsOrQuerySpec instanceof Array?"querySpec":"entryIds"]=null;
 exec(successCB,errorCB,"removeFromSoup",execArgs);
 };
 

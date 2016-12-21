@@ -27,13 +27,11 @@ import {smartstore, smartsync} from 'react-native-force';
 
 class IntegrationTestHarnessTest extends React.Component {
   props: {
-    shouldThrow?: boolean,
-    waitOneFrame?: boolean,
+    registerGlobalSoup?: boolean,
   };
 
   static propTypes = {
-    shouldThrow: React.PropTypes.bool,
-    waitOneFrame: React.PropTypes.bool,
+    registerGlobalSoup: React.PropTypes.bool,
   };
 
   state = {
@@ -41,36 +39,32 @@ class IntegrationTestHarnessTest extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.waitOneFrame) {
-      requestAnimationFrame(this.runTest);
-    } else {
       this.runTest();
-    }
+  }
+
+  markDone = () => {
+    this.setState({done: true}, () => {
+      TestModule.markTestCompleted();
+    });
+  }
+
+  testRegisterGlobalSoup = () => {
+    smartstore.registerSoup(true,
+      "contacts",
+      [ {path:"Id", type:"string"},
+        {path:"FirstName", type:"full_text"},
+        {path:"LastName", type:"full_text"},
+        {path:"__local__", type:"string"} ],
+      () => this.markDone()
+     );
   }
 
   runTest = () => {
-    if (this.props.waitOneFrame) {
-      smartstore.registerSoup(true,
-        "contacts",
-        [ {path:"Id", type:"string"},
-          {path:"FirstName", type:"full_text"},
-          {path:"LastName", type:"full_text"},
-          {path:"__local__", type:"string"} ],
-        () => TestModule.markTestCompleted()
-       );
+    if (this.props.registerGlobalSoup) {
+      this.testRegisterGlobalSoup();
     }
     else{
-      if (this.props.shouldThrow) {
-        throw new Error('Throwing error because shouldThrow');
-      }
-      if (!TestModule) {
-        throw new Error('RCTTestModule is not registered.');
-      } else if (!TestModule.markTestCompleted) {
-        throw new Error('RCTTestModule.markTestCompleted not defined.');
-      }
-      this.setState({done: true}, () => {
-        TestModule.markTestCompleted();
-      });
+      this.markDone()
     }
   };
 

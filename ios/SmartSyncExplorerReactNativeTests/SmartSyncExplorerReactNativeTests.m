@@ -42,11 +42,6 @@
   [super tearDown];
 }
 
-- (void)testExample {
-  XCTAssertNotNil(@"A");
-  // This is an example of a functional test case.
-  // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
 
 - (void)testPerformanceExample {
   // This is an example of a performance test case.
@@ -57,22 +52,14 @@
 
 #pragma mark - Test harness
 
-- (void)testTheTester_waitOneFrame
+- (void)testTheTester_registerGlobalSoup
 {
   [_runner runTest:_cmd
             module:@"IntegrationTestHarnessTest"
-      initialProps:@{@"waitOneFrame": @YES}
+      initialProps:@{@"registerGlobalSoup": @YES}
 configurationBlock:nil];
 }
 
-- (void)testTheTester_ExpectError
-{
-  [_runner runTest:_cmd
-            module:@"IntegrationTestHarnessTest"
-      initialProps:@{@"shouldThrow": @YES}
-configurationBlock:nil
-  expectErrorRegex:@"because shouldThrow"];
-}
 
 
 #pragma mark - JS tests
