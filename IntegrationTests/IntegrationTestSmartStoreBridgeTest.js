@@ -11,7 +11,6 @@
 'use strict';
 
 
-var requestAnimationFrame = require('fbjs/lib/requestAnimationFrame');
 var React = require('react');
 var ReactNative = require('react-native');
 var {
@@ -23,9 +22,7 @@ var { TestModule } = ReactNative.NativeModules;
 import {smartstore, smartsync} from 'react-native-force';
 
 
-//require('LoggingTestModule');
-
-class IntegrationTestHarnessTest extends React.Component {
+class IntegrationTestSmartStoreBridgeTest extends React.Component {
   props: {
     registerGlobalSoup?: boolean,
   };
@@ -80,6 +77,6 @@ class IntegrationTestHarnessTest extends React.Component {
   }
 }
 
-IntegrationTestHarnessTest.displayName = 'IntegrationTestHarnessTest';
+IntegrationTestSmartStoreBridgeTest.displayName = 'IntegrationTestSmartStoreBridgeTest';
 
-module.exports = IntegrationTestHarnessTest;
+module.exports = IntegrationTestSmartStoreBridgeTest;

@@ -24,7 +24,7 @@ var {
 
 // Keep this list in sync with UIExplorerIntegrationTests.m
 var TESTS = [
-  require('./IntegrationTestHarnessTest')
+  require('./IntegrationTestSmartStoreBridgeTest')
 ];
 
 TESTS.forEach(

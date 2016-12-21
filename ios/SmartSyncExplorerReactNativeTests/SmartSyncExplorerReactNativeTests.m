@@ -55,7 +55,7 @@
 - (void)testTheTester_registerGlobalSoup
 {
   [_runner runTest:_cmd
-            module:@"IntegrationTestHarnessTest"
+            module:@"IntegrationTestSmartStoreBridgeTest"
       initialProps:@{@"registerGlobalSoup": @YES}
 configurationBlock:nil];
 }
@@ -65,6 +65,6 @@ configurationBlock:nil];
 #pragma mark - JS tests
 
 // This list should be kept in sync with IntegrationTestsApp.js
-RCT_TEST(IntegrationTestHarnessTest)
+RCT_TEST(IntegrationTestSmartStoreBridgeTest)
 
 @end

@@ -1510,7 +1510,7 @@ ReactNative.AppRegistry,ScrollView=ReactNative.ScrollView,StyleSheet=ReactNative
 
 
 var TESTS=[
-require(654 /* ./IntegrationTestHarnessTest */)];
+require(678 /* ./IntegrationTestSmartStoreBridgeTest */)];
 
 
 TESTS.forEach(
@@ -82061,7 +82061,7 @@ handleElement(debugID,element);
 
 module.exports=ReactDOMNullInputValuePropHook;
 });
-__d(654 /* SmartSyncExplorerReactNative/IntegrationTests/IntegrationTestHarnessTest.js */, function(global, require, module, exports) {
+__d(678 /* SmartSyncExplorerReactNative/IntegrationTests/IntegrationTestSmartStoreBridgeTest.js */, function(global, require, module, exports) {
 
 
 
@@ -82082,13 +82082,10 @@ __d(654 /* SmartSyncExplorerReactNative/IntegrationTests/IntegrationTestHarnessT
 
 
 
-
-var _reactNativeForce=require(655 /* react-native-force */);var requestAnimationFrame=require(452 /* fbjs/lib/requestAnimationFrame */);var React=require(12 /* react */);var ReactNative=require(44 /* react-native */);var Text=ReactNative.Text,View=ReactNative.View;var TestModule=ReactNative.NativeModules.TestModule;var
-
+var _reactNativeForce=require(655 /* react-native-force */);var React=require(12 /* react */);var ReactNative=require(44 /* react-native */);var Text=ReactNative.Text,View=ReactNative.View;var TestModule=ReactNative.NativeModules.TestModule;var
 
 
-
-IntegrationTestHarnessTest=function(_React$Component){babelHelpers.inherits(IntegrationTestHarnessTest,_React$Component);function IntegrationTestHarnessTest(){var _ref;var _temp,_this,_ret;babelHelpers.classCallCheck(this,IntegrationTestHarnessTest);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=babelHelpers.possibleConstructorReturn(this,(_ref=IntegrationTestHarnessTest.__proto__||Object.getPrototypeOf(IntegrationTestHarnessTest)).call.apply(_ref,[this].concat(args))),_this),_this.
+IntegrationTestSmartStoreBridgeTest=function(_React$Component){babelHelpers.inherits(IntegrationTestSmartStoreBridgeTest,_React$Component);function IntegrationTestSmartStoreBridgeTest(){var _ref;var _temp,_this,_ret;babelHelpers.classCallCheck(this,IntegrationTestSmartStoreBridgeTest);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=babelHelpers.possibleConstructorReturn(this,(_ref=IntegrationTestSmartStoreBridgeTest.__proto__||Object.getPrototypeOf(IntegrationTestSmartStoreBridgeTest)).call.apply(_ref,[this].concat(args))),_this),_this.
 
 
 
@@ -82129,7 +82126,7 @@ _this.testRegisterGlobalSoup();
 {
 _this.markDone();
 }
-},_temp),babelHelpers.possibleConstructorReturn(_this,_ret);}babelHelpers.createClass(IntegrationTestHarnessTest,[{key:'componentDidMount',value:function componentDidMount(){this.runTest();}},{key:'render',value:function render()
+},_temp),babelHelpers.possibleConstructorReturn(_this,_ret);}babelHelpers.createClass(IntegrationTestSmartStoreBridgeTest,[{key:'componentDidMount',value:function componentDidMount(){this.runTest();}},{key:'render',value:function render()
 
 {
 return(
@@ -82140,12 +82137,12 @@ this.state.done?'Done':'Testing...')));
 
 
 
-}}]);return IntegrationTestHarnessTest;}(React.Component);IntegrationTestHarnessTest.propTypes={registerGlobalSoup:React.PropTypes.bool};
+}}]);return IntegrationTestSmartStoreBridgeTest;}(React.Component);IntegrationTestSmartStoreBridgeTest.propTypes={registerGlobalSoup:React.PropTypes.bool};
 
 
-IntegrationTestHarnessTest.displayName='IntegrationTestHarnessTest';
+IntegrationTestSmartStoreBridgeTest.displayName='IntegrationTestSmartStoreBridgeTest';
 
-module.exports=IntegrationTestHarnessTest;
+module.exports=IntegrationTestSmartStoreBridgeTest;
 });
 __d(655 /* react-native-force/index.js */, function(global, require, module, exports) {
 
