@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BlueprintIdentifier = "05B9FB1A1E03778D00712BD5"
                BuildableName = "SmartSyncExplorerReactNativeTests.xctest"
                BlueprintName = "SmartSyncExplorerReactNativeTests"
                ReferencedContainer = "container:SmartSyncExplorerReactNative.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BlueprintIdentifier = "05B9FB1A1E03778D00712BD5"
                BuildableName = "SmartSyncExplorerReactNativeTests.xctest"
                BlueprintName = "SmartSyncExplorerReactNativeTests"
                ReferencedContainer = "container:SmartSyncExplorerReactNative.xcodeproj">
@@ -62,6 +62,13 @@
             ReferencedContainer = "container:SmartSyncExplorerReactNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "INTEGRATION_TEST"
+            value = "YES"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

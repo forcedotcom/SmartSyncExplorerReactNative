@@ -19,7 +19,8 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'RCTText',
     'RCTVibration',
     'RCTWebSocket',
-    'RCTLinkingIOS'
+    'RCTLinkingIOS',
+    'RCTTest'
 ]
 
 pod 'SalesforceAnalytics', :path => '../node_modules/SalesforceMobileSDK-iOS'
