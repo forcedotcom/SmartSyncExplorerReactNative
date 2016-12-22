@@ -152,10 +152,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 #else
     jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
-
   }
-
-  
   
   return jsCodeLocation;
 }
