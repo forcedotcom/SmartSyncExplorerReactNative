@@ -198,7 +198,6 @@
 				TargetAttributes = {
 					05B9FB1A1E03778D00712BD5 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = D3C8BU4ASG;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
@@ -363,9 +362,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = D3C8BU4ASG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SmartSyncExplorerReactNativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.mobile.SmartSyncExplorerReactNativeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,9 +381,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = D3C8BU4ASG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SmartSyncExplorerReactNativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.mobile.SmartSyncExplorerReactNativeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -401,6 +400,7 @@
 				CODE_SIGN_ENTITLEMENTS = SmartSyncExplorerReactNative/SmartSyncExplorerReactNative.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -429,6 +429,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SmartSyncExplorerReactNative/SmartSyncExplorerReactNative.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

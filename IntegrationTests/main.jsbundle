@@ -1494,6 +1494,23 @@ __d(0 /* SmartSyncExplorerReactNative/IntegrationTests/testapp.ios.js */, functi
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 'use strict';
 
 var React=require(12 /* react */);
@@ -1510,13 +1527,11 @@ ReactNative.AppRegistry,ScrollView=ReactNative.ScrollView,StyleSheet=ReactNative
 
 
 var TESTS=[
-require(678 /* ./IntegrationTestSmartStoreBridgeTest */)];
+require(654 /* ./IntegrationTestSmartStoreBridgeTest */)];
 
 
 TESTS.forEach(
 function(test){return AppRegistry.registerComponent(test.displayName,function(){return test;});});var
-
-
 
 
 
@@ -82061,7 +82076,24 @@ handleElement(debugID,element);
 
 module.exports=ReactDOMNullInputValuePropHook;
 });
-__d(678 /* SmartSyncExplorerReactNative/IntegrationTests/IntegrationTestSmartStoreBridgeTest.js */, function(global, require, module, exports) {
+__d(654 /* SmartSyncExplorerReactNative/IntegrationTests/IntegrationTestSmartStoreBridgeTest.js */, function(global, require, module, exports) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
