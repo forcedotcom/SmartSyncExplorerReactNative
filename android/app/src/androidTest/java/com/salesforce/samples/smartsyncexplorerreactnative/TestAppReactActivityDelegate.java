@@ -30,11 +30,8 @@ public class TestAppReactActivityDelegate extends ReactActivityDelegate {
         Bundle b = activity.getIntent().getExtras();
         String testName = "";
         if(b != null)
-            testName = b.getString("testName");
-
+            testName = b.getString("testName","");
         Bundle initialProps = new Bundle();
-        initialProps.putString("testSuiteName", "!!!YES!!!");
-        initialProps.putInt("testSuiteIndex", 1);
         initialProps.putString("testName", testName);
         return initialProps;
     }

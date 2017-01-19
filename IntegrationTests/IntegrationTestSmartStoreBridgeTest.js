@@ -57,13 +57,6 @@ class IntegrationTestSmartStoreBridgeTest extends React.Component {
   }
 
   testRegisterGlobalSoup() {
-/*
-    setTimeout(()=>{
-      this.markDone()
-    },1000)
-*/
-    console.log('BEFORE REgIsteR SOUP')
-    console.log('smartstore.registerSoup: ',smartstore.registerSoup)
     smartstore.registerSoup(true,
       "contacts",
       [ {path:"Id", type:"string"},

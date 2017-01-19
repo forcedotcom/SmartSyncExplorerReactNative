@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class SmartStoreBridgeTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<MainActivity>(
