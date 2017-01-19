@@ -9,6 +9,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MainTestApplication extends Application implements ReactApplication
 
         @Override
         protected String getJSMainModuleName() {
-            return "IntegrationTests/index.android";
+            return "IntegrationTests/testapp.android";
         }
     };
 
@@ -43,5 +44,7 @@ public class MainTestApplication extends Application implements ReactApplication
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
+        SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainActivity.class);
     }
+
 }

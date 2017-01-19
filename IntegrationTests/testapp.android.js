@@ -57,6 +57,7 @@ class IntegrationTestsApp extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Start you development server</Text>
+        <Text accessibilityLabel="testResult" accessible={true}>IntegrationTestSmartStoreBridgeTest</Text>
       </View>
     );
   }
