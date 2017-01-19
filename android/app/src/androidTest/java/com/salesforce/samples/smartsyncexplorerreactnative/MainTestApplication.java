@@ -9,6 +9,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.salesforce.androidsdk.analytics.security.Encryptor;
+import com.salesforce.androidsdk.app.SalesforceSDKManager;
 import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
 
 import java.util.Arrays;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class MainTestApplication extends Application implements ReactApplication {
 
-    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+    private final ReactNativeHost _mReactNativeHost = new ReactNativeHost(this) {
         @Override
         protected boolean getUseDeveloperSupport() {
             return BuildConfig.DEBUG;
@@ -25,7 +27,8 @@ public class MainTestApplication extends Application implements ReactApplication
         @Override
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
-                    new MainReactPackage()
+                    new MainReactPackage(),
+                    SalesforceReactSDKManager.getInstance().getReactPackage()
             );
         }
 
@@ -37,14 +40,14 @@ public class MainTestApplication extends Application implements ReactApplication
 
     @Override
     public ReactNativeHost getReactNativeHost() {
-        return mReactNativeHost;
+        return _mReactNativeHost;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        SoLoader.init(this, /* native exopackage */ false);
-        SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainActivity.class);
+//        SoLoader.init(this, /* native exopackage */ false);
+        SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainTestActivity.class);
     }
 
 }

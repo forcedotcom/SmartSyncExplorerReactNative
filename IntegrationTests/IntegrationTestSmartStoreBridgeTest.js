@@ -40,47 +40,44 @@ import {smartstore, smartsync} from 'react-native-force';
 
 
 class IntegrationTestSmartStoreBridgeTest extends React.Component {
-  props: {
-    registerGlobalSoup?: boolean,
-  };
 
-  static propTypes = {
-    registerGlobalSoup: React.PropTypes.bool,
-  };
-
-  state = {
-    done: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {done: false};
+  }
 
   componentDidMount() {
       this.runTest();
   }
 
-  markDone = () => {
+  markDone() {
     this.setState({done: true}, () => {
-      TestModule.markTestCompleted();
+//      TestModule.markTestCompleted();
     });
   }
 
-  testRegisterGlobalSoup = () => {
+  testRegisterGlobalSoup() {
+/*
+    setTimeout(()=>{
+      this.markDone()
+    },1000)
+*/
+    console.log('BEFORE REgIsteR SOUP')
+    console.log('smartstore.registerSoup: ',smartstore.registerSoup)
     smartstore.registerSoup(true,
       "contacts",
       [ {path:"Id", type:"string"},
         {path:"FirstName", type:"full_text"},
         {path:"LastName", type:"full_text"},
         {path:"__local__", type:"string"} ],
-      () => this.markDone()
+      () => { this.markDone() }
      );
+
   }
 
-  runTest = () => {
-    if (this.props.registerGlobalSoup) {
-      this.testRegisterGlobalSoup();
-    }
-    else{
-      this.markDone()
-    }
-  };
+  runTest() {
+    this.testRegisterGlobalSoup();
+  }
 
   render() {
     return (
@@ -89,6 +86,8 @@ class IntegrationTestSmartStoreBridgeTest extends React.Component {
           {this.constructor.displayName + ': '}
           {this.state.done ? 'Done' : 'Testing...'}
         </Text>
+        {this.state.done ? <Text accessibilityLabel="testResult" accessible={true}>IntegrationTestSmartStoreBridgeTest</Text> : <Text>Testing...</Text>}
+
       </View>
     );
   }
