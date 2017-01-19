@@ -95,7 +95,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.salesforce.samples.smartsyncexplorerreactnative.CustomTestRunner"
 
     }
     splits {
