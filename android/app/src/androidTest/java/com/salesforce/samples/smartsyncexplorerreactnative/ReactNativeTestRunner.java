@@ -15,7 +15,7 @@ import android.content.Context;
  * Created by ibogdanov on 1/17/17.
  */
 
-public class CustomTestRunner extends AndroidJUnitRunner {
+public class ReactNativeTestRunner extends AndroidJUnitRunner {
 
     @Override
     public Application newApplication(ClassLoader cl, String className, Context context) throws InstantiationException, IllegalAccessException, ClassNotFoundException {

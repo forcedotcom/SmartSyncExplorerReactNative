@@ -16,6 +16,6 @@ public class MainTestActivity extends MainActivity {
 
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
-        return new TestAppReactActivityDelegate(this, getMainComponentName());
+        return new ReactActivityTestAppDelegate(this, getMainComponentName());
     }
 }

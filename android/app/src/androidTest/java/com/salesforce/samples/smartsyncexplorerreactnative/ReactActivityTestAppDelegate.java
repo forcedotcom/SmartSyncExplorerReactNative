@@ -8,16 +8,16 @@ import com.facebook.react.ReactActivityDelegate;
 
 import javax.annotation.Nullable;
 
-public class TestAppReactActivityDelegate extends ReactActivityDelegate {
+public class ReactActivityTestAppDelegate extends ReactActivityDelegate {
 
     private Activity activity;
 
-    public TestAppReactActivityDelegate(Activity activity, @Nullable String mainComponentName) {
+    public ReactActivityTestAppDelegate(Activity activity, @Nullable String mainComponentName) {
         super(activity, mainComponentName);
         this.activity = activity;
     }
 
-    public TestAppReactActivityDelegate(
+    public ReactActivityTestAppDelegate(
             FragmentActivity fragmentActivity,
             @Nullable String mainComponentName) {
         super(fragmentActivity, mainComponentName);
