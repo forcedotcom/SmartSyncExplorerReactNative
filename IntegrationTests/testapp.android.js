@@ -23,7 +23,7 @@ export default class IntegrationTestsApp extends Component {
   render() {
     const TestSuite = testSuites_[this.props.testName]
     return <TestSuite {... this.props} />
-  }
+    }
 }
 
 const styles = StyleSheet.create({

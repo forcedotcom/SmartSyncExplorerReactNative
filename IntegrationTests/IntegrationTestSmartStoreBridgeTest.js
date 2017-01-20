@@ -56,16 +56,35 @@ class IntegrationTestSmartStoreBridgeTest extends React.Component {
     });
   }
 
-  testRegisterGlobalSoup() {
-    smartstore.registerSoup(true,
-      "contacts",
-      [ {path:"Id", type:"string"},
-        {path:"FirstName", type:"full_text"},
-        {path:"LastName", type:"full_text"},
-        {path:"__local__", type:"string"} ],
-      () => { this.markDone() }
-     );
+  _registerGlobalSoupWithName(soupName, callback) {
+    if(soupName){
+      smartstore.registerSoup(true,
+        soupName,
+        [ {path:"Id", type:"string"},
+          {path:"FirstName", type:"full_text"},
+          {path:"LastName", type:"full_text"},
+          {path:"__local__", type:"string"}
+        ],
+        () => {
+            if(callback){
+              callback()
+            }
+          }
+       );
+    }
+  }
 
+  _checkIfExistsGlobalSoupWithName(soupName, callback) {
+    smartstore.soupExists(true,soupName,callback)
+  }
+
+  testRegisterGlobalSoup() {
+    const soupName = 'contacts'
+    this._registerGlobalSoupWithName(soupName,()=>{
+      this._checkIfExistsGlobalSoupWithName(soupName,()=>{
+        this.markDone()
+      })
+    })
   }
 
   runTest() {

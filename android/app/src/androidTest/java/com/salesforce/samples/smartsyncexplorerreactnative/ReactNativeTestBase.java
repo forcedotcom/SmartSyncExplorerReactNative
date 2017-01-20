@@ -33,12 +33,7 @@ public abstract class ReactNativeTestBase {
     public void startUiDevice() {
         UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
-/*
-    @Test
-    public void testSmartStoreBridge() throws Exception {
-        runReactNativeTest("IntegrationTestSmartStoreBridgeTest");
-    }
-*/
+
     protected void runReactNativeTest(String testName){
         Intent intent = new Intent();
         intent.putExtra("testName",testName);
@@ -46,6 +41,6 @@ public abstract class ReactNativeTestBase {
         UiObject uiObject;
         UiSelector uiSelector = new UiSelector();
         uiObject = new UiObject(uiSelector.descriptionStartsWith("testResult"));
-        assertTrue(testName+" failed", uiObject.waitForExists(10000));
+        assertTrue(testName+" failed", uiObject.waitForExists(10*1000));
     }
 }
