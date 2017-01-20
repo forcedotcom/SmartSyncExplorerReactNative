@@ -17,12 +17,6 @@ public class ReactActivityTestAppDelegate extends ReactActivityDelegate {
         this.activity = activity;
     }
 
-    public ReactActivityTestAppDelegate(
-            FragmentActivity fragmentActivity,
-            @Nullable String mainComponentName) {
-        super(fragmentActivity, mainComponentName);
-    }
-
     @Override
     protected @Nullable
     Bundle getLaunchOptions() {
