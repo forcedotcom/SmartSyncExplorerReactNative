@@ -52,7 +52,6 @@ class IntegrationTestSmartStoreBridgeTest extends React.Component {
 
   markDone() {
     this.setState({done: true}, () => {
-//      TestModule.markTestCompleted();
     });
   }
 
