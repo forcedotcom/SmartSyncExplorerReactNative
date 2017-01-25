@@ -40,47 +40,55 @@ import {smartstore, smartsync} from 'react-native-force';
 
 
 class IntegrationTestSmartStoreBridgeTest extends React.Component {
-  props: {
-    registerGlobalSoup?: boolean,
-  };
 
-  static propTypes = {
-    registerGlobalSoup: React.PropTypes.bool,
-  };
-
-  state = {
-    done: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {done: false};
+  }
 
   componentDidMount() {
       this.runTest();
   }
 
-  markDone = () => {
+  markDone() {
     this.setState({done: true}, () => {
-      TestModule.markTestCompleted();
     });
   }
 
-  testRegisterGlobalSoup = () => {
-    smartstore.registerSoup(true,
-      "contacts",
-      [ {path:"Id", type:"string"},
-        {path:"FirstName", type:"full_text"},
-        {path:"LastName", type:"full_text"},
-        {path:"__local__", type:"string"} ],
-      () => this.markDone()
-     );
+  _registerGlobalSoupWithName(soupName, callback) {
+    if(soupName){
+      smartstore.registerSoup(true,
+        soupName,
+        [ {path:"Id", type:"string"},
+          {path:"FirstName", type:"full_text"},
+          {path:"LastName", type:"full_text"},
+          {path:"__local__", type:"string"}
+        ],
+        () => {
+            if(callback){
+              callback()
+            }
+          }
+       );
+    }
   }
 
-  runTest = () => {
-    if (this.props.registerGlobalSoup) {
-      this.testRegisterGlobalSoup();
-    }
-    else{
-      this.markDone()
-    }
-  };
+  _checkIfExistsGlobalSoupWithName(soupName, callback) {
+    smartstore.soupExists(true,soupName,callback)
+  }
+
+  testRegisterGlobalSoup() {
+    const soupName = 'contacts'
+    this._registerGlobalSoupWithName(soupName,()=>{
+      this._checkIfExistsGlobalSoupWithName(soupName,()=>{
+        this.markDone()
+      })
+    })
+  }
+
+  runTest() {
+    this.testRegisterGlobalSoup();
+  }
 
   render() {
     return (
@@ -89,6 +97,8 @@ class IntegrationTestSmartStoreBridgeTest extends React.Component {
           {this.constructor.displayName + ': '}
           {this.state.done ? 'Done' : 'Testing...'}
         </Text>
+        {this.state.done ? <Text accessibilityLabel="testResult" accessible={true}>IntegrationTestSmartStoreBridgeTest</Text> : <Text>Testing...</Text>}
+
       </View>
     );
   }
