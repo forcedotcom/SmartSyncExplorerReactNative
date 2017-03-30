@@ -20,6 +20,6 @@ local.properties
 node_modules/
 proguard-project.txt
 xcuserdata
-
+main.jsbundle
 .buckd/
 buck-out/
