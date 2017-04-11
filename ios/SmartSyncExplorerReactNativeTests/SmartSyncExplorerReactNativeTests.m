@@ -25,7 +25,7 @@
 #import <UIKit/UIKit.h>
 
 #import <XCTest/XCTest.h>
-#import <RCTTest/RCTTestRunner.h>
+#import <React/RCTTestRunner.h>
 
 
 #define RCT_TEST(name)                  \

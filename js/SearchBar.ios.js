@@ -28,7 +28,7 @@
 
 import React from 'react';
 import {
-    ActivityIndicatorIOS,
+    ActivityIndicator,
     StyleSheet,
     TextInput,
     View
@@ -47,7 +47,7 @@ var SearchBar = React.createClass({
                       onFocus={this.props.onFocus}
                       style={styles.searchBarInput}
                     />
-                    <ActivityIndicatorIOS
+                    <ActivityIndicator
                       animating={this.props.isLoading}
                       style={styles.spinner}
                     />
