@@ -176,18 +176,18 @@ var styles = StyleSheet.create({
     navButtonsGroup: {
         flex: 1,
         flexDirection: 'row',
-        width: 180,
+        justifyContent: 'flex-end',
     },
     navBarElt: {
-        flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        height: 24,
         margin: 2,
     },
     navBarTitleText: {
         fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
+        alignItems: 'center',
     },
     navBarText: {
         fontSize: 16,
