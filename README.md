@@ -8,6 +8,10 @@ SmartSyncExplorer application written using React Native
 node ./installios.js (for iOS)
 node ./installandroid.js (for Android)
 ```
+## To create the package (e.g. to run on device)
+```shell
+react-native-cli bundle --platform ios --dev false --entry-file index.ios.js --bundle-output iOS/main.jsbundle
+```
 
 ## Make sure to run the react-native packager
 ```shell
