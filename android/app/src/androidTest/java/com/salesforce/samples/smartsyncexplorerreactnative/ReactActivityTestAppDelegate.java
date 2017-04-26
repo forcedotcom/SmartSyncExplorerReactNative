@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-present, salesforce.com, inc.
+ * Copyright (c) 2017-present, salesforce.com, inc.
  * All rights reserved.
  * Redistribution and use of this software in source and binary forms, with or
  * without modification, are permitted provided that the following conditions
@@ -24,57 +24,36 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.salesforce.samples.smartsyncexplorerreactnative;
 
-import android.app.Application;
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import com.salesforce.androidsdk.analytics.security.Encryptor;
-import com.salesforce.androidsdk.app.SalesforceSDKManager;
-import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
+import com.facebook.react.ReactActivityDelegate;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.annotation.Nullable;
 
-/**
- * Application class for our application.
- */
-public class MainApplication extends Application implements ReactApplication {
+public class ReactActivityTestAppDelegate extends ReactActivityDelegate {
 
-	private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-		@Override
-		public boolean getUseDeveloperSupport() {
-			return BuildConfig.DEBUG;
-		}
+    private Activity activity;
 
-		@Override
-		protected List<ReactPackage> getPackages() {
-			return Arrays.asList(
-					new MainReactPackage(),
-					SalesforceReactSDKManager.getInstance().getReactPackage()
-			);
-		}
-	};
+    public ReactActivityTestAppDelegate(Activity activity, @Nullable String mainComponentName) {
+        super(activity, mainComponentName);
+        this.activity = activity;
+    }
 
-	@Override
-	public ReactNativeHost getReactNativeHost() {
-		return mReactNativeHost;
-	}
+    @Override
+    protected @Nullable
+    Bundle getLaunchOptions() {
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainActivity.class);
-	}
-}
-
-class ReactNativeKeyImpl implements SalesforceSDKManager.KeyInterface {
-
-	@Override
-	public String getKey(String name) {
-		return Encryptor.hash(name + "12s9adpahk;n12-97sdainkasd=012", name + "12kl0dsakj4-cxh1qewkjasdol8");
-	}
+        Bundle b = activity.getIntent().getExtras();
+        String testName = "";
+        if(b != null)
+            testName = b.getString("testName","");
+        Bundle initialProps = new Bundle();
+        initialProps.putString("testName", testName);
+        return initialProps;
+    }
 }

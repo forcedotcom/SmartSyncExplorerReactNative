@@ -6,10 +6,16 @@ target 'SmartSyncExplorerReactNative' do
 
 source 'https://github.com/CocoaPods/Specs.git'
 
+pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'DevSupport',
+    'tvOS',
+    'jschelpers',
+    'cxxreact',
     'ART',
     'RCTActionSheet',
     'RCTAdSupport',
+    'RCTAnimation',
     'RCTCameraRoll',
     'RCTGeolocation',
     'RCTImage',
@@ -20,6 +26,41 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'RCTVibration',
     'RCTWebSocket',
     'RCTLinkingIOS'
+]
+
+pod 'SalesforceAnalytics', :path => '../node_modules/SalesforceMobileSDK-iOS'
+pod 'SalesforceSDKCore', :path => '../node_modules/SalesforceMobileSDK-iOS'
+pod 'SmartStore', :path => '../node_modules/SalesforceMobileSDK-iOS'
+pod 'SmartSync', :path => '../node_modules/SalesforceMobileSDK-iOS'
+pod 'SalesforceReact', :path => '../node_modules/SalesforceMobileSDK-iOS'
+
+end
+
+target 'SmartSyncExplorerReactNativeTests' do
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'DevSupport',
+    'tvOS',
+    'jschelpers',
+    'cxxreact',
+    'ART',
+    'RCTActionSheet',
+    'RCTAdSupport',
+    'RCTAnimation',
+    'RCTCameraRoll',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTNetwork',
+    'RCTPushNotification',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+    'RCTLinkingIOS',
+    'RCTTest'
 ]
 
 pod 'SalesforceAnalytics', :path => '../node_modules/SalesforceMobileSDK-iOS'

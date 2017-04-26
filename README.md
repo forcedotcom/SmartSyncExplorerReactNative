@@ -1,4 +1,4 @@
-iOS: ![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/ios/master/latest/buildstatus.svg)     Android: ![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/android/master/latest/buildstatus.svg)
+iOS: ![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/ios/dev/latest/buildstatus.svg)     Android: ![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/android/dev/latest/buildstatus.svg)
 
 # SmartSyncExplorerReactNative
 SmartSyncExplorer application written using React Native 
@@ -7,6 +7,10 @@ SmartSyncExplorer application written using React Native
 ``` shell
 node ./installios.js (for iOS)
 node ./installandroid.js (for Android)
+```
+## To create the package (e.g. to run on device)
+```shell
+react-native-cli bundle --platform ios --dev false --entry-file index.ios.js --bundle-output iOS/main.jsbundle
 ```
 
 ## Make sure to run the react-native packager

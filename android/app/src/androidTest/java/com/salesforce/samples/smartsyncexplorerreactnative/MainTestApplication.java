@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-present, salesforce.com, inc.
+ * Copyright (c) 2017-present, salesforce.com, inc.
  * All rights reserved.
  * Redistribution and use of this software in source and binary forms, with or
  * without modification, are permitted provided that the following conditions
@@ -24,6 +24,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.salesforce.samples.smartsyncexplorerreactnative;
 
 import android.app.Application;
@@ -32,49 +33,42 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.salesforce.androidsdk.analytics.security.Encryptor;
-import com.salesforce.androidsdk.app.SalesforceSDKManager;
 import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
 
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Application class for our application.
- */
-public class MainApplication extends Application implements ReactApplication {
+public class MainTestApplication extends Application implements ReactApplication {
 
-	private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-		@Override
-		public boolean getUseDeveloperSupport() {
-			return BuildConfig.DEBUG;
-		}
+    private final ReactNativeHost _mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        protected boolean getUseDeveloperSupport() {
+            return BuildConfig.DEBUG;
+        }
 
-		@Override
-		protected List<ReactPackage> getPackages() {
-			return Arrays.asList(
-					new MainReactPackage(),
-					SalesforceReactSDKManager.getInstance().getReactPackage()
-			);
-		}
-	};
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage(),
+                    SalesforceReactSDKManager.getInstance().getReactPackage()
+            );
+        }
 
-	@Override
-	public ReactNativeHost getReactNativeHost() {
-		return mReactNativeHost;
-	}
+        @Override
+        protected String getJSMainModuleName() {
+            return "IntegrationTests/testapp.android";
+        }
+    };
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainActivity.class);
-	}
-}
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return _mReactNativeHost;
+    }
 
-class ReactNativeKeyImpl implements SalesforceSDKManager.KeyInterface {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainTestActivity.class);
+    }
 
-	@Override
-	public String getKey(String name) {
-		return Encryptor.hash(name + "12s9adpahk;n12-97sdainkasd=012", name + "12kl0dsakj4-cxh1qewkjasdol8");
-	}
 }

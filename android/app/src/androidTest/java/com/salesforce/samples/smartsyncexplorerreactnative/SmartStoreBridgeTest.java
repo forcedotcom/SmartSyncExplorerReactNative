@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-present, salesforce.com, inc.
+ * Copyright (c) 2017-present, salesforce.com, inc.
  * All rights reserved.
  * Redistribution and use of this software in source and binary forms, with or
  * without modification, are permitted provided that the following conditions
@@ -24,57 +24,18 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.salesforce.samples.smartsyncexplorerreactnative;
 
-import android.app.Application;
 
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import com.salesforce.androidsdk.analytics.security.Encryptor;
-import com.salesforce.androidsdk.app.SalesforceSDKManager;
-import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
-
-import java.util.Arrays;
-import java.util.List;
+import org.junit.Test;
 
 /**
- * Application class for our application.
+ * Created by ibogdanov on 1/18/17.
  */
-public class MainApplication extends Application implements ReactApplication {
-
-	private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-		@Override
-		public boolean getUseDeveloperSupport() {
-			return BuildConfig.DEBUG;
-		}
-
-		@Override
-		protected List<ReactPackage> getPackages() {
-			return Arrays.asList(
-					new MainReactPackage(),
-					SalesforceReactSDKManager.getInstance().getReactPackage()
-			);
-		}
-	};
-
-	@Override
-	public ReactNativeHost getReactNativeHost() {
-		return mReactNativeHost;
-	}
-
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainActivity.class);
-	}
-}
-
-class ReactNativeKeyImpl implements SalesforceSDKManager.KeyInterface {
-
-	@Override
-	public String getKey(String name) {
-		return Encryptor.hash(name + "12s9adpahk;n12-97sdainkasd=012", name + "12kl0dsakj4-cxh1qewkjasdol8");
-	}
+public class SmartStoreBridgeTest extends ReactNativeTestBase {
+    @Test
+    public void testSmartStoreBridge() throws Exception {
+        runReactNativeTest("IntegrationTestSmartStoreBridgeTest");
+    }
 }
