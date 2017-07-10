@@ -26,11 +26,11 @@
 #import "InitialViewController.h"
 #import <React/RCTRootView.h>
 #import <React/RCTBundleURLProvider.h>
+#import <SalesforceAnalytics/SFSDKLogger.h>
 #import <SalesforceSDKCore/SFPushNotificationManager.h>
 #import <SalesforceSDKCore/SFDefaultUserManagementViewController.h>
 #import <SalesforceSDKCore/SalesforceSDKManager.h>
 #import <SalesforceSDKCore/SFUserAccountManager.h>
-#import <SalesforceSDKCore/SFLogger.h>
 #import <SmartStore/SalesforceSDKManagerWithSmartStore.h>
 #import <SalesforceSDKCore/SFLoginViewController.h>
 
@@ -44,17 +44,25 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 {
     self = [super init];
     if (self) {
-        [SFLogger sharedLogger].logLevel = SFLogLevelDebug;
 
         // Need to use SalesforceSDKManagerWithSmartStore when using smartstore
         [SalesforceSDKManager setInstanceClass:[SalesforceSDKManagerWithSmartStore class]];
-        
         [SalesforceSDKManager sharedManager].connectedAppId = RemoteAccessConsumerKey;
         [SalesforceSDKManager sharedManager].connectedAppCallbackUri = OAuthRedirectURI;
         [SalesforceSDKManager sharedManager].authScopes = @[ @"web", @"api" ];
+
         // Uncomment the following line if you don't want login to happen when the application launches
         // [SalesforceSDKManager sharedManager].authenticateAtLaunch = NO;
 
+        //Uncomment the following line inorder to enable/force the use of advanced authentication flow.
+        //[SFAuthenticationManager sharedManager].advancedAuthConfiguration = SFOAuthAdvancedAuthConfigurationRequire;
+        // OR
+        // To  retrieve advanced auth configuration from the org, to determine whether to initiate advanced authentication.
+        //[SFAuthenticationManager sharedManager].advancedAuthConfiguration = SFOAuthAdvancedAuthConfigurationAllow;
+        
+        // NOTE: If advanced authentication is configured or forced,  it will launch Safari to handle authentication
+        // instead of a webview. You must implement application:openURL:options: to handle the callback.
+ 
         __weak AppDelegate *weakSelf = self;
         [SalesforceSDKManager sharedManager].postLaunchAction = ^(SFSDKLaunchAction launchActionList) {
             //
@@ -64,11 +72,12 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
             //
             //[[SFPushNotificationManager sharedInstance] registerForRemoteNotifications];
             //
-            [weakSelf log:SFLogLevelInfo format:@"Post-launch: launch actions taken: %@", [SalesforceSDKManager launchActionsStringRepresentation:launchActionList]];
+
+            [[SFSDKLogger sharedDefaultInstance] log:[weakSelf class] level:DDLogLevelInfo format:@"Post-launch: launch actions taken: %@", [SalesforceSDKManager launchActionsStringRepresentation:launchActionList]];
             [weakSelf setupRootViewController];
         };
         [SalesforceSDKManager sharedManager].launchErrorAction = ^(NSError *error, SFSDKLaunchAction launchActionList) {
-            [weakSelf log:SFLogLevelError format:@"Error during SDK launch: %@", [error localizedDescription]];
+            [[SFSDKLogger sharedDefaultInstance] log:[weakSelf class] level:DDLogLevelError format:@"Error during SDK launch: %@", [error localizedDescription]];
             [weakSelf initializeAppViewState];
             [[SalesforceSDKManager sharedManager] launch];
         };
@@ -79,7 +88,6 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
             [weakSelf handleUserSwitch:fromUser toUser:toUser];
         };
     }
-    
     return self;
 }
 
@@ -124,6 +132,18 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     // Respond to any push notification registration errors here.
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+  
+  // Uncomment the following line, if Authentication was attempted using handle advanced OAuth flow.
+  // For Advanced Auth functionality to work, edit your apps plist files and add the URL scheme that you have
+  // chosen for your app. The scheme should be the same as used in  the oauthRedirectURI settings of your Connected App.
+  // You should also set the  delegate(SFAuthenticationManagerDelegate) for SFAuthenticationManager to be notified
+  // of success & failures. Inorder to be notfied of user's selected action on displayed alerts implement
+  // authManagerDidProceedWithBrowserFlow: & authManagerDidCancelBrowserFlow:
+  // return [[SFAuthenticationManager sharedManager] handleAdvancedAuthenticationResponse:url];
+  return NO;
+}
+
 #pragma mark - Private methods
 
 - (void)initializeAppViewState
@@ -141,20 +161,17 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (NSURL *)sourceURL
 {
-  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-  
-  if (getenv("INTEGRATION_TEST")){
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-  }
-  else if (!getenv("CI_USE_PACKAGER")) {
+    NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+    if (getenv("INTEGRATION_TEST")){
+        jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+    } else if (!getenv("CI_USE_PACKAGER")) {
 #ifdef DEBUG
-    [self log:SFLogLevelDebug msg:@"Is debug mode."];
+        [[SFSDKLogger sharedDefaultInstance] log:[self class] level:DDLogLevelDebug format:@"Is debug mode."];
 #else
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+        jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
-  }
-  
-  return jsCodeLocation;
+    }
+    return jsCodeLocation;
 }
 
 - (void)setupRootViewController
@@ -173,7 +190,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      * on the same Wi-Fi network.
      */
     [self setupReactRootView:[self sourceURL]];
-    
+
     /**
      * OPTION 2
      * Load from pre-bundled file on disk. To re-generate the static bundle,
@@ -213,7 +230,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (void)handleSdkManagerLogout
 {
-    [self log:SFLogLevelDebug msg:@"SFAuthenticationManager logged out.  Resetting app."];
+    [[SFSDKLogger sharedDefaultInstance] log:[self class] level:DDLogLevelDebug format:@"SFAuthenticationManager logged out.  Resetting app."];
     [self resetViewState:^{
         [self initializeAppViewState];
         
@@ -244,7 +261,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 - (void)handleUserSwitch:(SFUserAccount *)fromUser
                   toUser:(SFUserAccount *)toUser
 {
-    [self log:SFLogLevelDebug format:@"SFUserAccountManager changed from user %@ to %@.  Resetting app.",
+    [[SFSDKLogger sharedDefaultInstance] log:[self class] level:DDLogLevelDebug format:@"SFUserAccountManager changed from user %@ to %@.  Resetting app.",
      fromUser.userName, toUser.userName];
     [self resetViewState:^{
         [self initializeAppViewState];
