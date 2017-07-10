@@ -1,6 +1,6 @@
 {
     "name": "SmartSyncExplorerReactNative",
-    "version": "5.2.0",
+    "version": "6.0.0",
     "private": true,
     "scripts": {
         "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -10,9 +10,9 @@
         "react": "16.0.0-alpha.6",
         "react-native": "0.43.1",
         "whatwg-fetch": "1.1.1",
-        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#v5.2.0",
-        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#v5.2.0",
-        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#v5.2.0"
+        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#dev",
+        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#dev",
+        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#dev"
     },
     "jest": {
         "preset": "jest-react-native"
