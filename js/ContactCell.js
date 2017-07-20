@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     Image,
@@ -36,13 +34,13 @@ import {
     View
 } from 'react-native';
 
-var ContactBadge = require('./ContactBadge');
+import ContactBadge from './ContactBadge';
 
-var ContactCell = React.createClass({
-    render: function() {
-        var statusIcon;
+class ContactCell extends React.Component {
+    render() {
+        let statusIcon;
         if (this.props.contact.__local__) {
-            var iconSource;
+            let iconSource;
             if (this.props.contact.__locally_updated__) iconSource = require("./images/localupdate.png");
             if (this.props.contact.__locally_created__) iconSource = require("./images/localadd.png");
             if (this.props.contact.__locally_deleted__) iconSource = require("./images/localdelete.png");
@@ -72,7 +70,7 @@ var ContactCell = React.createClass({
                 </View>
                );
     }
-});
+}
 
 var styles = StyleSheet.create({
     row: {
@@ -103,4 +101,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = ContactCell;
+export default ContactCell;

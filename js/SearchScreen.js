@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     Platform,
@@ -36,19 +34,19 @@ import {
     PixelRatio,
 } from 'react-native';
 
-var Subscribable = require('Subscribable');
-var dismissKeyboard = require('dismissKeyboard');
+import Subscribable from 'Subscribable';
+import dismissKeyboard from 'dismissKeyboard';
+import SearchBar from './SearchBar';
+import ContactScreen from './ContactScreen';
+import ContactCell from './ContactCell';
+import storeMgr from './StoreMgr';
 
-var SearchBar = require('./SearchBar');
-var ContactScreen = require('./ContactScreen');
-var ContactCell = require('./ContactCell');
-var storeMgr = require('./StoreMgr');
 
-var SearchScreen = React.createClass({
+const SearchScreen = React.createClass({
     mixins: [Subscribable.Mixin],
     
-    getInitialState: function() {
-      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    getInitialState() {
+      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         return {
             isLoading: false,
             filter: '',
@@ -57,15 +55,15 @@ var SearchScreen = React.createClass({
       };
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         storeMgr.addStoreChangeListener(() => { this.refresh(); });
     },
     
-    refresh: function() {
+    refresh() {
         this.searchContacts(this.state.filter);
     },
 
-    render: function() {
+    render() {
         return (
                 <View style={this.props.style}>
                   <SearchBar
@@ -82,7 +80,7 @@ var SearchScreen = React.createClass({
       );
     },
 
-    renderRow: function(row: Object)  {
+    renderRow(row: Object)  {
         return (
                 <ContactCell
                   onSelect={() => this.selectContact(row)}
@@ -91,7 +89,7 @@ var SearchScreen = React.createClass({
         );
     },
 
-    selectContact: function(contact: Object) {
+    selectContact(contact: Object) {
         dismissKeyboard();
         this.props.navigator.push({
             name: 'Contact',
@@ -99,19 +97,19 @@ var SearchScreen = React.createClass({
         });
     },
 
-    onSearchChange: function(event: Object) {
+    onSearchChange(event: Object) {
         var filter = event.nativeEvent.text.toLowerCase();
         clearTimeout(this.timeoutID);
         this.timeoutID = setTimeout(() => this.searchContacts(filter), 10);
     },
 
-    searchContacts: function(query: string) {
+    searchContacts(query: string) {
         this.setState({
             isLoading: true,
             filter: query
         });
 
-        var that = this;
+        const that = this;
         storeMgr.searchContacts(
             query,
             (contacts, currentStoreQuery) => {
@@ -130,11 +128,11 @@ var SearchScreen = React.createClass({
     }
 });
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     separator: {
         height: 1,
         backgroundColor: '#eeeeee',
     }
 });
 
-module.exports = SearchScreen;
+export default SearchScreen;

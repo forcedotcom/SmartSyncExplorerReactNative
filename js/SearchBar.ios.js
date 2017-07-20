@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     ActivityIndicator,
@@ -35,8 +33,8 @@ import {
 } from 'react-native';
 
 
-var SearchBar = React.createClass({
-    render: function() {
+class SearchBar extends React.Component {
+    render() {
         return (
                 <View style={this.props.style}>
                   <View style={styles.searchBar}>
@@ -55,7 +53,7 @@ var SearchBar = React.createClass({
                 </View>
         );
     }
-});
+}
 
 var styles = StyleSheet.create({
     searchBar: {
@@ -75,4 +73,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = SearchBar;
+export default SearchBar;
