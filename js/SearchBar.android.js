@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     Image,
@@ -37,11 +35,11 @@ import {
     View,
 } from 'react-native';
 
-var IS_RIPPLE_EFFECT_SUPPORTED = Platform.Version >= 21;
+const IS_RIPPLE_EFFECT_SUPPORTED = Platform.Version >= 21;
 
-var SearchBar = React.createClass({
-  render: function() {
-    var background = IS_RIPPLE_EFFECT_SUPPORTED ?
+class SearchBar extends React.Component {
+  render() {
+    const background = IS_RIPPLE_EFFECT_SUPPORTED ?
       TouchableNativeFeedback.SelectableBackgroundBorderless() :
       TouchableNativeFeedback.SelectableBackground();
     return (
@@ -75,7 +73,7 @@ var SearchBar = React.createClass({
       </View>
     );
   }
-});
+}
 
 var styles = StyleSheet.create({
     searchBar: {
@@ -104,4 +102,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = SearchBar;
+export default SearchBar;
