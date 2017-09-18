@@ -32,8 +32,6 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.salesforce.androidsdk.analytics.security.Encryptor;
-import com.salesforce.androidsdk.app.SalesforceSDKManager;
 import com.salesforce.androidsdk.reactnative.app.SalesforceReactSDKManager;
 
 import java.util.Arrays;
@@ -45,6 +43,7 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
 	private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
 		@Override
 		public boolean getUseDeveloperSupport() {
 			return BuildConfig.DEBUG;
@@ -67,14 +66,13 @@ public class MainApplication extends Application implements ReactApplication {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		SalesforceReactSDKManager.initReactNative(getApplicationContext(), new ReactNativeKeyImpl(), MainActivity.class);
-	}
-}
+		SalesforceReactSDKManager.initReactNative(getApplicationContext(), null, MainActivity.class);
 
-class ReactNativeKeyImpl implements SalesforceSDKManager.KeyInterface {
-
-	@Override
-	public String getKey(String name) {
-		return Encryptor.hash(name + "12s9adpahk;n12-97sdainkasd=012", name + "12kl0dsakj4-cxh1qewkjasdol8");
+		/*
+		 * Uncomment the following line to enable browser based login. This will use a
+ 		 * Chrome custom tab to login instead of the default WebView. You will also need
+		 * to uncomment a few lines of code in SalesforceSDK library project's AndroidManifest.xml.
+  		 */
+         // SalesforceReactSDKManager.getInstance().setBrowserLoginEnabled(true);
 	}
 }

@@ -24,12 +24,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import { AppRegistry } from 'react-native';
 
-var App = require('./js/App');
+import App from './js/App';
 
 AppRegistry.registerComponent('SmartSyncExplorerReactNative', () => App);
-

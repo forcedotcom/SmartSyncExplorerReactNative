@@ -24,17 +24,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
-var EventEmitter = require('./events');
+import EventEmitter from './events';
 import {smartstore, smartsync} from 'react-native-force';
-var syncInFlight = false;
-var syncDownId;
-var lastStoreQuerySent = 0;
-var lastStoreResponseReceived = 0;
-var eventEmitter = new EventEmitter();
+let syncInFlight = false;
+let syncDownId;
+let lastStoreQuerySent = 0;
+let lastStoreResponseReceived = 0;
+const eventEmitter = new EventEmitter();
 
-var SMARTSTORE_CHANGED = "smartstoreChanged";
+const SMARTSTORE_CHANGED = "smartstoreChanged";
 
 function emitSmartStoreChanged() {
     eventEmitter.emit(SMARTSTORE_CHANGED, {});
@@ -48,13 +46,13 @@ function syncDown(callback) {
     
     console.log("Starting syncDown");
     syncInFlight = true;
-    var fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
-    var target = {type:"soql", query:"SELECT " + fieldlist.join(",") + " FROM Contact LIMIT 10000"};
+    const fieldlist = ["Id", "FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone", "LastModifiedDate"];
+    const target = {type:"soql", query:`SELECT ${fieldlist.join(",")} FROM Contact LIMIT 10000`};
     smartsync.syncDown(false,
                        target,
                        "contacts",
                        {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
-                       (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log("sync==>" + sync); emitSmartStoreChanged(); if (callback) callback(sync);},
+                       (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log(`sync==>${sync}`); emitSmartStoreChanged(); if (callback) callback(sync);},
                        (error) => {syncInFlight = false;}
                       );
 
@@ -74,7 +72,7 @@ function reSync(callback) {
                      (error) => {syncInFlight = false;}
                     );
 }
- 
+
 function syncUp(callback) {
     if (syncInFlight) {
         console.log("Not starting syncUp - sync already in fligtht");
@@ -83,11 +81,11 @@ function syncUp(callback) {
 
     console.log("Starting syncUp");
     syncInFlight = true;
-    var fieldlist = ["FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone"];
+    const fieldlist = ["FirstName", "LastName", "Title", "Email", "MobilePhone","Department","HomePhone"];
     smartsync.syncUp(false,
                      {},
                      "contacts",
-                     {mergeMode:smartsync.MERGE_MODE.OVERWRITE, fieldlist: fieldlist},
+                     {mergeMode:smartsync.MERGE_MODE.OVERWRITE, fieldlist},
                      (sync) => {syncInFlight = false; if (callback) callback(sync);},
                      (error) => {syncInFlight = false;}
                     );
@@ -121,7 +119,7 @@ function saveContact(contact, callback) {
 }
 
 function addContact(successCallback, errorCallback) {
-    var contact = {Id: "local_" + (new Date()).getTime(),
+    const contact = {Id: `local_${(new Date()).getTime()}`,
                    FirstName: null, LastName: null, Title: null, Email: null, MobilePhone: null, HomePhone: null, Department: null, attributes: {type: "Contact"},
                    __locally_created__: true,
                    __locally_updated__: false,
@@ -140,51 +138,51 @@ function deleteContact(contact, successCallback, errorCallback) {
 }
 
 function searchContacts(query, successCallback, errorCallback) {
-    var querySpec;
+    let querySpec;
     
     if (query === "") {
         querySpec = smartstore.buildAllQuerySpec("LastName", "ascending", 100);
     }
     else {
-        var queryParts = query.split(/ /);
-        var queryFirst = queryParts.length == 2 ? queryParts[0] : query;
-        var queryLast = queryParts.length == 2 ? queryParts[1] : query;
-        var queryOp = queryParts.length == 2 ? "AND" : "OR";
-        var match = "{contacts:FirstName}:" + queryFirst + "* " + queryOp + " {contacts:LastName}:" + queryLast + "*";
+        const queryParts = query.split(/ /);
+        const queryFirst = queryParts.length == 2 ? queryParts[0] : query;
+        const queryLast = queryParts.length == 2 ? queryParts[1] : query;
+        const queryOp = queryParts.length == 2 ? "AND" : "OR";
+        const match = `{contacts:FirstName}:${queryFirst}* ${queryOp} {contacts:LastName}:${queryLast}*`;
         querySpec = smartstore.buildMatchQuerySpec(null, match, "ascending", 100, "LastName");
     }
-    var that = this;
+    const that = this;
 
     lastStoreQuerySent++;
-    var currentStoreQuery = lastStoreQuerySent;
+    const currentStoreQuery = lastStoreQuerySent;
 
     smartstore.querySoup(false,
                          "contacts",
                          querySpec,
                          (cursor) => {
-                             console.log("Response for #" + currentStoreQuery);
+                             console.log(`Response for #${currentStoreQuery}`);
                              if (currentStoreQuery > lastStoreResponseReceived) {
                                  lastStoreResponseReceived = currentStoreQuery;
-                                 var contacts = cursor.currentPageOrderedEntries;
+                                 const contacts = cursor.currentPageOrderedEntries;
                                  successCallback(contacts, currentStoreQuery);
                              }
                              else {
-                                 console.log("IGNORING Response for #" + currentStoreQuery);
+                                 console.log(`IGNORING Response for #${currentStoreQuery}`);
                              }
                          },
                          (error) => {
-                             console.log("Error->" + JSON.stringify(error));
+                             console.log(`Error->${JSON.stringify(error)}`);
                              errorCallback(error);
                          });
 }
 
 
-module.exports = {
-    syncData: syncData,
-    reSyncData: reSyncData,
-    addStoreChangeListener: addStoreChangeListener,
-    saveContact: saveContact,
-    searchContacts: searchContacts,
-    addContact: addContact,
-    deleteContact: deleteContact,
-}
+export default {
+    syncData,
+    reSyncData,
+    addStoreChangeListener,
+    saveContact,
+    searchContacts,
+    addContact,
+    deleteContact,
+};

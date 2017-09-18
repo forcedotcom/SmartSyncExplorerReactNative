@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     Text,
@@ -35,9 +33,9 @@ import {
 } from 'react-native';
 
 // Props: fieldLabel, fieldValue
-var Field = React.createClass({
-    render: function() {
-        var that = this;
+class Field extends React.Component {
+    render() {
+        const that = this;
 
         return (<View style={styles.container}>
                   <Text style={styles.fieldName}>
@@ -50,7 +48,7 @@ var Field = React.createClass({
                 </View>
                );
     }
-});
+}
 
 var styles = StyleSheet.create({
     container: {
@@ -73,4 +71,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = Field;
+export default Field;

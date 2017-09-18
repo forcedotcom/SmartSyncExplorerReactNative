@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     ScrollView,
@@ -35,40 +33,40 @@ import {
     Text
 } from 'react-native';
 
-var Field = require('./Field');
-var storeMgr = require('./StoreMgr');
-var navigator;
+import Field from './Field';
+import storeMgr from './StoreMgr';
+let navigator;
 
 // State: contact
 // Props: contact
-var ContactScreen = React.createClass({
-    getInitialState: function() {
+const ContactScreen = React.createClass({
+    getInitialState() {
         navigator = this.props.navigator;
         return {
             contact: this.props.contact
         };
     },
 
-    onChange: function(fieldKey, fieldValue) {
-        var contact = this.state.contact;
+    onChange(fieldKey, fieldValue) {
+        const contact = this.state.contact;
         contact[fieldKey] = fieldValue;
-        this.setState({contact: contact});
+        this.setState({contact});
     },
 
-    onSaveContact: function() {
-        var contact = this.state.contact;
+    onSaveContact() {
+        const contact = this.state.contact;
         contact.__locally_updated__ = contact.__local__ = true;
         storeMgr.saveContact(contact, () => {navigator.pop();});
     },
     
-    onDeleteUndeleteContact: function() {
-        var contact = this.state.contact;
+    onDeleteUndeleteContact() {
+        const contact = this.state.contact;
         contact.__locally_deleted__ = !contact.__locally_deleted__;
         contact.__local__ = contact.__locally_deleted__ || contact.__locally_updated__ || contact.__locally_created__;
         storeMgr.saveContact(contact, () => {navigator.pop();});
     },
 
-    render: function() {
+    render() {
         return (
                 <ScrollView style={this.props.style}>
                   <Field fieldLabel="First name" fieldValue={this.state.contact.FirstName} onChange={(text) => this.onChange("FirstName", text)}/>
@@ -83,7 +81,7 @@ var ContactScreen = React.createClass({
     }
 });
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     button: {
         fontSize: 16,
         color: 'red',
@@ -91,4 +89,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = ContactScreen;
+export default ContactScreen;

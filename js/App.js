@@ -23,7 +23,6 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-'use strict';
 
 import React from 'react';
 import {
@@ -36,41 +35,41 @@ import {
 } from 'react-native';
 
 import {oauth} from 'react-native-force';
-var storeMgr = require('./StoreMgr');
-var SearchScreen = require('./SearchScreen');
-var ContactScreen = require('./ContactScreen');
-var contactScreenInstance;
+import storeMgr from './StoreMgr';
+import SearchScreen from './SearchScreen';
+import ContactScreen from './ContactScreen';
+let contactScreenInstance;
 
 // Nav bar components
-var NavButton = React.createClass({
-    render: function() {
+class NavButton extends React.Component {
+    render() {
         return (<View style={styles.navBarElt}>
                   <TouchableOpacity onPress={() => this.props.onPress()}>
                     <Text style={styles.navBarText}>{this.props.title}</Text>
                   </TouchableOpacity>
                 </View>);
     }
-});
+}
 
-var NavImgButton = React.createClass({
-    render: function() {
+class NavImgButton extends React.Component { 
+    render() {
         return (<View style={styles.navBarElt}>
                   <TouchableOpacity onPress={() => this.props.onPress()}>
                     <Image source={this.props.imgSrc} style={styles.icon}/>
                   </TouchableOpacity>
                 </View>);
     }
-});
+}
 
 // Router
-var NavigationBarRouteMapper = {
-    LeftButton: function(route, navigator, index, navState) {
+const NavigationBarRouteMapper = {
+    LeftButton(route, navigator, index, navState) {
         if (route.name === "Contact") {
             return (<NavImgButton imgSrc={require('./images/back.png')} onPress={() => onBack()}/>);
         }
     },
 
-    RightButton: function(route, navigator, index, navState) {
+    RightButton(route, navigator, index, navState) {
         if (route.name === "Contacts") {
             return (<View style={styles.navButtonsGroup}>
                       <NavImgButton imgSrc={require('./images/add.png')} onPress={() => onAdd(navigator)} />
@@ -79,7 +78,7 @@ var NavigationBarRouteMapper = {
                     </View>);
         }
         else if (route.name === "Contact") {
-            var deleteUndeleteButtonLabel = (route.contact.__locally_deleted__ ? "Undelete" : "Delete");
+            const deleteUndeleteButtonLabel = (route.contact.__locally_deleted__ ? "Undelete" : "Delete");
             return (<View style={styles.navButtonsGroup}>
                       <NavButton title={deleteUndeleteButtonLabel} onPress={() => onDeleteUndelete()}/>
                       <NavButton title="Save" onPress={() => onSave()} />
@@ -87,41 +86,41 @@ var NavigationBarRouteMapper = {
         }
     },
     
-    Title: function(route, navigator, index, navState) {
+    Title(route, navigator, index, navState) {
         return ( <View style={styles.navBarElt}><Text style={styles.navBarTitleText}> {route.name} </Text></View>);
   },
 
 };
 
 // Actions handlers
-var onAdd = function(navigator) {
+var onAdd = navigator => {
     storeMgr.addContact(
-        (contact) => navigator.push({name: 'Contact', contact: contact})
+        (contact) => navigator.push({name: 'Contact', contact})
     );
 }
 
-var onSync = function() {
+var onSync = () => {
     storeMgr.reSyncData();
 }
 
-var onSave = function() {
-    var contact = contactScreenInstance.state.contact;
-    var navigator = contactScreenInstance.props.navigator;
+var onSave = () => {
+    const contact = contactScreenInstance.state.contact;
+    const navigator = contactScreenInstance.props.navigator;
     contact.__locally_updated__ = contact.__local__ = true;
     storeMgr.saveContact(contact, () => navigator.pop());
 }
 
-var onDeleteUndelete = function() {
-    var contact = contactScreenInstance.state.contact;
-    var navigator = contactScreenInstance.props.navigator;
+var onDeleteUndelete = () => {
+    const contact = contactScreenInstance.state.contact;
+    const navigator = contactScreenInstance.props.navigator;
     contact.__locally_deleted__ = !contact.__locally_deleted__;
     contact.__local__ = contact.__locally_deleted__ || contact.__locally_updated__ || contact.__locally_created__;
     storeMgr.saveContact(contact, () => navigator.pop());
 }
 
-var onBack = function() {
-    var contact = contactScreenInstance.state.contact;
-    var navigator = contactScreenInstance.props.navigator;
+var onBack = () => {
+    const contact = contactScreenInstance.state.contact;
+    const navigator = contactScreenInstance.props.navigator;
     if (contact.__locally_created__ && !contact.__locally_modified__) {
         // Nothing typed in - delete
         storeMgr.deleteContact(contact, () => navigator.pop());
@@ -131,17 +130,17 @@ var onBack = function() {
     }
 }
 
-var onLogout = function() {
+var onLogout = () => {
     oauth.logout();
 }
 
 // App component
-var App = React.createClass({
-    componentDidMount: function() {
+class App extends React.Component {
+    componentDidMount() {
         storeMgr.syncData();
-    },
+    }
 
-    renderScene: function(route, navigator) {
+    renderScene(route, navigator) {
         if (route.name === 'Contacts') {
             return (<SearchScreen style={styles.scene} navigator={navigator} />);
         }
@@ -149,10 +148,10 @@ var App = React.createClass({
             return (<ContactScreen style={styles.scene} navigator={navigator} contact={route.contact} ref={(screen) => contactScreenInstance = screen}
                     />);
         }
-    },
+    }
 
-    render: function() {
-        var initialRoute = {name: 'Contacts'};
+    render() {
+        const initialRoute = {name: 'Contacts'};
         return (
                 <Navigator
                   style={styles.container}
@@ -162,7 +161,7 @@ var App = React.createClass({
                   navigationBar={<Navigator.NavigationBar routeMapper={NavigationBarRouteMapper} style={styles.navBar} />} />
         );
     }
-});
+}
 
 var styles = StyleSheet.create({
     container: {
@@ -204,5 +203,5 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = App;
+export default App;
 

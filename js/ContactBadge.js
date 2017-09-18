@@ -24,8 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-'use strict';
-
 import React from 'react';
 import {
     Image,
@@ -36,29 +34,29 @@ import {
     View
 } from 'react-native';
 
-var colors = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
+const colors = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
 
-var ContactBadge = React.createClass({
-    render: function() {
+class ContactBadge extends React.Component {
+    render() {
         // Compute initials
-        var firstName = this.props.contact.FirstName;
-        var lastName = this.props.contact.LastName;
-        var initials = (firstName ? firstName.substring(0,1) : "") + (lastName ? lastName.substring(0,1) : "");
+        const firstName = this.props.contact.FirstName;
+        const lastName = this.props.contact.LastName;
+        const initials = (firstName ? firstName.substring(0,1) : "") + (lastName ? lastName.substring(0,1) : "");
         // Compute color
-        var code = 0;
+        let code = 0;
         if (lastName) {
-            for (var i=0; i< lastName.length; i++) {
+            for (let i=0; i< lastName.length; i++) {
                 code += lastName.charCodeAt(i);
             }
         }
-        var color = colors[code % colors.length];
+        const color = colors[code % colors.length];
         return (
                 <View style={[styles.circle, {backgroundColor: color}]}>
                   <Text style={styles.initials}>{initials}</Text>
                 </View>           
                );
     }
-});
+}
 
 var styles = StyleSheet.create({
     circle: {
@@ -78,4 +76,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = ContactBadge;
+export default ContactBadge;
