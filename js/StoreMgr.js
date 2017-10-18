@@ -26,8 +26,8 @@
 
 import EventEmitter from './events';
 import {smartstore, smartsync} from 'react-native-force';
+const syncName = "smartSyncExplorerSyncDown";
 let syncInFlight = false;
-let syncDownId;
 let lastStoreQuerySent = 0;
 let lastStoreResponseReceived = 0;
 const eventEmitter = new EventEmitter();
@@ -52,7 +52,8 @@ function syncDown(callback) {
                        target,
                        "contacts",
                        {mergeMode:smartsync.MERGE_MODE.OVERWRITE},
-                       (sync) => {syncInFlight = false; syncDownId = sync._soupEntryId; console.log(`sync==>${sync}`); emitSmartStoreChanged(); if (callback) callback(sync);},
+                       syncName,
+                       (sync) => {syncInFlight = false; console.log(`sync==>${sync}`); emitSmartStoreChanged(); if (callback) callback(sync);},
                        (error) => {syncInFlight = false;}
                       );
 
@@ -67,7 +68,7 @@ function reSync(callback) {
     console.log("Starting reSync");
     syncInFlight = true;
     smartsync.reSync(false,
-                     syncDownId,
+                     syncName,
                      (sync) => {syncInFlight = false; emitSmartStoreChanged(); if (callback) callback(sync);},
                      (error) => {syncInFlight = false;}
                     );
@@ -91,7 +92,7 @@ function syncUp(callback) {
                     );
 }
 
-function syncData() {
+function firstTimeSyncData() {
     smartstore.registerSoup(false,
                             "contacts", 
                             [ {path:"Id", type:"string"}, 
@@ -100,6 +101,10 @@ function syncData() {
                               {path:"__local__", type:"string"} ],
                             () => syncDown()
                            );
+}
+
+function syncData() {
+    smartsync.getSyncStatus(false, syncName, (sync) => {if (sync == null) { firstTimeSyncData();} else { reSyncData(); }});    
 }
 
 function reSyncData() {
