@@ -104,7 +104,7 @@ function firstTimeSyncData() {
 }
 
 function syncData() {
-    smartsync.getSyncStatusByName(false, syncName, (sync) => {if (sync == null) { firstTimeSyncData();} else { reSyncData(); }});    
+    smartsync.getSyncStatus(false, syncName, (sync) => {if (sync == null) { firstTimeSyncData();} else { reSyncData(); }});    
 }
 
 function reSyncData() {
