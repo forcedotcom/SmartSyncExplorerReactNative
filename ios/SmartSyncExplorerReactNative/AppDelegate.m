@@ -32,7 +32,7 @@
 #import <SalesforceSDKCore/SFDefaultUserManagementViewController.h>
 #import <SalesforceSDKCore/SalesforceSDKManager.h>
 #import <SalesforceSDKCore/SFUserAccountManager.h>
-#import <SmartSync/SmartSyncSDKManager.h>
+#import <SalesforceReact/SalesforceReactSDKManager.h>
 #import <SalesforceSDKCore/SFLoginViewController.h>
 
 // Fill these in when creating a new Connected Application on Force.com
@@ -46,8 +46,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     self = [super init];
     if (self) {
 
-        // Need to use SmartSyncSDKManager when using SmartSync
-        [SalesforceSDKManager setInstanceClass:[SmartSyncSDKManager class]];
+        // Need to use SmartSyncSDKManager in Salesforce Mobile SDK apps using React Native
+        [SalesforceSDKManager setInstanceClass:[SalesforceReactSDKManager class]];
         [SalesforceSDKManager sharedManager].appConfig.remoteAccessConsumerKey = RemoteAccessConsumerKey;
         [SalesforceSDKManager sharedManager].appConfig.oauthRedirectURI = OAuthRedirectURI;
         [SalesforceSDKManager sharedManager].appConfig.oauthScopes = [NSSet setWithArray:@[ @"web", @"api" ]];
