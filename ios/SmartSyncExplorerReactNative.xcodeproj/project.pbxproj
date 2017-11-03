@@ -14,6 +14,7 @@
 		4F3AFF401DC2C79E006FF6B0 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3AFF3E1DC2C79E006FF6B0 /* InitialViewController.m */; };
 		4F3AFF451DC2C8C8006FF6B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3AFF441DC2C8C8006FF6B0 /* Images.xcassets */; };
 		6F00A4EBBB37F8CE9D7F4535 /* libPods-SmartSyncExplorerReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */; };
+		B7168FC01FACCB8A00A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */; };
 		C01B85EA26DFCFE3720B8C0D /* libPods-SmartSyncExplorerReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5839A0A19B26684DA1DFC9 /* libPods-SmartSyncExplorerReactNativeTests.a */; };
 		CE46D5441E9C942C006E6537 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46D5431E9C942C006E6537 /* XCTest.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartSyncExplorerReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9179A4D5F573F882F3F164B9 /* Pods-SmartSyncExplorerReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNativeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE79D28E6E57F5B77FA24716 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNative.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative.release.xcconfig"; sourceTree = "<group>"; };
+		B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/salesforcemobilesdk-ios/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		CE46D5431E9C942C006E6537 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FF7D7DA5C2A5D7471D866BA3 /* Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 		4F3AFF431DC2C869006FF6B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */,
 				4F3AFF441DC2C8C8006FF6B0 /* Images.xcassets */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -256,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7168FC01FACCB8A00A48DB5 /* LaunchScreen.storyboard in Resources */,
 				4F3AFF451DC2C8C8006FF6B0 /* Images.xcassets in Resources */,
 				05065B0F1E0899BC00585A28 /* main.jsbundle in Resources */,
 			);
