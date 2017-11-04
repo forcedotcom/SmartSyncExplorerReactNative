@@ -46,7 +46,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     self = [super init];
     if (self) {
 
-        // Need to use SmartSyncSDKManager in Salesforce Mobile SDK apps using React Native
+        // Need to use SalesforceReactSDKManager in Salesforce Mobile SDK apps using React Native
         [SalesforceSDKManager setInstanceClass:[SalesforceReactSDKManager class]];
         [SalesforceSDKManager sharedManager].appConfig.remoteAccessConsumerKey = RemoteAccessConsumerKey;
         [SalesforceSDKManager sharedManager].appConfig.oauthRedirectURI = OAuthRedirectURI;
