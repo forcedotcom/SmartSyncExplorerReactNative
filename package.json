@@ -7,14 +7,17 @@
         "test": "jest"
     },
     "sdkDependencies": {
-        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#dev",
-        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#dev"
+        "salesforcemobilesdk-ios": "https://github.com/brandonpage/SalesforceMobileSDK-iOS.git#upgrade-bpsub",
+        "salesforcemobilesdk-android": "https://github.com/brandonpage/SalesforceMobileSDK-Android.git#upgrade"
     },
     "dependencies": {
-        "react": "16.0.0-alpha.6",
-        "react-native": "0.43.1",
-        "whatwg-fetch": "1.1.1",
-        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#dev"
+        "react": "16.0.0",
+        "react-native": "^0.50.3",
+        "react-native-cli": "^2.0.1",
+        "react-native-deprecated-custom-components": "git+https://github.com/facebookarchive/react-native-custom-components.git",
+        "react-native-force": "https://github.com/brandonpage/SalesforceMobileSDK-ReactNative.git#upgrade",
+        "watchman": "^0.1.8",
+        "whatwg-fetch": "1.1.1"
     },
     "jest": {
         "preset": "jest-react-native"
@@ -24,6 +27,6 @@
         "babel-preset-react-native": "1.9.1",
         "jest": "19.0.2",
         "jest-react-native": "16.0.0",
-        "react-test-renderer": "16.0.0-alpha.6"
+        "react-test-renderer": "16.0.0"
     }
 }

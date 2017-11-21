@@ -40,9 +40,10 @@ import SearchBar from './SearchBar';
 import ContactScreen from './ContactScreen';
 import ContactCell from './ContactCell';
 import storeMgr from './StoreMgr';
+import NavigationExperimental from 'react-native-deprecated-custom-components';
 
-
-const SearchScreen = React.createClass({
+var createReactClass = require('create-react-class');
+const SearchScreen = createReactClass({
     mixins: [Subscribable.Mixin],
     
     getInitialState() {
@@ -91,7 +92,7 @@ const SearchScreen = React.createClass({
 
     selectContact(contact: Object) {
         dismissKeyboard();
-        this.props.navigator.push({
+        NavigationExperimental.Navigator.navigator.push({
             name: 'Contact',
             contact: contact,
         });
