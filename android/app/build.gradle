@@ -133,10 +133,10 @@ configurations.all {
 }
 
 dependencies {
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:25.2.0"
-    compile "com.facebook.react:react-native:+"  // From node_modules
-    compile project(':libs:SalesforceReact') // From node_modules
+    api fileTree(dir: "libs", include: ["*.jar"])
+    api "com.android.support:appcompat-v7:25.2.0"
+    api "com.facebook.react:react-native:+"  // From node_modules
+    api project(':libs:SalesforceReact') // From node_modules
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support:support-annotations:25.2.0'
     androidTestCompile 'com.android.support.test:runner:0.5'
