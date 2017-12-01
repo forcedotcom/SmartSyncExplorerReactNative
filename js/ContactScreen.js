@@ -35,13 +35,16 @@ import {
 
 import Field from './Field';
 import storeMgr from './StoreMgr';
+import PropTypes from 'prop-types';
+import NavigationExperimental from 'react-native-deprecated-custom-components';
 let navigator;
 
 // State: contact
 // Props: contact
-const ContactScreen = React.createClass({
+var createReactClass = require('create-react-class');
+const ContactScreen = createReactClass({
     getInitialState() {
-        navigator = this.props.navigator;
+        navigator = NavigationExperimental.navigator;
         return {
             contact: this.props.contact
         };
