@@ -10,7 +10,7 @@ node ./installandroid.js (for Android)
 ```
 ## To create the package (e.g. to run on device)
 ```shell
-react-native bundle --platform ios --dev false --entry-file index.js --bundle-output iOS/main.jsbundle
+react-native bundle --platform ios --dev false --entry-file index.ios.js --bundle-output iOS/main.jsbundle
 ```
 
 ## Make sure to run the react-native packager

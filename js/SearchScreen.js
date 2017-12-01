@@ -92,7 +92,7 @@ const SearchScreen = createReactClass({
 
     selectContact(contact: Object) {
         dismissKeyboard();
-        NavigationExperimental.Navigator.navigator.push({
+        this.props.navigator.push({
             name: 'Contact',
             contact: contact,
         });
