@@ -34,14 +34,11 @@ import {
 } from 'react-native';
 
 import NavigationExperimental from 'react-native-deprecated-custom-components';
-import Navigator from  'react-native-deprecated-custom-components';
 import {oauth} from 'react-native-force';
 import storeMgr from './StoreMgr';
 import SearchScreen from './SearchScreen';
 import ContactScreen from './ContactScreen';
 let contactScreenInstance;
-
-let navigator = Navigator;
 
 // Nav bar components
 class NavButton extends React.Component {

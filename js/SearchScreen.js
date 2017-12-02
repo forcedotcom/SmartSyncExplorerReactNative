@@ -40,7 +40,6 @@ import SearchBar from './SearchBar';
 import ContactScreen from './ContactScreen';
 import ContactCell from './ContactCell';
 import storeMgr from './StoreMgr';
-import NavigationExperimental from 'react-native-deprecated-custom-components';
 
 var createReactClass = require('create-react-class');
 const SearchScreen = createReactClass({

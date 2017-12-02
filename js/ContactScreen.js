@@ -35,7 +35,6 @@ import {
 
 import Field from './Field';
 import storeMgr from './StoreMgr';
-import PropTypes from 'prop-types';
 import NavigationExperimental from 'react-native-deprecated-custom-components';
 let navigator;
 
