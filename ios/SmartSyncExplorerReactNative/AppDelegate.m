@@ -161,7 +161,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (NSURL *)sourceURL
 {
-    NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+    NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
     if (getenv("INTEGRATION_TEST")){
         jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
     } else if (!getenv("CI_USE_PACKAGER")) {
@@ -198,7 +198,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
      *
      * Run the curl command and add the output to your main Xcode build target:
      *
-     * $ curl http://localhost:8081/index.ios.bundle -o main.jsbundle
+     * $ curl http://localhost:8081/index.bundle -o main.jsbundle
      */
     // [self setupReactRootView:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
 }
