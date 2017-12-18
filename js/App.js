@@ -27,13 +27,13 @@
 import React from 'react';
 import {
     Image,
-    Navigator,
     StyleSheet,
     Text,
     TouchableOpacity,
     View
 } from 'react-native';
 
+import NavigationExperimental from 'react-native-deprecated-custom-components';
 import {oauth} from 'react-native-force';
 import storeMgr from './StoreMgr';
 import SearchScreen from './SearchScreen';
@@ -153,12 +153,12 @@ class App extends React.Component {
     render() {
         const initialRoute = {name: 'Contacts'};
         return (
-                <Navigator
+                <NavigationExperimental.Navigator
                   style={styles.container}
                   initialRoute={initialRoute}
-                  configureScene={() => Navigator.SceneConfigs.PushFromRight}
+                  configureScene={() => NavigationExperimental.Navigator.SceneConfigs.PushFromRight}
                   renderScene={(route, navigator) => this.renderScene(route, navigator)}
-                  navigationBar={<Navigator.NavigationBar routeMapper={NavigationBarRouteMapper} style={styles.navBar} />} />
+                  navigationBar={<NavigationExperimental.Navigator.NavigationBar routeMapper={NavigationBarRouteMapper} style={styles.navBar} />} />
         );
     }
 }

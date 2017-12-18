@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		4F3AFF401DC2C79E006FF6B0 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3AFF3E1DC2C79E006FF6B0 /* InitialViewController.m */; };
 		4F3AFF451DC2C8C8006FF6B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3AFF441DC2C8C8006FF6B0 /* Images.xcassets */; };
 		6F00A4EBBB37F8CE9D7F4535 /* libPods-SmartSyncExplorerReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */; };
+		B7168FC01FACCB8A00A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */; };
 		C01B85EA26DFCFE3720B8C0D /* libPods-SmartSyncExplorerReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5839A0A19B26684DA1DFC9 /* libPods-SmartSyncExplorerReactNativeTests.a */; };
 		CE46D5441E9C942C006E6537 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46D5431E9C942C006E6537 /* XCTest.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartSyncExplorerReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9179A4D5F573F882F3F164B9 /* Pods-SmartSyncExplorerReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNativeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE79D28E6E57F5B77FA24716 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNative.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative.release.xcconfig"; sourceTree = "<group>"; };
+		B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/salesforcemobilesdk-ios/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		CE46D5431E9C942C006E6537 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FF7D7DA5C2A5D7471D866BA3 /* Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 		4F3AFF431DC2C869006FF6B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */,
 				4F3AFF441DC2C8C8006FF6B0 /* Images.xcassets */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -208,7 +211,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = SalesforceSamples;
 				TargetAttributes = {
 					05B9FB1A1E03778D00712BD5 = {
@@ -226,7 +229,7 @@
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SmartSyncExplorerReactNative" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -256,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7168FC01FACCB8A00A48DB5 /* LaunchScreen.storyboard in Resources */,
 				4F3AFF451DC2C8C8006FF6B0 /* Images.xcassets in Resources */,
 				05065B0F1E0899BC00585A28 /* main.jsbundle in Resources */,
 			);
@@ -276,7 +280,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n./../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
 		05A2224E1E04FB82004B8255 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -298,13 +302,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartSyncExplorerReactNative-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		212520A1C8337472A792B88C /* [CP] Copy Pods Resources */ = {
@@ -313,9 +320,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative-resources.sh",
+				"${PODS_ROOT}/../../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/SalesforceSDKAssets.xcassets",
+				$PODS_CONFIGURATION_BUILD_DIR/SalesforceSDKCore/SalesforceSDKResources.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -328,9 +339,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests-resources.sh",
+				"${PODS_ROOT}/../../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/SalesforceSDKAssets.xcassets",
+				$PODS_CONFIGURATION_BUILD_DIR/SalesforceSDKCore/SalesforceSDKResources.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -343,13 +358,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartSyncExplorerReactNativeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		848F61A0A8D124B7CDEEFE2C /* [CP] Embed Pods Frameworks */ = {
@@ -424,7 +442,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = SmartSyncExplorerReactNativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.mobilesdk.SmartSyncExplorerReactNativeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,7 +461,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = SmartSyncExplorerReactNativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.mobilesdk.SmartSyncExplorerReactNativeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -466,7 +484,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = SmartSyncExplorerReactNative/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -494,7 +512,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = SmartSyncExplorerReactNative/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -516,14 +534,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -551,7 +575,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -566,14 +590,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -594,7 +624,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -56,6 +56,11 @@ public class MainApplication extends Application implements ReactApplication {
 					SalesforceReactSDKManager.getInstance().getReactPackage()
 			);
 		}
+
+		@Override
+		protected String getJSMainModuleName() {
+			return "index";
+		}
 	};
 
 	@Override
@@ -68,11 +73,26 @@ public class MainApplication extends Application implements ReactApplication {
 		super.onCreate();
 		SalesforceReactSDKManager.initReactNative(getApplicationContext(), null, MainActivity.class);
 
+        /*
+         * Uncomment the following line to enable IDP login flow. This will allow the user to
+         * either authenticate using the current app or use a designated IDP app for login.
+         * Replace 'idpAppURIScheme' with the URI scheme of the IDP app meant to be used.
+         */
+		// SalesforceReactSDKManager.getInstance().setIDPAppURIScheme(idpAppURIScheme);
+
 		/*
 		 * Uncomment the following line to enable browser based login. This will use a
  		 * Chrome custom tab to login instead of the default WebView. You will also need
 		 * to uncomment a few lines of code in SalesforceSDK library project's AndroidManifest.xml.
   		 */
-         // SalesforceReactSDKManager.getInstance().setBrowserLoginEnabled(true);
+        // SalesforceReactSDKManager.getInstance().setBrowserLoginEnabled(true);
+
+        /*
+		 * Un-comment the line below to enable push notifications in this app.
+		 * Replace 'pnInterface' with your implementation of 'PushNotificationInterface'.
+		 * Add your Google package ID in 'bootonfig.xml', as the value
+		 * for the key 'androidPushNotificationClientId'.
+		 */
+        // SalesforceReactSDKManager.getInstance().setPushNotificationReceiver(pnInterface);
 	}
 }
