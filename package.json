@@ -7,15 +7,15 @@
         "test": "jest"
     },
     "sdkDependencies": {
-        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#dev",
-        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#dev"
+        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#v6.0.0",
+        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#v6.0.0"
     },
     "dependencies": {
         "react": "16.0.0",
         "react-native": "^0.50.4",
         "react-native-cli": "^2.0.1",
         "react-native-deprecated-custom-components": "git+https://github.com/facebookarchive/react-native-custom-components.git",
-        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#dev",
+        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#v6.0.0",
         "whatwg-fetch": "1.1.1"
     },
     "jest": {
