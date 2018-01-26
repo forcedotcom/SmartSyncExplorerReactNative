@@ -66,6 +66,7 @@ const SearchScreen = createReactClass({
                 <View style={this.props.style}>
                   <SearchBar
                     lightTheme
+                    autoCorrect={false}
                     onChangeText={this.onSearchChange}
                     showLoadingIcon={this.state.isLoading}
                     placeholder='Search a contact...'
