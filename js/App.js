@@ -26,12 +26,14 @@
 
 import React from 'react';
 import {
-    Image,
     StyleSheet,
     Text,
-    TouchableOpacity,
     View
 } from 'react-native';
+
+import {
+    Icon
+} from 'react-native-elements';
 
 import NavigationExperimental from 'react-native-deprecated-custom-components';
 import {oauth} from 'react-native-force';
@@ -41,22 +43,10 @@ import ContactScreen from './ContactScreen';
 let contactScreenInstance;
 
 // Nav bar components
-class NavButton extends React.Component {
-    render() {
-        return (<View style={styles.navBarElt}>
-                  <TouchableOpacity onPress={() => this.props.onPress()}>
-                    <Text style={styles.navBarText}>{this.props.title}</Text>
-                  </TouchableOpacity>
-                </View>);
-    }
-}
-
 class NavImgButton extends React.Component { 
     render() {
         return (<View style={styles.navBarElt}>
-                  <TouchableOpacity onPress={() => this.props.onPress()}>
-                    <Image source={this.props.imgSrc} style={styles.icon}/>
-                  </TouchableOpacity>
+                <Icon name={this.props.icon} type={this.props.iconType} color="white" onPress={() => this.props.onPress()} />
                 </View>);
     }
 }
@@ -65,23 +55,23 @@ class NavImgButton extends React.Component {
 const NavigationBarRouteMapper = {
     LeftButton(route, navigator, index, navState) {
         if (route.name === "Contact") {
-            return (<NavImgButton imgSrc={require('./images/back.png')} onPress={() => onBack()}/>);
+            return (<NavImgButton icon="arrow-back" onPress={() => onBack()}/>);
         }
     },
 
     RightButton(route, navigator, index, navState) {
         if (route.name === "Contacts") {
             return (<View style={styles.navButtonsGroup}>
-                      <NavImgButton imgSrc={require('./images/add.png')} onPress={() => onAdd(navigator)} />
-                      <NavImgButton imgSrc={require('./images/sync.png')} onPress={() => onSync()}/>
-                      <NavButton title="Logout" onPress={() => onLogout()} />
+                      <NavImgButton icon="add" onPress={() => onAdd(navigator)} />
+                      <NavImgButton icon="cloud-sync" iconType="material-community" onPress={onSync} />
+                      <NavImgButton icon="logout" iconType="material-community" onPress={onLogout} />
                     </View>);
         }
         else if (route.name === "Contact") {
-            const deleteUndeleteButtonLabel = (route.contact.__locally_deleted__ ? "Undelete" : "Delete");
+            const deleteUndeleteIcon = (route.contact.__locally_deleted__ ? "delete-restore" : "delete");
             return (<View style={styles.navButtonsGroup}>
-                      <NavButton title={deleteUndeleteButtonLabel} onPress={() => onDeleteUndelete()}/>
-                      <NavButton title="Save" onPress={() => onSave()} />
+                      <NavImgButton icon={deleteUndeleteIcon} iconType="material-community" onPress={onDeleteUndelete}/>
+                      <NavImgButton icon="save" onPress={onSave}/>
                     </View>);
         }
     },
@@ -187,14 +177,6 @@ var styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         alignItems: 'center',
-    },
-    navBarText: {
-        fontSize: 16,
-        color: 'white',
-    },
-    icon: {
-        width: 24,
-        height: 24,
     },
     scene: {
         flex: 1,
