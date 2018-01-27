@@ -69,6 +69,7 @@ const SearchScreen = createReactClass({
                     autoCorrect={false}
                     onChangeText={this.onSearchChange}
                     showLoadingIcon={this.state.isLoading}
+                    value={this.state.filter}    
                     placeholder='Search a contact...'
                   />
                   <ListView
