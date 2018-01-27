@@ -26,6 +26,7 @@
 
 import React from 'react';
 import {
+    Platform,
     StyleSheet,
     Text,
     View
@@ -42,42 +43,42 @@ import SearchScreen from './SearchScreen';
 import ContactScreen from './ContactScreen';
 let contactScreenInstance;
 
-// Nav bar components
 class NavImgButton extends React.Component { 
     render() {
-        return (<View style={styles.navBarElt}>
-                <Icon name={this.props.icon} type={this.props.iconType} color="white" onPress={() => this.props.onPress()} />
+        return (<View style={styles.navBarButton}>
+                  <Icon size={32} name={this.props.icon} type={this.props.iconType} color="white" underlayColor="red" onPress={() => this.props.onPress()} />
                 </View>);
     }
 }
 
+
 // Router
 const NavigationBarRouteMapper = {
     LeftButton(route, navigator, index, navState) {
-        if (route.name === "Contact") {
-            return (<NavImgButton icon="arrow-back" onPress={() => onBack()}/>);
+        if (route.name === 'Contact') {
+            return (<NavImgButton icon='arrow-back' color='white' onPress={onBack} />);
         }
     },
 
     RightButton(route, navigator, index, navState) {
-        if (route.name === "Contacts") {
+        if (route.name === 'Contacts') {
             return (<View style={styles.navButtonsGroup}>
-                      <NavImgButton icon="add" onPress={() => onAdd(navigator)} />
-                      <NavImgButton icon="cloud-sync" iconType="material-community" onPress={onSync} />
-                      <NavImgButton icon="logout" iconType="material-community" onPress={onLogout} />
+                      <NavImgButton icon='add' onPress={() => onAdd(navigator)} />
+                      <NavImgButton icon='cloud-sync' iconType='material-community' onPress={onSync} />
+                      <NavImgButton icon='logout' iconType='material-community' onPress={onLogout} />
                     </View>);
         }
-        else if (route.name === "Contact") {
-            const deleteUndeleteIcon = (route.contact.__locally_deleted__ ? "delete-restore" : "delete");
+        else if (route.name === 'Contact') {
+            const deleteUndeleteIcon = (route.contact.__locally_deleted__ ? 'delete-restore' : 'delete');
             return (<View style={styles.navButtonsGroup}>
-                      <NavImgButton icon={deleteUndeleteIcon} iconType="material-community" onPress={onDeleteUndelete}/>
-                      <NavImgButton icon="save" onPress={onSave}/>
+                      <NavImgButton icon={deleteUndeleteIcon} iconType='material-community' onPress={onDeleteUndelete} />
+                      <NavImgButton icon='save' onPress={onSave} />
                     </View>);
         }
     },
     
     Title(route, navigator, index, navState) {
-        return ( <View style={styles.navBarElt}><Text style={styles.navBarTitleText}> {route.name} </Text></View>);
+        return (<Text style={styles.navBarTitleText}> {route.name} </Text>);
   },
 
 };
@@ -155,33 +156,27 @@ class App extends React.Component {
 
 var styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: 'white',
     },
     navBar: {
         backgroundColor: 'red',
-        height: 56,
+        height: Platform.OS === 'ios' ? 56 : 38,
+    },
+    navBarButton: {
+        paddingLeft: 6,
     },
     navButtonsGroup: {
-        flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-    },
-    navBarElt: {
-        alignItems: 'center',
-        height: 24,
-        margin: 2,
     },
     navBarTitleText: {
-        fontSize: 20,
+        paddingTop: Platform.OS === 'ios' ? 0 : 18,
+        fontSize: 26,
         color: 'white',
         fontWeight: 'bold',
-        alignItems: 'center',
     },
     scene: {
-        flex: 1,
-        paddingTop: 56,
-        backgroundColor: '#EAEAEA',
+        paddingTop: Platform.OS === 'ios' ? 56 : 38,
+        backgroundColor: 'white',
     },
 });
 
