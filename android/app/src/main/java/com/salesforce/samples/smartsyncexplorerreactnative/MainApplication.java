@@ -71,7 +71,7 @@ public class MainApplication extends Application implements ReactApplication {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		SalesforceReactSDKManager.initReactNative(getApplicationContext(), null, MainActivity.class);
+		SalesforceReactSDKManager.initReactNative(getApplicationContext(), MainActivity.class);
 
         /*
          * Uncomment the following line to enable IDP login flow. This will allow the user to

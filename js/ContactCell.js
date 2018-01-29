@@ -25,80 +25,30 @@
  */
 
 import React from 'react';
-import {
-    Image,
-    PixelRatio,
-    StyleSheet,
-    Text,
-    TouchableHighlight,
-    View
-} from 'react-native';
-
+import { ListItem } from 'react-native-elements';
 import ContactBadge from './ContactBadge';
 
 class ContactCell extends React.Component {
     render() {
         let statusIcon;
         if (this.props.contact.__local__) {
-            let iconSource;
-            if (this.props.contact.__locally_updated__) iconSource = require("./images/localupdate.png");
-            if (this.props.contact.__locally_created__) iconSource = require("./images/localadd.png");
-            if (this.props.contact.__locally_deleted__) iconSource = require("./images/localdelete.png");
-
-            if (iconSource) {
-                statusIcon = (<Image source={iconSource} />);
-            }
+            if (this.props.contact.__locally_updated__) statusIcon = {name: 'sync', color:'blue'};
+            if (this.props.contact.__locally_created__) statusIcon = {name: 'add', color:'green'};
+            if (this.props.contact.__locally_deleted__) statusIcon = {name: 'delete', color:'red'};
         }
 
-        return (
-                <View>
-                  <TouchableHighlight onPress={this.props.onSelect}>
-                    <View style={styles.row}>
-                      <ContactBadge contact={this.props.contact}/>
-                      <View style={styles.textContainer}>
-                        <Text style={styles.name} numberOfLines={2}>
-                          {this.props.contact.FirstName} {this.props.contact.LastName}
-                        </Text>
-                        <Text style={styles.title} numberOfLines={1}>
-                          {this.props.contact.Title}
-                        </Text>
-                      </View>
-                      {statusIcon}
-                    </View>
-                    </TouchableHighlight>
-                  <View style={styles.cellBorder} />
-                </View>
-               );
+        const fullName = [this.props.contact.FirstName, this.props.contact.LastName].filter(x=>x).join(' ')
+        const title = this.props.contact.Title;
+        
+        return (<ListItem
+                key={fullName}
+                leftIcon={<ContactBadge contact={this.props.contact}/>}
+                title={fullName}
+                subtitle={title}
+                rightIcon={statusIcon}
+                onPress={this.props.onSelect}
+                />);
     }
 }
-
-var styles = StyleSheet.create({
-    row: {
-        alignItems: 'center',
-        backgroundColor: 'white',
-        flexDirection: 'row'
-    },
-    textContainer: {
-        flex: 1,
-    },
-    name: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 2,
-        fontFamily: 'Helvetica Neue'
-    },
-    title: {
-        color: '#999999',
-        fontSize: 12,
-        fontFamily: 'Helvetica Neue'
-    },
-    cellBorder: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        // Trick to get the thinest line the device can display
-        height: 1 / PixelRatio.get(),
-        marginLeft: 4,
-    },
-});
 
 export default ContactCell;
