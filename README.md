@@ -1,4 +1,3 @@
-iOS: ![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/ios/dev/latest/buildstatus.svg)     Android: ![Build Status](https://forcedotcom.github.io/SalesforceMobileSDK-TestResults/SmartSyncExplorerReactNative-results/android/dev/latest/buildstatus.svg)
 
 # SmartSyncExplorerReactNative
 SmartSyncExplorer application written using React Native 
@@ -23,5 +22,3 @@ npm start (Windows users please use "npm run-script start-windows" instead of np
 
 ## To run the application on Android
 * Open android/ in Android Studio
-
-
