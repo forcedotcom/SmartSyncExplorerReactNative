@@ -34,7 +34,7 @@
 #import <SalesforceSDKCore/SFUserAccountManager.h>
 #import <SalesforceReact/SalesforceReactSDKManager.h>
 #import <SalesforceSDKCore/SFLoginViewController.h>
-#import <SalesforceSDKCore/SFSDKLoginViewControllerConfig.h>
+
 // Fill these in when creating a new Connected Application on Force.com
 static NSString * const RemoteAccessConsumerKey = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
 static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect/oauth/done";
@@ -48,22 +48,22 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
         // Need to use SalesforceReactSDKManager in Salesforce Mobile SDK apps using React Native
         [SalesforceSDKManager setInstanceClass:[SalesforceReactSDKManager class]];
+
         [SalesforceSDKManager sharedManager].appConfig.remoteAccessConsumerKey = RemoteAccessConsumerKey;
         [SalesforceSDKManager sharedManager].appConfig.oauthRedirectURI = OAuthRedirectURI;
         [SalesforceSDKManager sharedManager].appConfig.oauthScopes = [NSSet setWithArray:@[ @"web", @"api" ]];
-
         // Uncomment the following line if you don't want login to happen when the application launches
-        // [SalesforceSDKManager sharedManager].authenticateAtLaunch = NO;
+        // [SalesforceSDKManager sharedManager].appConfig.shouldAuthenticate = NO;
 
         //Uncomment the following line inorder to enable/force the use of advanced authentication flow.
-        //[SFAuthenticationManager sharedManager].advancedAuthConfiguration = SFOAuthAdvancedAuthConfigurationRequire;
+        //[SFUserAccountManager sharedInstance].advancedAuthConfiguration = SFOAuthAdvancedAuthConfigurationRequire;
         // OR
         // To  retrieve advanced auth configuration from the org, to determine whether to initiate advanced authentication.
-        //[SFAuthenticationManager sharedManager].advancedAuthConfiguration = SFOAuthAdvancedAuthConfigurationAllow;
-        
+        //[SFUserAccountManager sharedInstance].advancedAuthConfiguration = SFOAuthAdvancedAuthConfigurationAllow;
+
         // NOTE: If advanced authentication is configured or forced,  it will launch Safari to handle authentication
         // instead of a webview. You must implement application:openURL:options: to handle the callback.
- 
+
         __weak AppDelegate *weakSelf = self;
         [SalesforceSDKManager sharedManager].postLaunchAction = ^(SFSDKLaunchAction launchActionList) {
             //
@@ -89,6 +89,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
             [weakSelf handleUserSwitch:fromUser toUser:toUser];
         };
     }
+    
     return self;
 }
 
@@ -97,8 +98,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     self.launchOptions = launchOptions;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self initializeAppViewState];
-    
-     //Uncomment the code below to see how you can customize the color, textcolor, font and   fontsize of the navigation bar
+
+    //Uncomment the code below to see how you can customize the color, textcolor, font and   fontsize of the navigation bar
     //SFSDKLoginViewControllerConfig *loginViewConfig = [[SFSDKLoginViewControllerConfig  alloc] init];
     //Set showSettingsIcon to NO if you want to hide the settings icon on the nav bar
     //loginViewConfig.showSettingsIcon = YES;
@@ -131,14 +132,14 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
-  
+
     // If you're using advanced authentication:
     // --Configure your app to handle incoming requests to your
     //   OAuth Redirect URI custom URL scheme.
     // --Uncomment the following line and delete the original return statement:
-    
-    // return [[SFAuthenticationManager sharedManager] handleAdvancedAuthenticationResponse:url];
-    return NO;
+
+    // return [[SFUserAccountManager sharedInstance] handleAdvancedAuthenticationResponse:url options:options];
+  return NO;
 }
 
 #pragma mark - Private methods
@@ -156,58 +157,19 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     [self.window makeKeyAndVisible];
 }
 
-- (NSURL *)sourceURL
-{
-    NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-    if (getenv("INTEGRATION_TEST")){
-        jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-    } else if (!getenv("CI_USE_PACKAGER")) {
-#ifdef DEBUG
-        [SFSDKLogger log:[self class] level:DDLogLevelDebug format:@"Is debug mode."];
-#else
-        jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-#endif
-    }
-    return jsCodeLocation;
-}
-
 - (void)setupRootViewController
 {
-    /**
-     * Loading JavaScript code - uncomment the one you want.
-     *
-     * OPTION 1
-     * Load from development server. Start the server from the repository root:
-     *
-     * $ npm start
-     *
-     * To run on device, change `localhost` to the IP address of your computer
-     * and make sure your computer and iOS device are on the same Wi-Fi network.
-     */
-    [self setupReactRootView:[self sourceURL]];
+    NSURL *jsCodeLocation;
 
-    /**
-     * OPTION 2
-     * Load from pre-bundled file on disk. To re-generate the static bundle,
-     * start the server from the repository root:
-     *
-     * $ npm start
-     *
-     * Run the curl command and add the output to your main Xcode build target:
-     *
-     * $ curl http://localhost:8081/index.bundle -o main.jsbundle
-     */
-    // [self setupReactRootView:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
-}
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
-- (void)setupReactRootView:(NSURL*)jsCodeLocation
-{
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                         moduleName:@"SmartSyncExplorerReactNative"
                                                  initialProperties:nil
                                                      launchOptions:self.launchOptions];
+    rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
     
-    UIViewController *rootViewController = [[UIViewController alloc] init];
+    UIViewController *rootViewController = [UIViewController new];
     rootViewController.view = rootView;
     self.window.rootViewController = rootViewController;
 }
@@ -225,10 +187,10 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (void)handleSdkManagerLogout
 {
-    [SFSDKLogger log:[self class] level:DDLogLevelDebug format:@"SFAuthenticationManager logged out.  Resetting app."];
+    [SFSDKLogger log:[self class] level:DDLogLevelDebug format:@"SFUserAccountManager logged out.  Resetting app."];
     [self resetViewState:^{
         [self initializeAppViewState];
-        
+
         // Multi-user pattern:
         // - If there are two or more existing accounts after logout, let the user choose the account
         //   to switch to.
@@ -256,7 +218,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 - (void)handleUserSwitch:(SFUserAccount *)fromUser
                   toUser:(SFUserAccount *)toUser
 {
-    [SFSDKLogger log:[self class] level:DDLogLevelDebug format:@"SFUserAccountManager changed from user %@ to %@.  Resetting app.", fromUser.userName, toUser.userName];
+    [SFSDKLogger log:[self class] level:DDLogLevelDebug format:@"SFUserAccountManager changed from user %@ to %@.  Resetting app.",
+     fromUser.userName, toUser.userName];
     [self resetViewState:^{
         [self initializeAppViewState];
         [[SalesforceSDKManager sharedManager] launch];

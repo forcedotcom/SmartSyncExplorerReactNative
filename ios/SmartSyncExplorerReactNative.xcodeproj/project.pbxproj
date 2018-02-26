@@ -122,7 +122,6 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNative" */;
 			buildPhases = (
 				0D1647048E9655B7745B0762 /* [CP] Check Pods Manifest.lock */,
-				05A2224E1E04FB82004B8255 /* ShellScript */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -201,20 +200,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n./../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		05A2224E1E04FB82004B8255 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if nc -w 5 -z localhost 8081 ; then\nif  curl -s \"http://localhost:8081/status\" | grep \"packager-status:running\" ; then\ncurl \"http://localhost:8081/IntegrationTests/testapp.ios.bundle?dev=false\" -o \"../IntegrationTests/main.jsbundle\"\nfi\nfi";
-			showEnvVarsInLog = 0;
 		};
 		0D1647048E9655B7745B0762 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
