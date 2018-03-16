@@ -7,33 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05065B0F1E0899BC00585A28 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 05065B0E1E0899BC00585A28 /* main.jsbundle */; };
-		05B9FB1E1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9FB1D1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4F3AFF401DC2C79E006FF6B0 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3AFF3E1DC2C79E006FF6B0 /* InitialViewController.m */; };
 		4F3AFF451DC2C8C8006FF6B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3AFF441DC2C8C8006FF6B0 /* Images.xcassets */; };
 		6F00A4EBBB37F8CE9D7F4535 /* libPods-SmartSyncExplorerReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */; };
 		B7168FC01FACCB8A00A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */; };
-		C01B85EA26DFCFE3720B8C0D /* libPods-SmartSyncExplorerReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5839A0A19B26684DA1DFC9 /* libPods-SmartSyncExplorerReactNativeTests.a */; };
-		CE46D5441E9C942C006E6537 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46D5431E9C942C006E6537 /* XCTest.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		05A7D07D1E08A57500E68CB0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = SmartSyncExplorerReactNative;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		05065B0E1E0899BC00585A28 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../../IntegrationTests/main.jsbundle; sourceTree = "<group>"; };
-		05B9FB1B1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartSyncExplorerReactNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05B9FB1D1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartSyncExplorerReactNativeTests.m; sourceTree = "<group>"; };
-		05B9FB1F1E03778D00712BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D8CDE8158AC70656CC3EE20 /* Pods-SmartSyncExplorerReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNative.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SmartSyncExplorerReactNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartSyncExplorerReactNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SmartSyncExplorerReactNative/AppDelegate.h; sourceTree = "<group>"; };
@@ -44,25 +26,13 @@
 		4F3AFF3E1DC2C79E006FF6B0 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitialViewController.m; path = SmartSyncExplorerReactNative/InitialViewController.m; sourceTree = "<group>"; };
 		4F3AFF441DC2C8C8006FF6B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = "<group>"; };
 		4FF12F8E1DCA93E2004D9EF9 /* SmartSyncExplorerReactNative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SmartSyncExplorerReactNative.entitlements; path = SmartSyncExplorerReactNative/SmartSyncExplorerReactNative.entitlements; sourceTree = "<group>"; };
-		6C5839A0A19B26684DA1DFC9 /* libPods-SmartSyncExplorerReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartSyncExplorerReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartSyncExplorerReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9179A4D5F573F882F3F164B9 /* Pods-SmartSyncExplorerReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNativeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE79D28E6E57F5B77FA24716 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNative.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative.release.xcconfig"; sourceTree = "<group>"; };
 		B7168FBF1FACCB8900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/salesforcemobilesdk-ios/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		CE46D5431E9C942C006E6537 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		FF7D7DA5C2A5D7471D866BA3 /* Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05B9FB181E03778D00712BD5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE46D5441E9C942C006E6537 /* XCTest.framework in Frameworks */,
-				C01B85EA26DFCFE3720B8C0D /* libPods-SmartSyncExplorerReactNativeTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,16 +44,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05B9FB1C1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests */ = {
-			isa = PBXGroup;
-			children = (
-				05065B0E1E0899BC00585A28 /* main.jsbundle */,
-				05B9FB1D1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m */,
-				05B9FB1F1E03778D00712BD5 /* Info.plist */,
-			);
-			path = SmartSyncExplorerReactNativeTests;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* SmartSyncExplorerReactNative */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +81,6 @@
 			children = (
 				0D8CDE8158AC70656CC3EE20 /* Pods-SmartSyncExplorerReactNative.debug.xcconfig */,
 				AE79D28E6E57F5B77FA24716 /* Pods-SmartSyncExplorerReactNative.release.xcconfig */,
-				FF7D7DA5C2A5D7471D866BA3 /* Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig */,
-				9179A4D5F573F882F3F164B9 /* Pods-SmartSyncExplorerReactNativeTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -131,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAE1A68108700A75B9A /* SmartSyncExplorerReactNative */,
-				05B9FB1C1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				6473DB45A273CC31E19C4F9A /* Pods */,
 				C73512AABD4BDBC0734E686B /* Frameworks */,
@@ -144,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* SmartSyncExplorerReactNative.app */,
-				05B9FB1B1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,7 +110,6 @@
 			children = (
 				CE46D5431E9C942C006E6537 /* XCTest.framework */,
 				78A9CFAC4F2F0A1FDF2E7669 /* libPods-SmartSyncExplorerReactNative.a */,
-				6C5839A0A19B26684DA1DFC9 /* libPods-SmartSyncExplorerReactNativeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,33 +117,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		05B9FB1A1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05B9FB241E03778D00712BD5 /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNativeTests" */;
-			buildPhases = (
-				7644D8152F3AE9D9F8CB1E73 /* [CP] Check Pods Manifest.lock */,
-				05B9FB171E03778D00712BD5 /* Sources */,
-				05B9FB181E03778D00712BD5 /* Frameworks */,
-				05B9FB191E03778D00712BD5 /* Resources */,
-				848F61A0A8D124B7CDEEFE2C /* [CP] Embed Pods Frameworks */,
-				36E4253C46359CE668971F11 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				05A7D07E1E08A57500E68CB0 /* PBXTargetDependency */,
-			);
-			name = SmartSyncExplorerReactNativeTests;
-			productName = SmartSyncExplorerReactNativeTests;
-			productReference = 05B9FB1B1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* SmartSyncExplorerReactNative */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNative" */;
 			buildPhases = (
 				0D1647048E9655B7745B0762 /* [CP] Check Pods Manifest.lock */,
-				05A2224E1E04FB82004B8255 /* ShellScript */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -214,11 +147,6 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = SalesforceSamples;
 				TargetAttributes = {
-					05B9FB1A1E03778D00712BD5 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -242,26 +170,17 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* SmartSyncExplorerReactNative */,
-				05B9FB1A1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		05B9FB191E03778D00712BD5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B7168FC01FACCB8A00A48DB5 /* LaunchScreen.storyboard in Resources */,
 				4F3AFF451DC2C8C8006FF6B0 /* Images.xcassets in Resources */,
-				05065B0F1E0899BC00585A28 /* main.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,20 +201,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n./../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		05A2224E1E04FB82004B8255 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if nc -w 5 -z localhost 8081 ; then\nif  curl -s \"http://localhost:8081/status\" | grep \"packager-status:running\" ; then\ncurl \"http://localhost:8081/IntegrationTests/testapp.ios.bundle?dev=false\" -o \"../IntegrationTests/main.jsbundle\"\nfi\nfi";
-			showEnvVarsInLog = 0;
-		};
 		0D1647048E9655B7745B0762 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,7 +216,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		212520A1C8337472A792B88C /* [CP] Copy Pods Resources */ = {
@@ -321,68 +226,39 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_ROOT}/../../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/SalesforceSDKAssets.xcassets",
-				$PODS_CONFIGURATION_BUILD_DIR/SalesforceSDKCore/SalesforceSDKResources.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/SalesforceSDKCore/SalesforceSDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SalesforceSDKAssets.xcassets",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SalesforceSDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNative/Pods-SmartSyncExplorerReactNative-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		36E4253C46359CE668971F11 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests-resources.sh",
-				"${PODS_ROOT}/../../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/SalesforceSDKAssets.xcassets",
-				$PODS_CONFIGURATION_BUILD_DIR/SalesforceSDKCore/SalesforceSDKResources.bundle,
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7644D8152F3AE9D9F8CB1E73 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SmartSyncExplorerReactNativeTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		848F61A0A8D124B7CDEEFE2C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartSyncExplorerReactNativeTests/Pods-SmartSyncExplorerReactNativeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F91EAB9E5BEED0D528204139 /* [CP] Embed Pods Frameworks */ = {
@@ -403,14 +279,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		05B9FB171E03778D00712BD5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05B9FB1E1E03778D00712BD5 /* SmartSyncExplorerReactNativeTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,52 +291,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		05A7D07E1E08A57500E68CB0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* SmartSyncExplorerReactNative */;
-			targetProxy = 05A7D07D1E08A57500E68CB0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		05B9FB221E03778D00712BD5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF7D7DA5C2A5D7471D866BA3 /* Pods-SmartSyncExplorerReactNativeTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = SmartSyncExplorerReactNativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.mobilesdk.SmartSyncExplorerReactNativeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmartSyncExplorerReactNative.app/SmartSyncExplorerReactNative";
-			};
-			name = Debug;
-		};
-		05B9FB231E03778D00712BD5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9179A4D5F573F882F3F164B9 /* Pods-SmartSyncExplorerReactNativeTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = SmartSyncExplorerReactNativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.mobilesdk.SmartSyncExplorerReactNativeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmartSyncExplorerReactNative.app/SmartSyncExplorerReactNative";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D8CDE8158AC70656CC3EE20 /* Pods-SmartSyncExplorerReactNative.debug.xcconfig */;
@@ -634,15 +457,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05B9FB241E03778D00712BD5 /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNativeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05B9FB221E03778D00712BD5 /* Debug */,
-				05B9FB231E03778D00712BD5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SmartSyncExplorerReactNative" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

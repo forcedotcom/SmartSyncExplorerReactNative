@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, salesforce.com, inc.
+ * Copyright (c) 2015-present, salesforce.com, inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided
@@ -26,49 +26,22 @@
 
 import React from 'react';
 import {
-    Text,
-    TextInput,
-    StyleSheet,
     View
 } from 'react-native';
+import {
+    FormLabel,
+    FormInput
+} from 'react-native-elements';
 
 // Props: fieldLabel, fieldValue
 class Field extends React.Component {
     render() {
-        const that = this;
-
-        return (<View style={styles.container}>
-                  <Text style={styles.fieldName}>
-                    {this.props.fieldLabel}
-                  </Text>
-                  <TextInput
-                    style={styles.fieldValue}
-                    onChangeText={(text) => this.props.onChange(text)}
-                    value={this.props.fieldValue} />
+        return (<View>
+                  <FormLabel>{this.props.fieldLabel}</FormLabel>
+                  <FormInput onChangeText={this.props.onChange} value={this.props.fieldValue}/>                
                 </View>
                );
     }
 }
-
-var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    fieldName: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-        backgroundColor: '#F0F0F0',
-        padding: 5,
-        height: 28
-    },
-    fieldValue: {
-        flex: 1,
-        fontSize: 16,
-        padding: 5,
-        height: 36
-    }
-});
 
 export default Field;

@@ -20,6 +20,3 @@ execSync('npm install', {stdio:[0,1,2]});
 
 console.log('Installing pod dependencies');
 execSync('pod update', {stdio:[0,1,2], cwd:'ios'});
-
-console.log('Generating main.jsbundle for tests');
-execSync('react-native bundle --platform ios --dev false --entry-file index.js --bundle-output IntegrationTests/main.jsbundle', {stdio:[0,1,2]});

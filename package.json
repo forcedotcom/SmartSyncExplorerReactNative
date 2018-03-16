@@ -1,22 +1,24 @@
 {
     "name": "SmartSyncExplorerReactNative",
-    "version": "6.0.0",
+    "version": "6.1.0",
     "private": true,
     "scripts": {
         "start": "node node_modules/react-native/local-cli/cli.js start",
         "test": "jest"
     },
     "sdkDependencies": {
-        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#v6.0.0",
-        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#v6.0.0"
+        "salesforcemobilesdk-ios": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS.git#v6.1.0",
+        "salesforcemobilesdk-android": "https://github.com/forcedotcom/SalesforceMobileSDK-Android.git#v6.1.0"
     },
     "dependencies": {
-        "react": "16.0.0",
-        "react-native": "^0.50.4",
+        "react": "16.2.0",
+        "react-native": "0.53.3",
         "react-native-cli": "^2.0.1",
         "react-native-deprecated-custom-components": "git+https://github.com/facebookarchive/react-native-custom-components.git",
-        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#v6.0.0",
-        "whatwg-fetch": "1.1.1"
+        "react-native-force": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#v6.1.0",
+        "whatwg-fetch": "1.1.1",
+        "react-native-elements": "^0.19.0",
+        "react-native-vector-icons": "^4.5.0"
     },
     "jest": {
         "preset": "jest-react-native"

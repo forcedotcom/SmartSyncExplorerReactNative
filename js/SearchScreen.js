@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, salesforce.com, inc.
+ * Copyright (c) 2015-present, salesforce.com, inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided
@@ -26,17 +26,15 @@
 
 import React from 'react';
 import {
-    Platform,
-    StyleSheet,
-    Text,
     View,
-    ListView,
-    PixelRatio,
+    ListView
 } from 'react-native';
+import {
+    SearchBar
+} from 'react-native-elements';
 
 import Subscribable from 'Subscribable';
 import dismissKeyboard from 'dismissKeyboard';
-import SearchBar from './SearchBar';
 import ContactScreen from './ContactScreen';
 import ContactCell from './ContactCell';
 import storeMgr from './StoreMgr';
@@ -67,10 +65,13 @@ const SearchScreen = createReactClass({
         return (
                 <View style={this.props.style}>
                   <SearchBar
-                    onSearchChange={this.onSearchChange}
-                    isLoading={this.state.isLoading}
+                    lightTheme
+                    autoCorrect={false}
+                    onChangeText={this.onSearchChange}
+                    showLoadingIcon={this.state.isLoading}
+                    value={this.state.filter}    
+                    placeholder='Search a contact...'
                   />
-                  <View style={styles.separator} />
                   <ListView
                     automaticallyAdjustContentInsets={false}
                     dataSource={this.state.dataSource}
@@ -97,8 +98,8 @@ const SearchScreen = createReactClass({
         });
     },
 
-    onSearchChange(event: Object) {
-        var filter = event.nativeEvent.text.toLowerCase();
+    onSearchChange(text) {
+        var filter = text.toLowerCase();
         clearTimeout(this.timeoutID);
         this.timeoutID = setTimeout(() => this.searchContacts(filter), 10);
     },
@@ -125,13 +126,6 @@ const SearchScreen = createReactClass({
                     isLoading: false
                 });
             });
-    }
-});
-
-const styles = StyleSheet.create({
-    separator: {
-        height: 1,
-        backgroundColor: '#eeeeee',
     }
 });
 
